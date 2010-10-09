@@ -19,7 +19,7 @@
 			</author>
 		</author-group>
 		
-		<mod-version>1.0.0</mod-version>
+		<mod-version>1.0.1</mod-version>
 		
 		<installation>
 			<level>easy</level>
@@ -42,6 +42,14 @@
 					<change>First stable Release</change>
 					<change>Will now also work with JavaScript disabled (simple version)</change>
 					<change>Columns in IE7/IE8 have a fixed width now</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-09-03</date>
+				<rev-version>1.0.1</rev-version>
+				<changelog lang="en">
+					<change>Fixed ACP style issue for small resolutions</change>
+					<change>Small fixes and required updates due to phpBB SVN changes</change>
 				</changelog>
 			</entry>
 		</history>

@@ -2,7 +2,8 @@
 /**
 *
 * @package VC
-* @version $Id: phpbb_captcha_sortables_plugin.php 1 2009-08-13 19:40:23Z Derky $
+* @version $Id: phpbb_captcha_sortables_plugin.php 2009-09-03 Derky $
+* extending from: phpbb_captcha_qa_plugin.php 10093 2009-09-03 13:56:03Z bantu $
 * @copyright (c) 2006, 2008 phpBB Group
 * @copyright (c) 2009 Derky - phpBB3styles.net
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
@@ -31,7 +32,7 @@ define('CAPTCHA_SORTABLES_ANSWERS_TABLE',	$table_prefix . 'captcha_sortables_ans
 define('CAPTCHA_SORTABLES_CONFIRM_TABLE',	$table_prefix . 'captcha_sortables_confirm');
 
 /**
-* Sortables list captcha with extending the QA captcha class.
+* Sortables captcha with extending of the QA captcha class.
 *
 * @package VC
 */
@@ -58,28 +59,36 @@ class phpbb_captcha_sortables extends phpbb_captcha_qa
 
 		// load our language file 
 		$user->add_lang('mods/captcha_sortables');
+		
 		// read input
 		$this->confirm_id = request_var('sortables_confirm_id', '');
-		//$this->options_left = request_var('sortables_options_left', '', true);
-		//$this->options_right = request_var('sortables_options_right', '', true);
 
 		$this->type = (int) $type;
-		$this->question_lang = $user->data['user_lang'];
+		$this->question_lang = $user->lang_name;
+		
 		// we need all defined questions - shouldn't be too many, so we can just grab them
 		// try the user's lang first
-		$sql = 'SELECT question_id FROM ' . CAPTCHA_SORTABLES_QUESTIONS_TABLE . ' WHERE lang_iso = \'' . $db->sql_escape($user->data['user_lang']) . '\''; 
+		$sql = 'SELECT question_id 
+			FROM ' . CAPTCHA_SORTABLES_QUESTIONS_TABLE . "
+			WHERE lang_iso = '" . $db->sql_escape($user->lang_name) . "'";
 		$result = $db->sql_query($sql, 3600);
+		
 		while ($row = $db->sql_fetchrow($result))
 		{
 			$this->question_ids[$row['question_id']] = $row['question_id'];
 		}
 		$db->sql_freeresult($result);
+		
 		// fallback to the board default lang
 		if (!sizeof($this->question_ids))
 		{
 			$this->question_lang = $config['default_lang'];
-			$sql = 'SELECT question_id FROM ' . CAPTCHA_SORTABLES_QUESTIONS_TABLE . ' WHERE lang_iso = \'' . $db->sql_escape($config['default_lang']) . '\''; 
+			
+			$sql = 'SELECT question_id 
+				FROM ' . CAPTCHA_SORTABLES_QUESTIONS_TABLE . "
+				WHERE lang_iso = '" . $db->sql_escape($config['default_lang']) . "'"; 
 			$result = $db->sql_query($sql, 7200);
+			
 			while ($row = $db->sql_fetchrow($result))
 			{
 				$this->question_ids[$row['question_id']] = $row['question_id'];
@@ -133,7 +142,9 @@ class phpbb_captcha_sortables extends phpbb_captcha_qa
 		{
 			return false;
 		}
-		$sql = 'SELECT COUNT(question_id) as count FROM ' . CAPTCHA_SORTABLES_QUESTIONS_TABLE . ' WHERE lang_iso = \'' . $db->sql_escape($config['default_lang']) . '\''; 
+		$sql = 'SELECT COUNT(question_id) as count 
+			FROM ' . CAPTCHA_SORTABLES_QUESTIONS_TABLE . " 
+			WHERE lang_iso = '" . $db->sql_escape($config['default_lang']) . "'"; 
 		$result = $db->sql_query($sql);
 		$row = $db->sql_fetchrow($result);
 		$db->sql_freeresult($result);
@@ -225,7 +236,8 @@ class phpbb_captcha_sortables extends phpbb_captcha_qa
 
 		$sql = 'SELECT DISTINCT c.session_id
 			FROM ' . CAPTCHA_SORTABLES_CONFIRM_TABLE . ' c
-			LEFT JOIN ' . SESSIONS_TABLE . ' s ON (c.session_id = s.session_id)
+			LEFT JOIN ' . SESSIONS_TABLE . ' s 
+				ON (c.session_id = s.session_id)
 			WHERE s.session_id IS NULL' .
 				((empty($type)) ? '' : ' AND c.confirm_type = ' . (int) $type);
 		$result = $db->sql_query($sql);
@@ -233,6 +245,7 @@ class phpbb_captcha_sortables extends phpbb_captcha_qa
 		if ($row = $db->sql_fetchrow($result))
 		{
 			$sql_in = array();
+			
 			do
 			{
 				$sql_in[] = (string) $row['session_id'];
@@ -357,6 +370,7 @@ class phpbb_captcha_sortables extends phpbb_captcha_qa
 		{
 			// okay, incorrect answer. Let's ask a new question.
 			$this->new_attempt();
+			$this->solved = false;
 			return $error;
 		}
 		else
@@ -376,15 +390,15 @@ class phpbb_captcha_sortables extends phpbb_captcha_qa
 		$this->question = (int) array_rand($this->question_ids);
 		
 		$sql = 'INSERT INTO ' . CAPTCHA_SORTABLES_CONFIRM_TABLE . ' ' . $db->sql_build_array('INSERT', array(
-				'confirm_id'	=> (string) $this->confirm_id,
-				'session_id'	=> (string) $user->session_id,
-				'lang_iso'		=> (string) $this->question_lang,
-				'confirm_type'	=> (int) $this->type,
-				'question_id'	=> (int) $this->question,
+			'confirm_id'	=> (string) $this->confirm_id,
+			'session_id'	=> (string) $user->session_id,
+			'lang_iso'		=> (string) $this->question_lang,
+			'confirm_type'	=> (int) $this->type,
+			'question_id'	=> (int) $this->question,
 		));
 		$db->sql_query($sql);
+		
 		$this->load_answer();
-
 	}
 
 	/**
@@ -396,14 +410,13 @@ class phpbb_captcha_sortables extends phpbb_captcha_qa
 
 		$this->question = (int) array_rand($this->question_ids);
 		$this->solved = 0;
-		// compute $seed % 0x7fffffff
 
-		$sql = 'UPDATE ' . CAPTCHA_SORTABLES_CONFIRM_TABLE . ' SET ' . $db->sql_build_array('UPDATE', array(
-				'question'			=> (int) $this->question,)) . '
-				WHERE
-				confirm_id = \'' . $db->sql_escape($this->confirm_id) . '\' 
-					AND session_id = \'' . $db->sql_escape($user->session_id) . '\'';
+		$sql = 'UPDATE ' . CAPTCHA_SORTABLES_CONFIRM_TABLE . ' 
+			SET question_id = ' . (int) $this->question . "
+			WHERE confirm_id = '" . $db->sql_escape($this->confirm_id) . "' 
+				AND session_id = '" . $db->sql_escape($user->session_id) . "'";
 		$db->sql_query($sql);
+		
 		$this->load_answer();
 	}
 
@@ -417,15 +430,14 @@ class phpbb_captcha_sortables extends phpbb_captcha_qa
 		// yah, I would prefer a stronger rand, but this should work
 		$this->question = (int) array_rand($this->question_ids);
 		$this->solved = 0;
-		// compute $seed % 0x7fffffff
 
-		$sql = 'UPDATE ' . CAPTCHA_SORTABLES_CONFIRM_TABLE . ' SET ' . $db->sql_build_array('UPDATE', array(
-				'question_id'			=> (int) $this->question)) . ', 
-				attempts = attempts + 1 
-				WHERE
-				confirm_id = \'' . $db->sql_escape($this->confirm_id) . '\' 
-					AND session_id = \'' . $db->sql_escape($user->session_id) . '\'';
+		$sql = 'UPDATE ' . CAPTCHA_SORTABLES_CONFIRM_TABLE . ' 
+			SET question_id = ' . (int) $this->question . ",
+				attempts = attempts + 1
+			WHERE confirm_id = '" . $db->sql_escape($this->confirm_id) . "' 
+				AND session_id = '" . $db->sql_escape($user->session_id) . "'";
 		$db->sql_query($sql);
+
 		$this->load_answer();
 	}
 	
@@ -434,7 +446,7 @@ class phpbb_captcha_sortables extends phpbb_captcha_qa
 	*/
 	function load_answer()
 	{
-		global $db, $user, $template, $test;
+		global $db, $user, $template;
 
 		$sql = 'SELECT con.question_id, attempts, question_text, sort, name_left, name_right
 			FROM ' . CAPTCHA_SORTABLES_CONFIRM_TABLE . ' con, ' . CAPTCHA_SORTABLES_QUESTIONS_TABLE . " qes 
@@ -491,10 +503,6 @@ class phpbb_captcha_sortables extends phpbb_captcha_qa
 		// Well how did the user sorted it
 		$options_left = request_var('sortables_options_left', array(0), true);
 		$options_right = request_var('sortables_options_right', array(0), true);
-
-		// Just to be sure
-		$options_left = array_map('intval', $options_left);
-		$options_right = array_map('intval', $options_right);
 		
 		// Make sure the didn't submitted more options then it should (like trying everything... left/right: options ^ 2 )
 		if ($this->total_options === sizeof($options_left) + sizeof($options_right))

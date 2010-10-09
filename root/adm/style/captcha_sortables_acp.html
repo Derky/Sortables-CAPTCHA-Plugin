@@ -60,8 +60,8 @@
 		<legend>{L_EDIT_QUESTION}</legend>
 	<dl> 
 		<dt><label for="sort">{L_QUESTION_SORT}:</label><br /><span>{L_QUESTION_SORT_EXPLAIN}</span></dt>
-		<dd><label><input type="radio" class="radio" name="sort" value="0"<!-- IF not SORT --> id="sort" checked="checked"<!-- ENDIF --> />{L_SORT_LEFT}<!-- IF NAME_LEFT -->: {NAME_LEFT}<!-- ENDIF --></label>
-			<label><input type="radio" class="radio" name="sort" value="1"<!-- IF SORT --> id="sort" checked="checked"<!-- ENDIF --> />{L_SORT_RIGHT}<!-- IF NAME_RIGHT -->: {NAME_RIGHT}<!-- ENDIF --></label></dd>
+		<dd><label><input type="radio" class="radio" name="sort" value="0"<!-- IF not SORT --> id="sort" checked="checked"<!-- ENDIF --> /> {L_COLUMN_LEFT}<!-- IF NAME_LEFT -->: {NAME_LEFT}<!-- ENDIF --></label>
+			<label><input type="radio" class="radio" name="sort" value="1"<!-- IF SORT --> id="sort" checked="checked"<!-- ENDIF --> /> {L_COLUMN_RIGHT}<!-- IF NAME_RIGHT -->: {NAME_RIGHT}<!-- ENDIF --></label></dd>
 	</dl>
 	
 	<dl> 
@@ -75,42 +75,46 @@
 	</fieldset>
 	
 	<div style="float: left; width: 48%;">
-		<fieldset>
-			<legend>{L_SORT_LEFT}</legend>
+		<fieldset style="margin:0;">
+			<legend>{L_COLUMN_LEFT}</legend>
 		<dl>
-			<dt><label for="name_left">{L_COLUMN_NAME_LEFT}</label><br /><span>{L_COLUMN_NAME_LEFT_EXPLAIN}</span></dt>
-			<dd><input id="name_left" maxlength="255" size="100%" name="name_left" type="text" value="{NAME_LEFT}" /></dd>
+			<dt><label for="name_left">{L_COLUMN_NAME}</label><br /><span>{L_COLUMN_NAME_LEFT_EXPLAIN}</span></dt>
+			<dd><input id="name_left" maxlength="255" style="width:100%;" name="name_left" type="text" value="{NAME_LEFT}" /></dd>
 		</dl>
 		<dl>
-			<dd class="full" style="text-align: left;"><label for="options_left">{L_ANSWERS_EXPLAIN}</label><textarea id="options_left" name="options_left" rows="5" cols="5" style="width: 100%; height: 60px; margin-top: 2px;">{OPTIONS_LEFT}</textarea></dd>
-		</dl>
-		</fieldset>
-	</div>
-	<div style="float: right; width: 48%">
-		<fieldset>
-			<legend>{L_SORT_RIGHT}</legend>
-		<dl>
-			<dt><label for="name_right">{L_COLUMN_NAME_RIGHT}</label><br /><span>{L_COLUMN_NAME_RIGHT_EXPLAIN}</span></dt>
-			<dd><input id="name_right" maxlength="255" size="100%" name="name_right" type="text" value="{NAME_RIGHT}" /></dd>
-		</dl>
-		<dl>
-			<dd class="full" style="text-align: left;"><label for="options_right">{L_ANSWERS_EXPLAIN}</label><textarea id="options_right" name="options_right" rows="5" cols="5" style="width: 100%; height: 60px; margin-top: 2px;">{OPTIONS_RIGHT}</textarea></dd>	
+			<dd class="full" style="text-align: left;"><label for="options_left" style="white-space:normal;">{L_ANSWERS_EXPLAIN}</label><br />
+			<textarea id="options_left" name="options_left" rows="5" cols="5" style="width: 100%; height: 60px; margin-top: 2px;">{OPTIONS_LEFT}</textarea></dd>
 		</dl>
 		</fieldset>
 	</div>
-	<div class="clear"></div>
+	
+	<div style="float: right; width: 48%;">
+		<fieldset style="margin:0;">
+			<legend>{L_COLUMN_RIGHT}</legend>
+		<dl>
+			<dt><label for="name_right">{L_COLUMN_NAME}</label><br /><span>{L_COLUMN_NAME_RIGHT_EXPLAIN}</span></dt>
+			<dd><input id="name_right" maxlength="255" style="width:100%;" name="name_right" type="text" value="{NAME_RIGHT}" /></dd>
+		</dl>
+		<dl>
+			<dd class="full" style="text-align: left;"><label for="options_right" style="white-space:normal;">{L_ANSWERS_EXPLAIN}</label><br />
+			<textarea id="options_right" name="options_right" rows="5" cols="5" style="width:100%; height: 60px; margin-top: 2px;">{OPTIONS_RIGHT}</textarea></dd>	
+		</dl>
+		</fieldset>
+	</div>
+	
 	<div style="clear:both;"></div>
 	
+	
 	<fieldset>
-			<legend>Submit changes</legend>
+		<legend>{L_CHANGES_SUBMIT}</legend>
 
-<p class="submit-buttons">
-		<input class="button1" type="submit" name="submit" value="{L_SUBMIT}" />
-		<input type="hidden" name="question_id" value="{QUESTION_ID}" />
-		<input type="hidden" name="action" value="add" />
-		<input  type="hidden" name="configure" value="1" />
-		<input  type="hidden" name="select_captcha" value="{CLASS}" />
-</p>
+		<p class="submit-buttons">
+			<input class="button1" type="submit" name="submit" value="{L_SUBMIT}" />
+			<input type="hidden" name="question_id" value="{QUESTION_ID}" />
+			<input type="hidden" name="action" value="add" />
+			<input type="hidden" name="configure" value="1" />
+			<input type="hidden" name="select_captcha" value="{CLASS}" />
+		</p>
 		{S_FORM_TOKEN}
 		
 	</fieldset>

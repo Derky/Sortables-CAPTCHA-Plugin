@@ -32,9 +32,7 @@ function createdata(listnameobject, column, resultid)
 
 $(function() {
 	// Javascript nubs
-	document.getElementById('js_explain').style.display = 'block';
-	document.getElementById('js_sortable1').style.display = 'block';
-	document.getElementById('js_sortable2').style.display = 'block';
+	document.getElementById('enable_js').style.display = 'block';
 
 	$("#sortable1, #sortable2").sortable({
 		connectWith: '.connectedSortable',
@@ -65,12 +63,32 @@ $(function() {
 	<fieldset class="fields2">
 <!-- ENDIF -->
 
+	<!-- Very simple version for javascript off with no dragging support -->
+	<noscript>
 	<dl>
-	<dt><label>{SORTABLES_CONFIRM_QUESTION}</label><br /><span id="js_explain" style="display:none;">{L_CONFIRM_QUESTION_EXPLAIN}</span><noscript><span>{L_CONFIRM_QUESTION_EXPLAIN_NOJS}</noscript></dt>
+	<dt><label>{SORTABLES_CONFIRM_QUESTION}</label><br /><span>{L_CONFIRM_QUESTION_EXPLAIN_NOJS}</span></dt>
+		
+	<dd>		
+		<div style="width:300px; float:left;">
+			<div style="width:150px; float:left;"><strong><!-- IF SORTABLES_NAME_LEFT -->{SORTABLES_NAME_LEFT}<!-- ELSE -->{L_COLUMN_LEFT}<!-- ENDIF --></strong></div>
+			<div style="width:150px; float:right; text-align:right;"><strong><!-- IF SORTABLES_NAME_RIGHT -->{SORTABLES_NAME_RIGHT}<!-- ELSE -->{L_COLUMN_RIGHT}<!-- ENDIF --></strong></div>
+			<!-- BEGIN options -->
+			<div style="width:10px; float:left; clear:left; height:2em;"><input type="checkbox" name="sortables_options_left[]" value="{options.ID}"/></div>
+			<div style="width:280px; float:left; text-align:center;	height:2em;">{options.TEXT}</div>
+			<div style="width:10px; float:right; text-align:right; height:2em;"><input type="checkbox" name="sortables_options_right[]" value="{options.ID}" /></div>
+			<!-- END options -->
+		</div>
+	</dd>
+	</dl>
+	</noscript>
+
+	<!-- The normal version -->
+	<dl id="enable_js" style="display:none;">
+	<dt><label>{SORTABLES_CONFIRM_QUESTION}</label><br /><span>{L_CONFIRM_QUESTION_EXPLAIN}</span></dt>
 	<dd>
 
-		<div id="js_sortable1" class="attachbox" style="clear:none; display:none; *width:20em;"><!-- *width:20em; is for nub IE-only -->
-		<strong>{SORTABLES_NAME_LEFT}</strong><hr />
+		<div class="attachbox" style="clear:none; *width:20em;"><!-- *width:20em; is for nub IE-only -->
+		<strong><!-- IF SORTABLES_NAME_LEFT -->{SORTABLES_NAME_LEFT}<!-- ELSE -->{L_COLUMN_LEFT}<!-- ENDIF --></strong><hr />
 		<ul id="sortable1" class="connectedSortable" style="min-height: 100px; min-width:100px; list-style-type: none; padding: 0 5px 5px 5px;">
 		<!-- IF SORTABLES_DEFAULT_SORT == 'LEFT' -->
 			<!-- BEGIN options -->
@@ -80,8 +98,8 @@ $(function() {
 		</ul>
 		</div>
 		
-		<div id="js_sortable2" class="attachbox" style="clear:none; display:none; *width:20em;"><!-- *width:20em; is for nub IE-only -->
-		<strong>{SORTABLES_NAME_RIGHT}</strong><hr />
+		<div class="attachbox" style="clear:none; *width:20em;"><!-- *width:20em; is for nub IE-only -->
+		<strong><!-- IF SORTABLES_NAME_RIGHT -->{SORTABLES_NAME_RIGHT}<!-- ELSE -->{L_COLUMN_RIGHT}<!-- ENDIF --></strong><hr />
 		<ul id="sortable2" class="connectedSortable" style="min-height: 100px; min-width:100px; list-style-type: none; padding: 0 5px 5px 5px;">
 		<!-- IF SORTABLES_DEFAULT_SORT == 'RIGHT' -->
 			<!-- BEGIN options -->
@@ -90,19 +108,6 @@ $(function() {
 		<!-- ENDIF -->
 		</ul>
 		</div>
-		
-		<!-- Just to let it work without JS too -->
-		<noscript>
-			<div style="width:300px; float:left;">
-				<div style="width:150px; float:left;"><strong>{SORTABLES_NAME_LEFT}</strong></div>
-				<div style="width:150px; float:right; text-align:right;"><strong>{SORTABLES_NAME_RIGHT}</strong></div>
-				<!-- BEGIN options -->
-				<div style="width:10px; float:left; clear:left; height:2em;"><input type="checkbox" name="sortables_options_left[]" value="{options.ID}"/></div>
-				<div style="width:280px; float:left; text-align:center;	height:2em;">{options.TEXT}</div>
-				<div style="width:10px; float:right; text-align:right; height:2em;"><input type="checkbox" name="sortables_options_right[]" value="{options.ID}" /></div>
-				<!-- END options -->
-			</div>
-		</noscript>
 		
 		<input type="hidden" name="sortables_confirm_id" id="confirm_id" value="{SORTABLES_CONFIRM_ID}" />
 		<div id="sortables_options_left"></div>

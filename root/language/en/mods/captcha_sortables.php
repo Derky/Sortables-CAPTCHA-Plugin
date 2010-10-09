@@ -45,6 +45,7 @@ $lang = array_merge($lang, array(
 	'QUESTION_ANSWERS'			=> 'Answers',
 	'ANSWERS_EXPLAIN'			=> 'The options for this column. Please write one option per line.',
 	'CONFIRM_QUESTION'			=> 'Question',
+	'CHANGES_SUBMIT'			=> 'Submit changes',
 
 	'EDIT_QUESTION'				=> 'Edit Question',
 	'QUESTIONS'					=> 'Sortable Lists Questions',
@@ -55,12 +56,19 @@ $lang = array_merge($lang, array(
 	'QUESTION_SORT'				=> 'Default sort list',
 	'QUESTION_SORT_EXPLAIN'		=> 'In which column should all the answers display by default.',
 	
-	'SORT_LEFT'					=> 'Left column',
-	'SORT_RIGHT'				=> 'Right column',
-	'COLUMN_NAME_LEFT'			=> 'Column name',
+	'COLUMN_LEFT'				=> 'Left column',
+	'COLUMN_RIGHT'				=> 'Right column',
+	'COLUMN_NAME'				=> 'Column name',
 	'COLUMN_NAME_LEFT_EXPLAIN'	=> 'Like: Things I need',
-	'COLUMN_NAME_RIGHT'			=> 'Column name',
 	'COLUMN_NAME_RIGHT_EXPLAIN'	=> 'Like: Things I don\'t need',
+	
+	'DEMO_QUESTION'				=> 'What to include for tomato soup',	
+	'DEMO_NAME_LEFT'			=> 'In the pan',
+	'DEMO_NAME_RIGHT'			=> 'Throw away',
+	'DEMO_OPTION_BANANAS'		=> 'Bananas',
+	'DEMO_OPTION_TOMATOES'		=> 'Tomatoes',
+	'DEMO_OPTION_APPLES'		=> 'Apples',
+	'DEMO_PREVIEW_ONLY'			=> 'You cannot move the options in a preview.',
 
 	'QUESTION_TEXT'				=> 'Question',
 	'QUESTION_TEXT_EXPLAIN'		=> 'Explain how the options should be sorted in the columns.',
