@@ -6,9 +6,9 @@
 	<header>
 		<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
 		
-		<title lang="en">Sortables CAPTCHA Plugin for subsilver2</title>
+		<title lang="en">Sortables CAPTCHA Plugin Russian</title>
 		
-		<description lang="en">This is the install file for subsilver2 (based) styles.</description>
+		<description lang="en">This is the install file for adding the Russian language.</description>
 		
 		<author-group>
 			<author>
@@ -16,6 +16,14 @@
 				<homepage>http://www.phpBB3styles.net/</homepage>
 				<contributions-group>
 					<contributions status="current" position="Developer" />
+				</contributions-group>
+			</author>
+			
+			<author>
+				<username>RedCraft</username>
+				<homepage>http://www.multart.org</homepage>
+				<contributions-group>
+					<contributions status="past" position="Translator" />
 				</contributions-group>
 			</author>
 		</author-group>
@@ -33,7 +41,7 @@
 				<date>2010-10-09</date>
 				<rev-version>1.0.2</rev-version>
 				<changelog lang="en">
-					<change>Added subsilver2 support</change>
+					<change>Added languages</change>
 				</changelog>
 			</entry>
 		</history>
@@ -46,12 +54,7 @@
 	
 	<action-group>
 		<copy>
-			<file from="root/styles/subsilver2/template/captcha_sortables.html" to="styles/subsilver2/template/captcha_sortables.html" />
-			<file from="root/styles/subsilver2/template/js/jquery-1.3.2.js" to="styles/subsilver2/template/js/jquery-1.3.2.js" />
-			<file from="root/styles/subsilver2/template/js/ui.core.js" to="styles/subsilver2/template/js/ui.core.js" />
-			<file from="root/styles/subsilver2/template/js/ui.sortable.js" to="styles/subsilver2/template/js/ui.sortable.js" />
+			<file from="root/language/ru/mods/captcha_sortables.php" to="language/ru/mods/captcha_sortables.php" />
 		</copy>
-		
-		<diy-instructions lang="en">Go to the Administration Control Panel > Styles > Templates > And refresh subsilver2</diy-instructions>
 	</action-group>
 </mod>
