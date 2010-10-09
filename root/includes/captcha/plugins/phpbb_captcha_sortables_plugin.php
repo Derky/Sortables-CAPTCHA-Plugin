@@ -501,8 +501,8 @@ class phpbb_captcha_sortables extends phpbb_captcha_qa
 		global $db;
 		
 		// Well how did the user sorted it
-		$options_left = request_var('sortables_options_left', array(0), true);
-		$options_right = request_var('sortables_options_right', array(0), true);
+		$options_left = request_var('sortables_options_left', array(0));
+		$options_right = request_var('sortables_options_right', array(0));
 		
 		// Make sure the didn't submitted more options then it should (like trying everything... left/right: options ^ 2 )
 		if ($this->total_options === sizeof($options_left) + sizeof($options_right))
@@ -646,7 +646,7 @@ class phpbb_captcha_sortables extends phpbb_captcha_qa
 			$input_name_right = request_var('name_right', '', true);
 			$input_options_left = request_var('options_left', '', true);
 			$input_options_right = request_var('options_right', '', true);
-			$input_lang = request_var('lang_iso', '', true);
+			$input_lang = request_var('lang_iso', '');
 			$input_sort = request_var('sort', false);
 			$langs = $this->get_languages();
 			foreach ($langs as $lang => $entry)
