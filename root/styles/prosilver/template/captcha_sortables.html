@@ -4,8 +4,15 @@
 
 <script type="text/javascript">
 function createdata(listnameobject, column, resultid)
-{		
-	var data = "";
+{
+	// Let's delete all the current input type="hidden" fields, this is easier to find out which were changed
+	var data = document.getElementById(column);
+
+	if ( data.hasChildNodes() )	{
+		while ( data.childNodes.length >= 1 ) {
+			data.removeChild( data.firstChild );       
+		} 
+	}
 	
 	// Run through all childs
 	jQuery.each( listnameobject, function(){
@@ -14,26 +21,35 @@ function createdata(listnameobject, column, resultid)
 		var answer = $( this ).attr("id");
 		answer = answer.replace(/answer_/g, '');
 		
-		// And add hidden input fields
-		data = data + '<input type="hidden" name="' + column + '[]" value="' + answer +'">\n';
+		// And add a hidden input field
+		inputbox = document.createElement("input"); 
+		inputbox.type = 'hidden';
+		inputbox.name = column + '[]';
+		inputbox.value = answer;
+		data.appendChild(inputbox);
 	});
-	
-	// Display result in resultid span
-	$( resultid).html ( data );
 }
 
 $(function() {
+	// Javascript nubs
+	document.getElementById('js_explain').style.display = 'block';
+	document.getElementById('js_sortable1').style.display = 'block';
+	document.getElementById('js_sortable2').style.display = 'block';
+
 	$("#sortable1, #sortable2").sortable({
 		connectWith: '.connectedSortable',
 		items: 'li',
-		placeholder: 'bg3'		
+		forcePlaceholderSize: true,
+		placeholder: 'bg3'
+		
 	}).disableSelection();
 	
-	$("#sortable1, #sortable2").bind('sortreceive', function(event, ui) 
-	{
+	$("#sortable1, #sortable2").bind('sortreceive', function(event, ui) {
+		// If the left or right column receive an item, put the child nodes in an array
 		var arrSortableListItemsLeft = $( "#sortable1" ).children();
 		var arrSortableListItemsRight = $( "#sortable2" ).children();
 		
+		// And create hidden input fields
 		createdata(arrSortableListItemsLeft, 'sortables_options_left', '#sortables_options_left');
 		createdata(arrSortableListItemsRight, 'sortables_options_right', '#sortables_options_right');
 	});
@@ -48,45 +64,50 @@ $(function() {
 	<h3>{L_CONFIRMATION}</h3>
 	<fieldset class="fields2">
 <!-- ENDIF -->
-<style>
-.connectedSortable {
-	min-height: 100px;
-	min-width: 100px;
-}
-.bg3 { height: 1.5em; line-height: 1.2em; }
-#sortable1 ul, #sortable2 ul{ list-style-type: none; margin: 0; padding: 0; float: left; }
-#sortable1 li, #sortable2 li { list-style-type: none; margin: 5px 5px 5px 5px; padding: 5px; cursor:move; min-width: 80px; }
-</style>
+
 	<dl>
-	<dt style="width:100%;"><label>{SORTABLES_CONFIRM_QUESTION}</label><br /><span>{L_CONFIRM_QUESTION_EXPLAIN}<br /></span></dt>
-	<dt style="width:100%;">		
-		
-		<div class="attachbox" style="clear:none;">
+	<dt><label>{SORTABLES_CONFIRM_QUESTION}</label><br /><span id="js_explain" style="display:none;">{L_CONFIRM_QUESTION_EXPLAIN}</span><noscript><span>{L_CONFIRM_QUESTION_EXPLAIN_NOJS}</noscript></dt>
+	<dd>
+
+		<div id="js_sortable1" class="attachbox" style="clear:none; display:none; *width:20em;"><!-- *width:20em; is for nub IE-only -->
 		<strong>{SORTABLES_NAME_LEFT}</strong><hr />
-		<ul id="sortable1" class="connectedSortable">
-			<!-- IF SORTABLES_DEFAULT_SORT == 'LEFT' -->
-				<!-- BEGIN options -->
-				<li class="bg2" id="answer_{options.ID}">{options.TEXT}</li>
-				<!-- END options -->
-			<!-- ENDIF -->
+		<ul id="sortable1" class="connectedSortable" style="min-height: 100px; min-width:100px; list-style-type: none; padding: 0 5px 5px 5px;">
+		<!-- IF SORTABLES_DEFAULT_SORT == 'LEFT' -->
+			<!-- BEGIN options -->
+			<li class="bg2" style="cursor:move; margin: 5px 0 5px 0; padding: 5px;" id="answer_{options.ID}">{options.TEXT}</li>
+			<!-- END options -->
+		<!-- ENDIF -->
 		</ul>
 		</div>
 		
-		<div class="attachbox" style="clear:none;">
+		<div id="js_sortable2" class="attachbox" style="clear:none; display:none; *width:20em;"><!-- *width:20em; is for nub IE-only -->
 		<strong>{SORTABLES_NAME_RIGHT}</strong><hr />
-		<ul id="sortable2" class="connectedSortable">
-			<!-- IF SORTABLES_DEFAULT_SORT == 'RIGHT' -->
-				<!-- BEGIN options -->
-				<li class="bg2" id="answer_{options.ID}">{options.TEXT}</li>
-				<!-- END options -->
-			<!-- ENDIF -->
+		<ul id="sortable2" class="connectedSortable" style="min-height: 100px; min-width:100px; list-style-type: none; padding: 0 5px 5px 5px;">
+		<!-- IF SORTABLES_DEFAULT_SORT == 'RIGHT' -->
+			<!-- BEGIN options -->
+			<li class="bg2" style="cursor:move; margin: 5px 0 5px 0; padding: 5px;" id="answer_{options.ID}">{options.TEXT}</li>
+			<!-- END options -->
+		<!-- ENDIF -->
 		</ul>
 		</div>
+		
+		<!-- Just to let it work without JS too -->
+		<noscript>
+			<div style="width:300px; float:left;">
+				<div style="width:150px; float:left;"><strong>{SORTABLES_NAME_LEFT}</strong></div>
+				<div style="width:150px; float:right; text-align:right;"><strong>{SORTABLES_NAME_RIGHT}</strong></div>
+				<!-- BEGIN options -->
+				<div style="width:10px; float:left; clear:left; height:2em;"><input type="checkbox" name="sortables_options_left[]" value="{options.ID}"/></div>
+				<div style="width:280px; float:left; text-align:center;	height:2em;">{options.TEXT}</div>
+				<div style="width:10px; float:right; text-align:right; height:2em;"><input type="checkbox" name="sortables_options_right[]" value="{options.ID}" /></div>
+				<!-- END options -->
+			</div>
+		</noscript>
 		
 		<input type="hidden" name="sortables_confirm_id" id="confirm_id" value="{SORTABLES_CONFIRM_ID}" />
-		<span id='sortables_options_left'></span>
-		<span id='sortables_options_right'></span>
-	</dt>
+		<div id="sortables_options_left"></div>
+		<div id="sortables_options_right"></div>
+	</dd>
 	</dl>
 
 <!-- IF S_TYPE == 1 -->

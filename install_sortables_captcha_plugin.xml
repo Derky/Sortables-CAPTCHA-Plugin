@@ -6,11 +6,11 @@
 	<header>
 		<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
 		
-		<title lang="en">Sortables CAPTCHA plugin</title>
+		<title lang="en">Sortables CAPTCHA Plugin</title>
 		
 		<description lang="en">This CAPTCHA plugin adds two columns, you can add options to each column. All the options will be displayed into one column, then the user has to sort the options from one to the other column, by dragging them with the mouse. If the options are dragged to the correct columns the CAPTCHA is solved. Because this is a plugin you don't have to edit any file, just upload the files and it works!</description>
 		
-		<author-notes lang="en">JavaScript is required, this mod will only work on phpBB 3.0.6-dev and higher.</author-notes>
+		<author-notes lang="en">This plugin will only work with phpBB 3.0.6 or higher. It's using the jQuery UI libary for the draggable options. If JavaScript is disabled, a very simple version will be shown.</author-notes>
 		
 		<author-group>
 			<author>
@@ -19,12 +19,12 @@
 			</author>
 		</author-group>
 		
-		<mod-version>0.0.1</mod-version>
+		<mod-version>1.0.0</mod-version>
 		
 		<installation>
 			<level>easy</level>
 			<time>120</time>
-			<target-version>3.0.6-dev</target-version>
+			<target-version>3.0.6</target-version>
 		</installation>
 
 		<history>
@@ -33,6 +33,15 @@
 				<rev-version>0.0.1</rev-version>
 				<changelog lang="en">
 					<change>First beta release</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-08-13</date>
+				<rev-version>1.0.0</rev-version>
+				<changelog lang="en">
+					<change>First stable Release</change>
+					<change>Will now also work with JavaScript disabled (simple version)</change>
+					<change>Columns in IE7/IE8 have a fixed width now</change>
 				</changelog>
 			</entry>
 		</history>

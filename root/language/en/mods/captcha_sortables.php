@@ -4,8 +4,9 @@
 * sortables captcha [English]
 *
 * @package language
-* @version $Id: captcha_qa.php 9875 2009-07-27 13:40:43Z Kellanved $
+* @version $Id: captcha_sortables.php 9875 2009-08-13 21:40:23Z Derky $
 * @copyright (c) 2009 phpBB Group
+* @copyright (c) 2009 Derky - phpBB3styles.net
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
@@ -36,25 +37,26 @@ if (empty($lang) || !is_array($lang))
 // in a url you again do not need to specify an order e.g., 'Click %sHERE%s' is fine
 
 $lang = array_merge($lang, array(
-	'CAPTCHA_SORTABLES'			=> 'Sortables CAPTCHA',
-	'CONFIRM_QUESTION_EXPLAIN'	=> 'Please drag the options to the correct list to avoid automated registrations.',
-	'CONFIRM_QUESTION_WRONG'	=> 'The options were not sorted correctly to the correct list.',
+	'CAPTCHA_SORTABLES'				=> 'Sortables CAPTCHA',
+	'CONFIRM_QUESTION_EXPLAIN'		=> 'Please drag the options with the mouse to the correct list, to avoid automated registrations.',
+	'CONFIRM_QUESTION_EXPLAIN_NOJS'	=> 'Please select the options below to the correct list to avoid automated registrations.', // With JavaScript disabled
+	'CONFIRM_QUESTION_WRONG'		=> 'You have incorrectly sorted the items to the correct list of the confirmation question.',
 
 	'QUESTION_ANSWERS'			=> 'Answers',
 	'ANSWERS_EXPLAIN'			=> 'The options for this column. Please write one option per line.',
 	'CONFIRM_QUESTION'			=> 'Question',
 
 	'EDIT_QUESTION'				=> 'Edit Question',
-	'QUESTIONS'					=> 'Sortables Lists',
+	'QUESTIONS'					=> 'Sortable Lists Questions',
 	'QUESTIONS_EXPLAIN'			=> 'Here you can add and edit questions to be asked on registration. You have to provide at least one question in the default board language to use this plugin. Questions should be easy for your target audience. The users will see all the options in one column and have to sort them to the correct column. Also, remember to change the questions regularly.',
 	'QUESTION_DELETED'			=> 'Question deleted',
 	'QUESTION_LANG'				=> 'Language',
 	'QUESTION_LANG_EXPLAIN'		=> 'The language this question and its options is written in.',
 	'QUESTION_SORT'				=> 'Default sort list',
-	'QUESTION_SORT_EXPLAIN'		=> 'In which column should all the answers be by default.',
+	'QUESTION_SORT_EXPLAIN'		=> 'In which column should all the answers display by default.',
 	
-	'SORT_LEFT'			=> 'Left column',
-	'SORT_RIGHT'		=> 'Right column',
+	'SORT_LEFT'					=> 'Left column',
+	'SORT_RIGHT'				=> 'Right column',
 	'COLUMN_NAME_LEFT'			=> 'Column name',
 	'COLUMN_NAME_LEFT_EXPLAIN'	=> 'Like: Things I need',
 	'COLUMN_NAME_RIGHT'			=> 'Column name',
