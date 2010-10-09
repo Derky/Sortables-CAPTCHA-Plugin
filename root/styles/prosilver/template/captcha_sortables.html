@@ -1,0 +1,96 @@
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/js/jquery-1.3.2.js"></script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/js/ui.core.js"></script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/js/ui.sortable.js"></script>
+
+<script type="text/javascript">
+function createdata(listnameobject, column, resultid)
+{		
+	var data = "";
+	
+	// Run through all childs
+	jQuery.each( listnameobject, function(){
+	
+		// We only want the ID of the answer
+		var answer = $( this ).attr("id");
+		answer = answer.replace(/answer_/g, '');
+		
+		// And add hidden input fields
+		data = data + '<input type="hidden" name="' + column + '[]" value="' + answer +'">\n';
+	});
+	
+	// Display result in resultid span
+	$( resultid).html ( data );
+}
+
+$(function() {
+	$("#sortable1, #sortable2").sortable({
+		connectWith: '.connectedSortable',
+		items: 'li',
+		placeholder: 'bg3'		
+	}).disableSelection();
+	
+	$("#sortable1, #sortable2").bind('sortreceive', function(event, ui) 
+	{
+		var arrSortableListItemsLeft = $( "#sortable1" ).children();
+		var arrSortableListItemsRight = $( "#sortable2" ).children();
+		
+		createdata(arrSortableListItemsLeft, 'sortables_options_left', '#sortables_options_left');
+		createdata(arrSortableListItemsRight, 'sortables_options_right', '#sortables_options_right');
+	});
+});
+
+</script>
+
+<!-- IF S_TYPE == 1 -->
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+
+	<h3>{L_CONFIRMATION}</h3>
+	<fieldset class="fields2">
+<!-- ENDIF -->
+<style>
+.connectedSortable {
+	min-height: 100px;
+	min-width: 100px;
+}
+.bg3 { height: 1.5em; line-height: 1.2em; }
+#sortable1 ul, #sortable2 ul{ list-style-type: none; margin: 0; padding: 0; float: left; }
+#sortable1 li, #sortable2 li { list-style-type: none; margin: 5px 5px 5px 5px; padding: 5px; cursor:move; min-width: 80px; }
+</style>
+	<dl>
+	<dt style="width:100%;"><label>{SORTABLES_CONFIRM_QUESTION}</label><br /><span>{L_CONFIRM_QUESTION_EXPLAIN}<br /></span></dt>
+	<dt style="width:100%;">		
+		
+		<div class="attachbox" style="clear:none;">
+		<strong>{SORTABLES_NAME_LEFT}</strong><hr />
+		<ul id="sortable1" class="connectedSortable">
+			<!-- IF SORTABLES_DEFAULT_SORT == 'LEFT' -->
+				<!-- BEGIN options -->
+				<li class="bg2" id="answer_{options.ID}">{options.TEXT}</li>
+				<!-- END options -->
+			<!-- ENDIF -->
+		</ul>
+		</div>
+		
+		<div class="attachbox" style="clear:none;">
+		<strong>{SORTABLES_NAME_RIGHT}</strong><hr />
+		<ul id="sortable2" class="connectedSortable">
+			<!-- IF SORTABLES_DEFAULT_SORT == 'RIGHT' -->
+				<!-- BEGIN options -->
+				<li class="bg2" id="answer_{options.ID}">{options.TEXT}</li>
+				<!-- END options -->
+			<!-- ENDIF -->
+		</ul>
+		</div>
+		
+		<input type="hidden" name="sortables_confirm_id" id="confirm_id" value="{SORTABLES_CONFIRM_ID}" />
+		<span id='sortables_options_left'></span>
+		<span id='sortables_options_right'></span>
+	</dt>
+	</dl>
+
+<!-- IF S_TYPE == 1 -->
+	</fieldset>
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+<!-- ENDIF -->
