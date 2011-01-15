@@ -61,6 +61,7 @@
 				<changelog lang="en">
 					<change>Added subsilver2 support</change>
 					<change>Added languages: DA, DE, IT, NL, RU</change>
+					<change>Fixed PostgreSQL RANDOM() error, thanks to phreadom</change>
 				</changelog>
 			</entry>
 		</history>

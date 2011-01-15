@@ -468,11 +468,14 @@ class phpbb_captcha_sortables extends phpbb_captcha_qa
 			$this->name_left = $row['name_left'];
 			$this->name_right = $row['name_right'];
 			
+			// PostgreSQL
+			$order_by = (SQL_LAYER == 'postgresql') ? 'ORDER BY RANDOM()' : 'ORDER BY RAND()';
+			
 			// Let's load the answers
 			$sql = 'SELECT answer_id, answer_text
 				FROM ' . CAPTCHA_SORTABLES_ANSWERS_TABLE . "
 				WHERE question_id = '" . (int) $this->question . "'
-				ORDER BY RAND()";
+				$order_by";
 			$result = $db->sql_query($sql);
 			
 			$template->destroy_block_vars('options'); // It's running twice, only grab the lastest see topic 1732385
