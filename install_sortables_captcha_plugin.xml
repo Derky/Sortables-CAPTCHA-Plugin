@@ -10,7 +10,8 @@
 		
 		<description lang="en">This CAPTCHA plugin adds two columns, you can add options to each column. All the options will be displayed into one column, then the user has to sort the options from one to the other column, by dragging them with the mouse. If the options are dragged to the correct columns the CAPTCHA is solved. Because this is a plugin you don't have to edit any file, just upload the files and it works!</description>
 		
-		<author-notes lang="en">This plugin will only work with phpBB 3.0.6 or higher. It's using the jQuery UI libary for the draggable options. If JavaScript is disabled, a very simple version will be shown.</author-notes>
+		<author-notes lang="en">This plugin will only work with phpBB 3.0.6 or higher. It's using the jQuery UI libary for the draggable options. If JavaScript is disabled, a very simple version will be shown.
+		To select this module: Administration Control Panel > General > Board Configuration > Spambot countermeasures</author-notes>
 		
 		<author-group>
 			<author>
@@ -90,6 +91,6 @@
 			<file from="root/styles/prosilver/template/js/ui.sortable.js" to="styles/prosilver/template/js/ui.sortable.js" />
 		</copy>
 		
-		<diy-instructions lang="en">Go to the Administration Control Panel > General > Board Configuration > CAPTCHA module settings. Configure the Sortables CAPTCHA and set it as default.</diy-instructions>
+		<diy-instructions lang="en">Go to the Administration Control Panel > General > Board Configuration > Spambot countermeasures. Configure the Sortables plugin and set it as default.</diy-instructions>
 	</action-group>
 </mod>
