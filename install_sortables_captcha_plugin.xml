@@ -63,6 +63,7 @@
 					<change>Added subsilver2 support</change>
 					<change>Added languages: DA, DE, IT, NL, RU</change>
 					<change>Fixed PostgreSQL RANDOM() error, thanks to phreadom</change>
+					<change>Use {T_SUPER_TEMPLATE_PATH} for loading Javascript files in inherited templates</change>
 				</changelog>
 			</entry>
 		</history>

@@ -34,6 +34,7 @@
 				<rev-version>1.0.2</rev-version>
 				<changelog lang="en">
 					<change>Added subsilver2 support</change>
+					<change>Use {T_SUPER_TEMPLATE_PATH} for loading Javascript files in inherited templates</change>
 				</changelog>
 			</entry>
 		</history>
