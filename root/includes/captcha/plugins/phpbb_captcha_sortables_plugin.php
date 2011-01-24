@@ -468,8 +468,8 @@ class phpbb_captcha_sortables extends phpbb_captcha_qa
 			$this->name_left = $row['name_left'];
 			$this->name_right = $row['name_right'];
 			
-			// PostgreSQL
-			$order_by = (SQL_LAYER == 'postgresql') ? 'ORDER BY RANDOM()' : 'ORDER BY RAND()';
+			// Postgres random fix
+			$order_by = ($db->sql_layer == 'postgres') ? 'ORDER BY RANDOM()' : 'ORDER BY RAND()';
 			
 			// Let's load the answers
 			$sql = 'SELECT answer_id, answer_text
