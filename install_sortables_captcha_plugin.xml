@@ -64,6 +64,9 @@
 					<change>Added languages: DA, DE, IT, NL, RU</change>
 					<change>Fixed PostgreSQL RANDOM() error, thanks to phreadom</change>
 					<change>Use {T_SUPER_TEMPLATE_PATH} for loading Javascript files in inherited templates</change>
+					<change>Prevent new question by refresh</change>
+					<change>Prevent deleting last question when plugin is active</change>
+					<change>Use random answer_ids</change>
 				</changelog>
 			</entry>
 		</history>
@@ -92,6 +95,6 @@
 			<file from="root/styles/prosilver/template/js/ui.sortable.js" to="styles/prosilver/template/js/ui.sortable.js" />
 		</copy>
 		
-		<diy-instructions lang="en">Go to the Administration Control Panel > General > Board Configuration > Spambot countermeasures. Configure the Sortables plugin and set it as default.</diy-instructions>
+		<diy-instructions lang="en">Go to the Administration Control Panel > General > Board Configuration > Spambot countermeasures. Configure the Sortables plugin and then return to set it as default.</diy-instructions>
 	</action-group>
 </mod>
