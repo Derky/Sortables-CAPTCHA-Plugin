@@ -67,6 +67,7 @@
 					<change>Prevent new question by refresh</change>
 					<change>Prevent deleting last question when plugin is active</change>
 					<change>Use random answer_ids</change>
+					<change>jQuery update</change>
 				</changelog>
 			</entry>
 		</history>
