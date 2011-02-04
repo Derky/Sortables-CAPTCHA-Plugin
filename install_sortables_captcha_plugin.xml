@@ -61,7 +61,7 @@
 				<rev-version>1.0.2</rev-version>
 				<changelog lang="en">
 					<change>Added subsilver2 support</change>
-					<change>Added languages: DA, DE, IT, NL, RU</change>
+					<change>Added languages: DA, DE, IT, JA, NL, RU</change>
 					<change>Fixed PostgreSQL RANDOM() error, thanks to phreadom</change>
 					<change>Use {T_SUPER_TEMPLATE_PATH} for loading Javascript files in inherited templates</change>
 					<change>Prevent new question by refresh</change>
@@ -77,6 +77,7 @@
 			<link type="language" href="contrib/nl.xml" lang="en">Dutch</link>
 			<link type="language" href="contrib/de.xml" lang="en">German</link>
 			<link type="language" href="contrib/it.xml" lang="en">Italian</link>
+			<link type="language" href="contrib/ja.xml" lang="en">Japanese</link>
 			<link type="language" href="contrib/ru.xml" lang="en">Russian</link>
 			
 		</link-group>
