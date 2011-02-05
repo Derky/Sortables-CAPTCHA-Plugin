@@ -48,9 +48,8 @@
 	<action-group>
 		<copy>
 			<file from="root/styles/subsilver2/template/captcha_sortables.html" to="styles/subsilver2/template/captcha_sortables.html" />
-			<file from="root/styles/subsilver2/template/js/jquery-1.3.2.js" to="styles/subsilver2/template/js/jquery-1.3.2.js" />
-			<file from="root/styles/subsilver2/template/js/ui.core.js" to="styles/subsilver2/template/js/ui.core.js" />
-			<file from="root/styles/subsilver2/template/js/ui.sortable.js" to="styles/subsilver2/template/js/ui.sortable.js" />
+			<file from="root/styles/subsilver2/template/js/jquery-1.4.4.min.js" to="styles/subsilver2/template/js/jquery-1.4.4.min.js" />
+			<file from="root/styles/subsilver2/template/js/jquery-ui-1.8.9.custom.min.js" to="styles/subsilver2/template/js/jquery-ui-1.8.9.custom.min.js" />
 		</copy>
 		
 		<diy-instructions lang="en">Go to the Administration Control Panel > Styles > Templates > And refresh subsilver2</diy-instructions>
