@@ -1065,6 +1065,12 @@ class phpbb_captcha_sortables extends phpbb_captcha_qa
 			$this->answer_ids[] = $row['answer_id'];
 		}
 		$db->sql_freeresult($result);
+				
+		// When the answers table is empty, add 0 to prevent problems
+		if (empty($this->answer_ids))
+		{
+			$this->answer_ids[] = 0;
+		}
 		
 		return $this->answer_ids;
 	}
