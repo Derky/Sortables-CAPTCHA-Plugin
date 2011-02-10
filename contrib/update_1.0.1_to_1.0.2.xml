@@ -6,9 +6,9 @@
 	<header>
 		<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
 		
-		<title lang="en">Sortables CAPTCHA Plugin for subsilver2</title>
+		<title lang="en">Sortables CAPTCHA Plugin update 1.0.1 to 1.0.2</title>
 		
-		<description lang="en">This is the install file for subsilver2 (based) styles.</description>
+		<description lang="en">This is the install file for updating the plugin version from 1.0.1 to 1.0.2.</description>
 		
 		<author-group>
 			<author>
@@ -27,32 +27,29 @@
 			<time>60</time>
 			<target-version>3.0.7-PL1</target-version>
 		</installation>
-
-		<history>
-			<entry>
-				<date>2010-10-09</date>
-				<rev-version>1.0.2</rev-version>
-				<changelog lang="en">
-					<change>Added subsilver2 support</change>
-					<change>Use {T_SUPER_TEMPLATE_PATH} for loading Javascript files in inherited templates</change>
-					<change>jQuery update</change>
-				</changelog>
-			</entry>
-		</history>
 		
 		<link-group>
 			<link type="parent" href="../install_sortables_captcha_plugin.xml" lang="en">Main install file</link>
+			<link type="contrib" href="update_1.0.1_to_1.0.2_subsilver2.xml" lang="en">Update subsilver2 style from 1.0.1 to 1.0.2</link>
 		</link-group>
 				
 	</header>
 	
 	<action-group>
+		<delete>
+			<file name="styles/prosilver/template/js/jquery-1.3.2.js" />
+			<file name="styles/prosilver/template/js/ui.core.js"/>
+			<file name="styles/prosilver/template/js/ui.sortable.js"/>
+		</delete>
+		
 		<copy>
-			<file from="root/styles/subsilver2/template/captcha_sortables.html" to="styles/subsilver2/template/captcha_sortables.html" />
-			<file from="root/styles/subsilver2/template/js/jquery-1.4.4.min.js" to="styles/subsilver2/template/js/jquery-1.4.4.min.js" />
-			<file from="root/styles/subsilver2/template/js/jquery-ui-1.8.9.custom.min.js" to="styles/subsilver2/template/js/jquery-ui-1.8.9.custom.min.js" />
+			<file from="root/adm/style/captcha_sortables_acp.html" to="adm/style/captcha_sortables_acp.html" />
+			<file from="root/includes/captcha/plugins/phpbb_captcha_sortables_plugin.php" to="includes/captcha/plugins/phpbb_captcha_sortables_plugin.php" />
+			<file from="root/styles/prosilver/template/captcha_sortables.html" to="styles/prosilver/template/captcha_sortables.html" />
+			<file from="root/styles/prosilver/template/js/jquery-1.4.4.min.js" to="styles/prosilver/template/js/jquery-1.4.4.min.js" />
+			<file from="root/styles/prosilver/template/js/jquery-ui-1.8.9.custom.min.js" to="styles/prosilver/template/js/jquery-ui-1.8.9.custom.min.js" />
 		</copy>
 		
-		<diy-instructions lang="en">Go to the Administration Control Panel > Styles > Templates > And refresh subsilver2</diy-instructions>
+		<diy-instructions lang="en">Go to the Administration Control Panel > Styles > Templates > And refresh prosilver</diy-instructions>
 	</action-group>
 </mod>
