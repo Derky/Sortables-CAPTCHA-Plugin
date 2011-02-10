@@ -13,7 +13,7 @@
 		<author-group>
 			<author>
 				<username>Derky</username>
-				<homepage>http://www.phpBB3styles.net/</homepage>
+				<homepage>http://www.derky.nl/</homepage>
 				<contributions-group>
 					<contributions status="current" position="Developer" />
 				</contributions-group>
@@ -33,12 +33,12 @@
 		<installation>
 			<level>easy</level>
 			<time>60</time>
-			<target-version>3.0.7-PL1</target-version>
+			<target-version>3.0.8</target-version>
 		</installation>
 
 		<history>
 			<entry>
-				<date>2010-10-09</date>
+				<date>2011-02-10</date>
 				<rev-version>1.0.2</rev-version>
 				<changelog lang="en">
 					<change>Added languages</change>
