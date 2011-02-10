@@ -40,7 +40,7 @@ $lang = array_merge($lang, array(
 	'CAPTCHA_SORTABLES'				=> 'Sortables CAPTCHA',
 	'CONFIRM_QUESTION_EXPLAIN'		=> 'Versleep de opties met de muis naar de juiste kolom, om automatische registraties te voorkomen.',
 	'CONFIRM_QUESTION_EXPLAIN_NOJS'	=> 'Selecteer de opties hieronder bij de juiste kolom, om automatische registraties te voorkomen.', // With JavaScript disabled
-	'CONFIRM_QUESTION_WRONG'		=> 'De opties zijn in de verkeerde kolommen gesorteerd van de bevestigingsvraag.',
+	'CONFIRM_QUESTION_WRONG'		=> 'De opties van de bevestigingsvraag zijn in de verkeerde kolommen gesorteerd.',
 
 	'QUESTION_ANSWERS'			=> 'Antwoorden',
 	'ANSWERS_EXPLAIN'			=> 'De opties voor deze kolom. Één optie per regel.',
