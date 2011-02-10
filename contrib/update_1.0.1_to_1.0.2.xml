@@ -44,6 +44,7 @@
 		
 		<copy>
 			<file from="root/adm/style/captcha_sortables_acp.html" to="adm/style/captcha_sortables_acp.html" />
+			<file from="root/adm/style/captcha_sortables_acp_demo.html" to="adm/style/captcha_sortables_acp_demo.html" />
 			<file from="root/includes/captcha/plugins/phpbb_captcha_sortables_plugin.php" to="includes/captcha/plugins/phpbb_captcha_sortables_plugin.php" />
 			<file from="root/styles/prosilver/template/captcha_sortables.html" to="styles/prosilver/template/captcha_sortables.html" />
 			<file from="root/styles/prosilver/template/js/jquery-1.4.4.min.js" to="styles/prosilver/template/js/jquery-1.4.4.min.js" />
