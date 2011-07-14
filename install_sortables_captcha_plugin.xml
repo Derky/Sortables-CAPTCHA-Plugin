@@ -29,7 +29,7 @@
 			</author>
 		</author-group>
 		
-		<mod-version>1.0.3-DEV</mod-version>
+		<mod-version>1.0.3</mod-version>
 		
 		<installation>
 			<level>easy</level>
@@ -99,8 +99,7 @@
 			<link type="language" href="contrib/pt-br.xml" lang="en">Brazilian Portuguese</link>
 			<link type="language" href="contrib/ru.xml" lang="en">Russian</link>
 			
-			<link type="contrib" href="contrib/update_1.0.1_to_1.0.2.xml" lang="en">Update Sortables CAPTCHA Plugin from 1.0.1 to 1.0.2</link>
-			<link type="contrib" href="contrib/update_1.0.1_to_1.0.2_subsilver2.xml" lang="en">Update subsilver2 Sortables CAPTCHA Plugin from 1.0.1 to 1.0.2</link>
+			<link type="contrib" href="contrib/update_1.0.2_to_1.0.3.xml" lang="en">Update Sortables CAPTCHA Plugin from 1.0.2 to 1.0.3</link>
 			
 		</link-group>
 				
