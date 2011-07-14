@@ -26,10 +26,40 @@ if (!class_exists('phpbb_captcha_qa'))
 	include($phpbb_root_path . 'includes/captcha/plugins/phpbb_captcha_qa_plugin.' . $phpEx);
 }
 
-global $table_prefix;
-define('CAPTCHA_SORTABLES_QUESTIONS_TABLE',	$table_prefix . 'captcha_sortables_questions');
-define('CAPTCHA_SORTABLES_ANSWERS_TABLE',	$table_prefix . 'captcha_sortables_answers');
-define('CAPTCHA_SORTABLES_CONFIRM_TABLE',	$table_prefix . 'captcha_sortables_confirm');
+/**
+* Hack for phpBB 3.0.9 table/index name limitations
+* Add a backwards_compatibility boolean to $config
+* Due to static API calls, this has to be defined here
+*/
+global $table_prefix, $config;
+		
+// If the bc key is not there yet
+if (!isset($config['sortables_bc']))
+{
+	global $db;
+	if (!class_exists('phpbb_db_tools'))
+	{
+		include("$phpbb_root_path/includes/db/db_tools.$phpEx");
+	}
+	$db_tool = new phpbb_db_tools($db);
+
+	// Find out if we need backwards compatibility
+	($db_tool->sql_table_exists($table_prefix . 'captcha_sortables_questions')) ? set_config('sortables_bc', 1) : set_config('sortables_bc', 0);
+}
+
+// Use the backwards compatible table names? (longer then 30 digits and already created on a phpBB 3.0.8 installation or lower)
+if ($config['sortables_bc'])
+{
+	define('CAPTCHA_SORTABLES_QUESTIONS_TABLE',	$table_prefix . 'captcha_sortables_questions');
+	define('CAPTCHA_SORTABLES_ANSWERS_TABLE',	$table_prefix . 'captcha_sortables_answers');
+	define('CAPTCHA_SORTABLES_CONFIRM_TABLE',	$table_prefix . 'captcha_sortables_confirm');
+}
+else // The new shorted table names
+{
+	define('CAPTCHA_SORTABLES_QUESTIONS_TABLE',	$table_prefix . 'sortables_questions');
+	define('CAPTCHA_SORTABLES_ANSWERS_TABLE',	$table_prefix . 'sortables_answers');
+	define('CAPTCHA_SORTABLES_CONFIRM_TABLE',	$table_prefix . 'sortables_confirm');
+}
 
 /**
 * Sortables captcha with extending of the QA captcha class.
@@ -50,7 +80,7 @@ class phpbb_captcha_sortables extends phpbb_captcha_qa
 	var $type;
 	// dirty trick: 0 is false, but can still encode that the captcha is not yet validated
 	var $solved = 0;
-
+	
 	/**
 	* @param int $type  as per the CAPTCHA API docs, the type
 	*/
@@ -298,7 +328,7 @@ class phpbb_captcha_sortables extends phpbb_captcha_qa
 								),
 								'PRIMARY_KEY'		=> 'question_id',
 								'KEYS'				=> array(
-									'lang_iso'			=> array('INDEX', 'lang_iso'),
+									'iso'			=> array('INDEX', 'lang_iso'),
 								),
 				),
 				CAPTCHA_SORTABLES_ANSWERS_TABLE		=> array (
@@ -310,9 +340,9 @@ class phpbb_captcha_sortables extends phpbb_captcha_qa
 								),
 								'PRIMARY_KEY'		=> 'answer_id',
 								'KEYS'				=> array(
-									'answer_id'				=> array('INDEX', 'answer_id'),
-									'question_id'			=> array('INDEX', 'question_id'),
-									'answer_sort'			=> array('INDEX', 'answer_sort'),
+									'aid'				=> array('INDEX', 'answer_id'),
+									'qid'				=> array('INDEX', 'question_id'),
+									'asort'				=> array('INDEX', 'answer_sort'),
 								),
 				),
 				CAPTCHA_SORTABLES_CONFIRM_TABLE		=> array (
@@ -325,8 +355,8 @@ class phpbb_captcha_sortables extends phpbb_captcha_qa
 									'confirm_type'	=> array('USINT', 0),
 								),
 								'KEYS'				=> array(
-									'session_id'			=> array('INDEX', 'session_id'),
-									'lookup'				=> array('INDEX', array('confirm_id', 'session_id', 'lang_iso')),
+									'sid'				=> array('INDEX', 'session_id'),
+									'lookup'			=> array('INDEX', array('confirm_id', 'session_id', 'lang_iso')),
 								),
 								'PRIMARY_KEY'		=> 'confirm_id',
 				),
@@ -567,7 +597,7 @@ class phpbb_captcha_sortables extends phpbb_captcha_qa
 			$result = $db->sql_query($sql);
 			$total_options_good = (int) $db->sql_fetchfield('total');
 			
-			// Now compair that amount with the total amount of options for this question
+			// Now compare that amount with the total amount of options for this question
 			if ($this->total_options === $total_options_good)
 			{
 				$this->solved = true;
