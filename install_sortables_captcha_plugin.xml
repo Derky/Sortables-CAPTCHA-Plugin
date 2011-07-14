@@ -82,6 +82,7 @@
 				<changelog lang="en">
 					<change>Shortened table names for phpBB 3.0.9 compatibility</change>
 					<change>Backwards compatibility for previous (long) table names</change>
+					<change>Small fix, better use of $db->sql_fetchfield</change>
 				</changelog>
 			</entry>
 		</history>

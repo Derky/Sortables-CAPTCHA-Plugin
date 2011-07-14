@@ -177,9 +177,10 @@ class phpbb_captcha_sortables extends phpbb_captcha_qa
 			FROM ' . CAPTCHA_SORTABLES_QUESTIONS_TABLE . " 
 			WHERE lang_iso = '" . $db->sql_escape($config['default_lang']) . "'"; 
 		$result = $db->sql_query($sql);
-		$row = $db->sql_fetchrow($result);
+		$question_count = $db->sql_fetchfield('question_count');
 		$db->sql_freeresult($result);
-		return ((bool) $row['question_count']);
+		
+		return ((bool) $question_count);
 	}
 	
 	/**
@@ -503,12 +504,12 @@ class phpbb_captcha_sortables extends phpbb_captcha_qa
 				AND lang_iso = '" . $db->sql_escape($this->question_lang) . "'
 				AND confirm_type = " . $this->type;
 		$result = $db->sql_query_limit($sql, 1);
-		$row = $db->sql_fetchrow($result);
+		$confirm_id = $db->sql_fetchfield('confirm_id');
 		$db->sql_freeresult($result);
 
-		if ($row)
+		if ($confirm_id)
 		{
-			$this->confirm_id = $row['confirm_id'];
+			$this->confirm_id = $confirm_id;
 			return true;
 		}
 		return false;
