@@ -85,6 +85,15 @@
 					<change>Small fix, better use of $db->sql_fetchfield</change>
 				</changelog>
 			</entry>
+			
+			<entry>
+				<date>2011-07-30</date>
+				<rev-version>1.0.4</rev-version>
+				<changelog lang="en">
+					<change>Added language: PL</change>
+					
+				</changelog>
+			</entry>
 		</history>
 		
 		<link-group>
@@ -95,6 +104,7 @@
 			<link type="language" href="contrib/de.xml" lang="en">German</link>
 			<link type="language" href="contrib/it.xml" lang="en">Italian</link>
 			<link type="language" href="contrib/ja.xml" lang="en">Japanese</link>
+			<link type="language" href="contrib/pl.xml" lang="en">Polish</link>
 			<link type="language" href="contrib/pt.xml" lang="en">Portuguese</link>
 			<link type="language" href="contrib/pt-br.xml" lang="en">Brazilian Portuguese</link>
 			<link type="language" href="contrib/ru.xml" lang="en">Russian</link>
