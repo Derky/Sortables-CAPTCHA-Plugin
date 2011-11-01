@@ -90,7 +90,7 @@
 				<date>2011-07-30</date>
 				<rev-version>1.0.4</rev-version>
 				<changelog lang="en">
-					<change>Added languages: HR, PL, ZH-CMN-HANT</change>
+					<change>Added languages: CA, ES, HR, PL, ZH-CMN-HANT</change>
 					
 				</changelog>
 			</entry>
@@ -98,6 +98,7 @@
 		
 		<link-group>
 			<link type="template" href="contrib/subsilver2.xml" lang="en">subsilver2</link>
+			<link type="language" href="contrib/ca.xml" lang="en">Catalan</link>
 			<link type="language" href="contrib/zh-cmn-hant.xml" lang="en">Chinese (Traditional)</link>
 			<link type="language" href="contrib/hr.xml" lang="en">Croatian</link>
 			<link type="language" href="contrib/da.xml" lang="en">Danish</link>
@@ -106,6 +107,7 @@
 			<link type="language" href="contrib/de.xml" lang="en">German</link>
 			<link type="language" href="contrib/it.xml" lang="en">Italian</link>
 			<link type="language" href="contrib/ja.xml" lang="en">Japanese</link>
+			<link type="language" href="contrib/es.xml" lang="en">Spanish</link>
 			<link type="language" href="contrib/pl.xml" lang="en">Polish</link>
 			<link type="language" href="contrib/pt.xml" lang="en">Portuguese</link>
 			<link type="language" href="contrib/pt-br.xml" lang="en">Brazilian Portuguese</link>
