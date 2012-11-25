@@ -92,6 +92,7 @@
 				<changelog lang="en">
 					<change>Added languages: CA, ES, HR, LT, PL, ZH-CMN-HANT</change>
 					<change>Added template variable to define jQuery (UI) is included (Provides the ability to prevent double jQuery inclusion by 3th party styles)</change>
+					<change>Prevent required template refresh for jQuery updates by storing version numbers in template variables.</change>
 				</changelog>
 			</entry>
 		</history>

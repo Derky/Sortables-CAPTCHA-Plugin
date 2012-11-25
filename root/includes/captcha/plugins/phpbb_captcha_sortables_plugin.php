@@ -228,6 +228,10 @@ class phpbb_captcha_sortables extends phpbb_captcha_qa
 				'SORTABLES_DEFAULT_SORT'		=> (!$this->question_sort) ? 'LEFT' : 'RIGHT', // 0 = left, 1 = right
 				'S_CONFIRM_CODE'				=> true,
 				'S_TYPE'						=> $this->type,
+				
+				// Set version numbers here, so jQuery updates don't require a template refresh anymore
+				'SORTABLES_JQUERY_VERSION'		=> '1.4.4',
+				'SORTABLES_JQUERYUI_VERSION'	=> '1.8.9',
 			));
 
 			return 'captcha_sortables.html';
