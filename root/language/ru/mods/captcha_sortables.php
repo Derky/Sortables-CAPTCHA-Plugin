@@ -38,7 +38,7 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 	'CAPTCHA_SORTABLES'				=> 'Sortables CAPTCHA',
-	'CONFIRM_QUESTION_EXPLAIN'		=> 'С помощью мышки, рассортируйте пожалуйста правильные и не правильные варианты в колонках.',
+	'CONFIRM_QUESTION_EXPLAIN'		=> 'Для предотвращения автоматических регистраций, составьте правильные списки с помощью перетаскивания.',
 	'CONFIRM_QUESTION_EXPLAIN_NOJS'	=> 'Пожалуйста, выберите ниже правильный вариант ответа поставленного вопроса.', // With JavaScript disabled
 	'CONFIRM_QUESTION_WRONG'		=> 'Ваш выбор не правильный.',
 

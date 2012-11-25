@@ -39,7 +39,7 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 	'CAPTCHA_SORTABLES'				=> 'Sorterings-CAPTCHA',
-	'CONFIRM_QUESTION_EXPLAIN'		=> 'Træk mulighederne til den korrekte liste med musen, for at undgå automatiserede tilmeldinger.',
+	'CONFIRM_QUESTION_EXPLAIN'		=> 'Træk mulighederne til den korrekte liste, for at undgå automatiserede tilmeldinger.',
 	'CONFIRM_QUESTION_EXPLAIN_NOJS'	=> 'Vælg fra nedenstående muligheder herunder til den korrekte liste for at undgå automatiserede tilmeldinger.', // With JavaScript disabled
 	'CONFIRM_QUESTION_WRONG'		=> 'Du har ikke sorteret mulighederne til den korrekte liste i bekræftelses-spørgsmålet.',
 

@@ -39,7 +39,7 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 	'CAPTCHA_SORTABLES'				=> 'CAPTCHA à trier',
-	'CONFIRM_QUESTION_EXPLAIN'		=> 'Veuillez faire glisser à l’aide de votre souris les différentes réponses possibles dans la liste appropriée. Ceci est une mesure permettant de lutter contre les inscriptions automatisées.',
+	'CONFIRM_QUESTION_EXPLAIN'		=> 'Veuillez faire glisser les différentes réponses possibles dans la liste appropriée. Ceci est une mesure permettant de lutter contre les inscriptions automatisées.',
 	'CONFIRM_QUESTION_EXPLAIN_NOJS'	=> 'Veuillez sélectionner ci-dessous les différentes réponses qui correspondent à la liste appropriée. Ceci est une mesure permettant de lutter contre les inscriptions automatisées.', // With JavaScript disabled
 	'CONFIRM_QUESTION_WRONG'		=> 'Vous avez trié de manière incorrecte les réponses lors de la question de confirmation.',
 

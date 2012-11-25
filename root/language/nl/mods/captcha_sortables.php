@@ -38,7 +38,7 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 	'CAPTCHA_SORTABLES'				=> 'Sortables CAPTCHA',
-	'CONFIRM_QUESTION_EXPLAIN'		=> 'Versleep de opties met de muis naar de juiste kolom, om automatische registraties te voorkomen.',
+	'CONFIRM_QUESTION_EXPLAIN'		=> 'Versleep de opties naar de juiste kolom, om automatische registraties te voorkomen.',
 	'CONFIRM_QUESTION_EXPLAIN_NOJS'	=> 'Selecteer de opties hieronder bij de juiste kolom, om automatische registraties te voorkomen.', // With JavaScript disabled
 	'CONFIRM_QUESTION_WRONG'		=> 'De opties van de bevestigingsvraag zijn in de verkeerde kolommen gesorteerd.',
 
