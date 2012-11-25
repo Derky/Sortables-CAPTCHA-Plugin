@@ -93,6 +93,7 @@
 					<change>Added languages: CA, ES, HR, LT, PL, ZH-CMN-HANT</change>
 					<change>Added template variable to define jQuery (UI) is included (Provides the ability to prevent double jQuery inclusion by 3th party styles)</change>
 					<change>Prevent required template refresh for jQuery updates by storing version numbers in template variables.</change>
+					<change>Update jQuery to 1.8.3 and jQuery UI to 1.9.2</change>
 				</changelog>
 			</entry>
 		</history>
@@ -128,8 +129,8 @@
 			<file from="root/includes/captcha/plugins/phpbb_captcha_sortables_plugin.php" to="includes/captcha/plugins/phpbb_captcha_sortables_plugin.php" />
 			<file from="root/language/en/mods/captcha_sortables.php" to="language/en/mods/captcha_sortables.php" />
 			<file from="root/styles/prosilver/template/captcha_sortables.html" to="styles/prosilver/template/captcha_sortables.html" />
-			<file from="root/styles/prosilver/template/js/jquery-1.4.4.min.js" to="styles/prosilver/template/js/jquery-1.4.4.min.js" />
-			<file from="root/styles/prosilver/template/js/jquery-ui-1.8.9.custom.min.js" to="styles/prosilver/template/js/jquery-ui-1.8.9.custom.min.js" />
+			<file from="root/styles/prosilver/template/js/jquery-1.8.3.min.js" to="styles/prosilver/template/js/jquery-1.8.3.min.js" />
+			<file from="root/styles/prosilver/template/js/jquery-ui-1.9.2.custom.min.js" to="styles/prosilver/template/js/jquery-ui-1.9.2.custom.min.js" />
 		</copy>
 		
 		<diy-instructions lang="en">Go to the Administration Control Panel > General > Board Configuration > Spambot countermeasures. Configure the Sortables plugin and then return to set it as default.</diy-instructions>
