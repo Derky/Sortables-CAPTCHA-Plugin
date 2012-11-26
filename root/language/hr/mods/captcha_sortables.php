@@ -39,7 +39,7 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 	'CAPTCHA_SORTABLES'				=> 'Sortables CAPTCHA',
-	'CONFIRM_QUESTION_EXPLAIN'		=> 'Molimo povucite opcije misem u ispravni redosljed, kako bi se izbjegla automatska registracija.',
+	'CONFIRM_QUESTION_EXPLAIN'		=> 'Molimo povucite opcije u ispravni redosljed, kako bi se izbjegla automatska registracija.',
 	'CONFIRM_QUESTION_EXPLAIN_NOJS'	=> 'Molimo odaberite ispravne opcije kako bi se izbjegla automatska registracija.', // With JavaScript disabled
 	'CONFIRM_QUESTION_WRONG'		=> 'Vi ste krivo razvrstali stavke iz popisa.',
 
