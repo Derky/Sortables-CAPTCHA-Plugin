@@ -38,7 +38,7 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 	'CAPTCHA_SORTABLES'				=> 'Sortables CAPTCHA',
-	'CONFIRM_QUESTION_EXPLAIN'		=> 'Prašome naudojantis pele permesti teisingus atsakymus iš kairės pusės į dešinę.',
+	'CONFIRM_QUESTION_EXPLAIN'		=> 'Prašome nutempti teisingus atsakymus prie teisingų sąrašo.Tai padės apsisaugoti nuo automatinės botų registracijos.',
 	'CONFIRM_QUESTION_EXPLAIN_NOJS'	=> 'Prašome pasirinkti teisingus atsakymus.', // With JavaScript disabled
 	'CONFIRM_QUESTION_WRONG'		=> 'Jūsų pažymėti atsakymai į pateikta klausimą yra neteisingi.',
 

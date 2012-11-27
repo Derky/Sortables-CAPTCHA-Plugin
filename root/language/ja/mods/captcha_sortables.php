@@ -38,7 +38,7 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 	'CAPTCHA_SORTABLES'				=> '並び替え CAPTCHA',
-	'CONFIRM_QUESTION_EXPLAIN'		=> '迷惑ユーザの自動登録・投稿を防ぐために、各項目をマウスで正しい欄にドラッグしてください。',
+	'CONFIRM_QUESTION_EXPLAIN'		=> '迷惑ユーザの自動登録・投稿を防ぐために、各項目を正しい欄にドラッグしてください。',
 	'CONFIRM_QUESTION_EXPLAIN_NOJS'	=> '迷惑ユーザの自動登録・投稿を防ぐために、以下の各項目を正しく選択してください。', // With JavaScript disabled
 	'CONFIRM_QUESTION_WRONG'		=> '貴方は質問に対して、誤った並び替えをしています。',
 
