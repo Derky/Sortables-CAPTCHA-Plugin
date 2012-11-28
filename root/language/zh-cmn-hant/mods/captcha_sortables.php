@@ -39,7 +39,7 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 	'CAPTCHA_SORTABLES'				=> 'Sortables CAPTCHA',
-	'CONFIRM_QUESTION_EXPLAIN'		=> '為防止機器自動註冊和把垃圾帖子貼到本討論區裡，請用滑鼠把項目拖曳到適當的欄中。',
+	'CONFIRM_QUESTION_EXPLAIN'		=> '為防止機器自動註冊和把垃圾帖子貼到本討論區裡，請把項目拖曳到適當的欄中。',
 	'CONFIRM_QUESTION_EXPLAIN_NOJS'	=> '為防止機器自動註冊和把垃圾帖子貼到本討論區裡，請從清單選擇適當的項目。', // With JavaScript disabled
 	'CONFIRM_QUESTION_WRONG'		=> '回答不正確，你把答案項目放到錯誤的欄位中。',
 
