@@ -6,9 +6,9 @@
 	<header>
 		<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
 		
-		<title lang="en">Sortables CAPTCHA Plugin Danish</title>
+		<title lang="en">Update Sortables CAPTCHA Plugin from 1.0.3 to 1.0.4</title>
 		
-		<description lang="en">This is the install file for adding the Danish language.</description>
+		<description lang="en">This is the install file for updating the plugin version from 1.0.3 to 1.0.4.</description>
 		
 		<author-group>
 			<author>
@@ -16,14 +16,6 @@
 				<homepage>http://www.derky.nl/</homepage>
 				<contributions-group>
 					<contributions status="current" position="Developer" />
-				</contributions-group>
-			</author>
-			
-			<author>
-				<username>AlleyKat</username>
-				<homepage>http://www.phpbb2.dk/</homepage>
-				<contributions-group>
-					<contributions status="past" position="Translator" />
 				</contributions-group>
 			</author>
 		</author-group>
@@ -35,24 +27,6 @@
 			<time>60</time>
 			<target-version>3.0.11</target-version>
 		</installation>
-
-		<history>
-			<entry>
-				<date>2011-02-10</date>
-				<rev-version>1.0.2</rev-version>
-				<changelog lang="en">
-					<change>Added languages</change>
-				</changelog>
-			</entry>
-			
-			<entry>
-				<date>2012-12-03</date>
-				<rev-version>1.0.4</rev-version>
-				<changelog lang="en">
-					<change>Touch devices support (iPhone, iPad, Android, etc)</change>
-				</changelog>
-			</entry>
-		</history>
 		
 		<link-group>
 			<link type="parent" href="../install_sortables_captcha_plugin.xml" lang="en">Main install file</link>
@@ -60,9 +34,18 @@
 				
 	</header>
 	
-	<action-group>
+	<action-group>		
 		<copy>
-			<file from="root/language/da/mods/captcha_sortables.php" to="language/da/mods/captcha_sortables.php" />
+			<file from="root/includes/captcha/plugins/phpbb_captcha_sortables_plugin.php" to="includes/captcha/plugins/phpbb_captcha_sortables_plugin.php" />
+			<file from="root/language/en/mods/captcha_sortables.php" to="language/en/mods/captcha_sortables.php" />
+			<file from="root/styles/prosilver/template/captcha_sortables.html" to="styles/prosilver/template/captcha_sortables.html" />
+			<file from="root/styles/prosilver/template/js/*.*" to="styles/prosilver/template/js/*.*" />
 		</copy>
+		<delete>
+			<file name="styles/prosilver/template/js/jquery-1.4.4.min.js" />
+			<file name="styles/prosilver/template/js/jquery-ui-1.8.9.custom.min.js" />
+		</delete>
+		
+		<diy-instructions lang="en">Go to the Administration Control Panel and click 'Purge Cache'. After purging the cache go to the tab 'Styles', click on 'Templates' and refresh the prosilver template.</diy-instructions>
 	</action-group>
 </mod>

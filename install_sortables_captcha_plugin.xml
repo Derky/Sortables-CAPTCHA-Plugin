@@ -29,12 +29,12 @@
 			</author>
 		</author-group>
 		
-		<mod-version>1.0.4-DEV</mod-version>
+		<mod-version>1.0.4</mod-version>
 		
 		<installation>
 			<level>easy</level>
 			<time>120</time>
-			<target-version>3.0.9</target-version>
+			<target-version>3.0.11</target-version>
 		</installation>
 
 		<history>
@@ -87,7 +87,7 @@
 			</entry>
 			
 			<entry>
-				<date>2011-07-30</date>
+				<date>2012-12-03</date>
 				<rev-version>1.0.4</rev-version>
 				<changelog lang="en">
 					<change>Added languages: CA, ES, HR, LT, PL, ZH-CMN-HANT</change>
@@ -117,7 +117,7 @@
 			<link type="language" href="contrib/ru.xml" lang="en">Russian</link>
 			<link type="language" href="contrib/es.xml" lang="en">Spanish</link>
 			
-			<link type="contrib" href="contrib/update_1.0.2_to_1.0.3.xml" lang="en">Update Sortables CAPTCHA Plugin from 1.0.2 to 1.0.3</link>
+			<link type="contrib" href="contrib/update_1.0.3_to_1.0.4.xml" lang="en">Update Sortables CAPTCHA Plugin from 1.0.3 to 1.0.4</link>
 			
 		</link-group>
 				

@@ -28,12 +28,12 @@
 			</author>
 		</author-group>
 		
-		<mod-version>1.0.3</mod-version>
+		<mod-version>1.0.4</mod-version>
 		
 		<installation>
 			<level>easy</level>
 			<time>60</time>
-			<target-version>3.0.9</target-version>
+			<target-version>3.0.11</target-version>
 		</installation>
 
 		<history>
@@ -42,6 +42,14 @@
 				<rev-version>1.0.2</rev-version>
 				<changelog lang="en">
 					<change>Added languages</change>
+				</changelog>
+			</entry>
+			
+			<entry>
+				<date>2012-12-03</date>
+				<rev-version>1.0.4</rev-version>
+				<changelog lang="en">
+					<change>Touch devices support (iPhone, iPad, Android, etc)</change>
 				</changelog>
 			</entry>
 		</history>
