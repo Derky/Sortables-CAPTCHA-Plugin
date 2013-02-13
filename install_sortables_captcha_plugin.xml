@@ -102,7 +102,7 @@
 				<date>2013-02-13</date>
 				<rev-version>1.0.5</rev-version>
 				<changelog lang="en">
-					<change>Added languages: HE</change>
+					<change>Added languages: HE, RO</change>
 				</changelog>
 			</entry>
 		</history>
@@ -123,6 +123,7 @@
 			<link type="language" href="contrib/pl.xml" lang="en">Polish</link>
 			<link type="language" href="contrib/pt.xml" lang="en">Portuguese</link>
 			<link type="language" href="contrib/pt-br.xml" lang="en">Brazilian Portuguese</link>
+			<link type="language" href="contrib/ro.xml" lang="en">Romanian</link>
 			<link type="language" href="contrib/ru.xml" lang="en">Russian</link>
 			<link type="language" href="contrib/es.xml" lang="en">Spanish</link>
 			
