@@ -44,13 +44,13 @@ $lang = array_merge($lang, array(
 	'CONFIRM_QUESTION_WRONG'		=> 'Vi ste krivo razvrstali stavke iz popisa.',
 
 	'QUESTION_ANSWERS'			=> 'Odgovor',
-	'ANSWERS_EXPLAIN'			=> 'Mogucnosti za ovaj stupac. Molimo upisite jednu opciju po retku.',
+	'ANSWERS_EXPLAIN'			=> 'Mogućnosti za ovaj stupac. Molimo upišite jednu opciju po retku.',
 	'CONFIRM_QUESTION'			=> 'Pitanje',
 	'CHANGES_SUBMIT'			=> 'Prihvati izmjene',
 
 	'EDIT_QUESTION'				=> 'Uredi pitanje',
 	'QUESTIONS'					=> 'Redosljed Liste Pitanja',
-	'QUESTIONS_EXPLAIN'			=> 'Ovdje mozete dodavati i uredjivati pitanja koja koja se pojavljuju kod registracije. Morate osigurati najmanje jedno pitanje u zadanom okviru za koristenje ovog dodatka. Pitanja bi trebala biti jednostavla za ciljanu publiku. Korisnici ce vidjeti sve opcije u jednom stupcu i moraju ih razvrstati u ispravan stupac kao sto ste zadali u administraciji. Osim toga, ne zaboravite povremeno izmjeniti pitanja.',
+	'QUESTIONS_EXPLAIN'			=> 'Ovdje možete dodavati i uređivati pitanja koja se pojavljuju kod registracije. Morate osigurati najmanje jedno pitanje u zadanom okviru za korištenje ovog dodatka. Pitanja bi trebala biti jednostavna za ciljanu publiku. Korisnici će vidjeti sve opcije u jednom stupcu i moraju ih razvrstati u ispravan stupac kao što ste zadali u administraciji. Osim toga, ne zaboravite povremeno izmjeniti pitanja.',
 	'QUESTION_DELETED'			=> 'Pitanje obrisano',
 	'QUESTION_LANG'				=> 'Jezik',
 	'QUESTION_LANG_EXPLAIN'		=> 'Jezik kojim je pisano pitanje je',
@@ -63,18 +63,18 @@ $lang = array_merge($lang, array(
 	'COLUMN_NAME_LEFT_EXPLAIN'	=> 'Kao: stvari koje trebam',
 	'COLUMN_NAME_RIGHT_EXPLAIN'	=> 'Kao: Stvari koje ne trebate',
 	
-	'DEMO_QUESTION'				=> 'Sto stavljamo u juhu od rajcice',	
+	'DEMO_QUESTION'				=> 'Sto stavljamo u juhu od rajčice',	
 	'DEMO_NAME_LEFT'			=> 'Ostavi',
 	'DEMO_NAME_RIGHT'			=> 'Odbaci',
 	'DEMO_OPTION_BANANAS'		=> 'Banana',
-	'DEMO_OPTION_TOMATOES'		=> 'Rajcica',
+	'DEMO_OPTION_TOMATOES'		=> 'Rajčica',
 	'DEMO_OPTION_APPLES'		=> 'Jabuka',
-	'DEMO_PREVIEW_ONLY'			=> 'Ne mozete premjestiti mogucnost primjera. Ovo je samo primjer!',
+	'DEMO_PREVIEW_ONLY'			=> 'Ne možete premjestiti mogućnost primjera. Ovo je samo primjer!',
 
 	'QUESTION_TEXT'				=> 'Pitanje',
-	'QUESTION_TEXT_EXPLAIN'		=> 'Objasnite kako otprilike trebaju biti razvrstane rijeci u stupcu.',
+	'QUESTION_TEXT_EXPLAIN'		=> 'Objasnite kako otprilike trebaju biti razvrstane riječi u stupcu.',
 
-	'SORTABLES_ERROR_MSG'		=> 'Molimo ispunite sva polja i unesite barem jednu moguænost za oba stupca.',
+	'SORTABLES_ERROR_MSG'		=> 'Molimo ispunite sva polja i unesite barem jednu mogućnost za oba stupca.',
 ));
 
 ?>

@@ -103,6 +103,7 @@
 				<rev-version>1.0.5</rev-version>
 				<changelog lang="en">
 					<change>Added languages: HE, RO, SR, SR-LATN</change>
+					<change>Fix typos in Croatian (HR) language</change>
 				</changelog>
 			</entry>
 		</history>

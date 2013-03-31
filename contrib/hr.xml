@@ -26,6 +26,14 @@
 					<contributions status="past" position="Translator" />
 				</contributions-group>
 			</author>
+			
+			<author>
+				<username>stojadinovicp</username>
+				<homepage>http://stojadinovic.net</homepage>
+				<contributions-group>
+					<contributions status="past" position="Translator" />
+				</contributions-group>
+			</author>
 		</author-group>
 		
 		<mod-version>1.0.4</mod-version>
@@ -43,6 +51,13 @@
 				<changelog lang="en">
 					<change>Added language: HR</change>
 					<change>Touch devices support (iPhone, iPad, Android, etc)</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2012-03-31</date>
+				<rev-version>1.0.5</rev-version>
+				<changelog lang="en">
+					<change>Fix typos in Croatian (HR) language</change>
 				</changelog>
 			</entry>
 		</history>
