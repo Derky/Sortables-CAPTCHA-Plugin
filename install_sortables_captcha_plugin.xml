@@ -102,7 +102,7 @@
 				<date>2013-02-13</date>
 				<rev-version>1.0.5</rev-version>
 				<changelog lang="en">
-					<change>Added languages: HE, RO, SR, SR-LATN</change>
+					<change>Added languages: CS, HE, RO, SK, SR, SR-LATN</change>
 					<change>Fix typos in Croatian (HR) language</change>
 				</changelog>
 			</entry>
@@ -113,6 +113,7 @@
 			<link type="language" href="contrib/ca.xml" lang="en">Catalan</link>
 			<link type="language" href="contrib/zh-cmn-hant.xml" lang="en">Chinese (Traditional)</link>
 			<link type="language" href="contrib/hr.xml" lang="en">Croatian</link>
+			<link type="language" href="contrib/cs.xml" lang="en">Czech</link>
 			<link type="language" href="contrib/da.xml" lang="en">Danish</link>
 			<link type="language" href="contrib/nl.xml" lang="en">Dutch</link>
 			<link type="language" href="contrib/fr.xml" lang="en">French</link>
@@ -128,6 +129,7 @@
 			<link type="language" href="contrib/ru.xml" lang="en">Russian</link>
 			<link type="language" href="contrib/sr.xml" lang="en">Serbian (Cyrillic Script)</link>
 			<link type="language" href="contrib/sr-latn.xml" lang="en">Serbian (Latin Script)</link>
+			<link type="language" href="contrib/sk.xml" lang="en">Slovak</link>
 			<link type="language" href="contrib/es.xml" lang="en">Spanish</link>
 			
 			<link type="contrib" href="contrib/update_1.0.3_to_1.0.4.xml" lang="en">Update Sortables CAPTCHA Plugin from 1.0.3 to 1.0.4</link>
