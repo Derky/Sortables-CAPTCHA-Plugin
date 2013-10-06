@@ -345,7 +345,6 @@ class phpbb_captcha_sortables extends phpbb_captcha_qa
 								),
 								'PRIMARY_KEY'		=> 'answer_id',
 								'KEYS'				=> array(
-									'aid'				=> array('INDEX', 'answer_id'),
 									'qid'				=> array('INDEX', 'question_id'),
 									'asort'				=> array('INDEX', 'answer_sort'),
 								),
