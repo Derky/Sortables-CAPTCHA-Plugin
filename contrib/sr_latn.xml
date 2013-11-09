@@ -6,9 +6,9 @@
 	<header>
 		<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
 		
-		<title lang="en">Sortables CAPTCHA Plugin Chinese (Traditional)</title>
+		<title lang="en">Sortables CAPTCHA Plugin Serbian (Latin Script)</title>
 		
-		<description lang="en">This is the install file for adding the Chinese (Traditional) language.</description>
+		<description lang="en">This is the install file for adding the Serbian (Latin Script) language.</description>
 		
 		<author-group>
 			<author>
@@ -20,7 +20,8 @@
 			</author>
 			
 			<author>
-				<username>chukaml</username>
+				<username>stojadinovicp</username>
+				<homepage>http://stojadinovic.net</homepage>
 				<contributions-group>
 					<contributions status="past" position="Translator" />
 				</contributions-group>
@@ -37,11 +38,10 @@
 
 		<history>
 			<entry>
-				<date>2012-12-03</date>
-				<rev-version>1.0.4</rev-version>
+				<date>2013-03-31</date>
+				<rev-version>1.0.5</rev-version>
 				<changelog lang="en">
-					<change>Added language: ZH-CMN-HANT</change>
-					<change>Touch devices support (iPhone, iPad, Android, etc)</change>
+					<change>Added language: SR-LATN</change>
 				</changelog>
 			</entry>
 		</history>
@@ -54,7 +54,7 @@
 	
 	<action-group>
 		<copy>
-			<file from="root/language/zh-cmn-hant/mods/captcha_sortables.php" to="language/zh-cmn-hant/mods/captcha_sortables.php" />
+			<file from="root/language/sr_latn/mods/captcha_sortables.php" to="language/sr_latn/mods/captcha_sortables.php" />
 		</copy>
 	</action-group>
 </mod>

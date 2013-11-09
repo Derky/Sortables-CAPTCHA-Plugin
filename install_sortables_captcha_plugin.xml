@@ -112,7 +112,7 @@
 		<link-group>
 			<link type="template" href="contrib/subsilver2.xml" lang="en">subsilver2</link>
 			<link type="language" href="contrib/ca.xml" lang="en">Catalan</link>
-			<link type="language" href="contrib/zh-cmn-hant.xml" lang="en">Chinese (Traditional)</link>
+			<link type="language" href="contrib/zh_cmn_hant.xml" lang="en">Chinese (Traditional)</link>
 			<link type="language" href="contrib/hr.xml" lang="en">Croatian</link>
 			<link type="language" href="contrib/cs.xml" lang="en">Czech</link>
 			<link type="language" href="contrib/da.xml" lang="en">Danish</link>
@@ -125,11 +125,11 @@
 			<link type="language" href="contrib/lt.xml" lang="en">Lithuanian</link>
 			<link type="language" href="contrib/pl.xml" lang="en">Polish</link>
 			<link type="language" href="contrib/pt.xml" lang="en">Portuguese</link>
-			<link type="language" href="contrib/pt-br.xml" lang="en">Brazilian Portuguese</link>
+			<link type="language" href="contrib/pt_br.xml" lang="en">Brazilian Portuguese</link>
 			<link type="language" href="contrib/ro.xml" lang="en">Romanian</link>
 			<link type="language" href="contrib/ru.xml" lang="en">Russian</link>
 			<link type="language" href="contrib/sr.xml" lang="en">Serbian (Cyrillic Script)</link>
-			<link type="language" href="contrib/sr-latn.xml" lang="en">Serbian (Latin Script)</link>
+			<link type="language" href="contrib/sr_latn.xml" lang="en">Serbian (Latin Script)</link>
 			<link type="language" href="contrib/sk.xml" lang="en">Slovak</link>
 			<link type="language" href="contrib/es.xml" lang="en">Spanish</link>
 			<link type="language" href="contrib/tr.xml" lang="en">Turkish</link>
