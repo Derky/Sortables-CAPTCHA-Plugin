@@ -105,7 +105,7 @@
 					<change>Added languages: CS, HE, RO, SK, SR, SR-LATN</change>
 					<change>Fix typos in Croatian (HR) language</change>
 					<change>Improved Italian (IT) language</change>
-					<change>Removed extra INDEX from PRIMARY_KEY field on phpbb_sortables_answers table</change>
+					<change>Removed duplicate INDEX from PRIMARY_KEY field on phpbb_sortables_answers table</change>
 				</changelog>
 			</entry>
 		</history>
