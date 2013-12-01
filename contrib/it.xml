@@ -25,6 +25,13 @@
 					<contributions status="past" position="Translator" />
 				</contributions-group>
 			</author>
+			
+			<author>
+				<username>MaFeSa</username>
+				<contributions-group>
+					<contributions status="past" position="Translator" />
+				</contributions-group>
+			</author>
 		</author-group>
 		
 		<mod-version>1.0.4</mod-version>

@@ -9,7 +9,7 @@
 * @copyright (c) 2009 Derky - phpBB3styles.net
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
-* Translated by etms51
+* Translated by etms51 and MaFeSa
 *
 */
 
@@ -39,10 +39,10 @@ if (empty($lang) || !is_array($lang))
 // in a url you again do not need to specify an order e.g., 'Click %sHERE%s' is fine
 
 $lang = array_merge($lang, array(
-	'CAPTCHA_SORTABLES'				=> 'Presenta CAPTCHA',
-	'CONFIRM_QUESTION_EXPLAIN'		=> 'Si prega di trascinare le opzioni nell\'elenco corretto, per evitare registrazioni automatiche.',
-	'CONFIRM_QUESTION_EXPLAIN_NOJS'	=> 'Si prega di selezionare prima le opzioni all\'elenco corretto per evitare le registrazioni automatiche.', // With JavaScript disabled
-	'CONFIRM_QUESTION_WRONG'		=> 'Lei non ha correttamente ordinati gli oggetti all\'elenco corretto della domanda di conferma.',
+	'CAPTCHA_SORTABLES'				=> 'Sortables CAPTCHA',
+	'CONFIRM_QUESTION_EXPLAIN'		=> 'Per evitare registrazioni automatiche si prega di trascinare le opzioni nell\'elenco corretto.',
+	'CONFIRM_QUESTION_EXPLAIN_NOJS'	=> 'Per evitare registrazioni automatiche si prega di selezionare le opzioni all\'elenco corretto.', // With JavaScript disabled
+	'CONFIRM_QUESTION_WRONG'		=> 'Si prega di verificare l\'ordine degli oggetti.',
 
 	'QUESTION_ANSWERS'			=> 'Risposte',
 	'ANSWERS_EXPLAIN'			=> 'L\'opzione per questa colonna. Si prega di scrivere una opzione per linea.',
@@ -51,12 +51,12 @@ $lang = array_merge($lang, array(
 
 	'EDIT_QUESTION'				=> 'Modifica Domanda',
 	'QUESTIONS'					=> 'Elenco Domande ordinabili',
-	'QUESTIONS_EXPLAIN'			=> 'Qui è possibile aggiungere e modificare le domande per essere risposte sulla registrazione. Per poter usare questo plugin è necessario fornire almeno una domanda  nel forum predefinito della lingua. Le domande devono essere semplici per i target di riferimento. Gli utenti vedranno tutte le opzioni in una colonna e hanno la possibilità di ordinare la colonna corretta. Inoltre, bisogna ricordarsi di cambiare regolarmente le domande.  ',
+	'QUESTIONS_EXPLAIN'			=> 'Qui è possibile aggiungere e modificare le domande per la registrazione. Per poter usare questo plugin è necessario fornire almeno una domanda nel forum predefinito della lingua. Le domande devono essere semplici per i target di riferimento. Gli utenti vedranno tutte le opzioni in una colonna e avranno la possibilità di ordinare la colonna corretta. Inoltre, bisogna ricordarsi di cambiare regolarmente le domande. ',
 	'QUESTION_DELETED'			=> 'Domanda cancellata',
 	'QUESTION_LANG'				=> 'Lingua',
-	'QUESTION_LANG_EXPLAIN'		=> 'La lingua per questa domanda e le sue opzioni sono scritte in.',
+	'QUESTION_LANG_EXPLAIN'		=> 'La lingua per questa domanda e le sue opzioni sono scritte in',
 	'QUESTION_SORT'				=> 'Elenco predefinito ordinabile',
-	'QUESTION_SORT_EXPLAIN'		=> 'In quale colonna devono essere visualizzate le risposte di default.',
+	'QUESTION_SORT_EXPLAIN'		=> 'In quale colonna devono essere visualizzate le risposte di default',
 	
 	'COLUMN_LEFT'				=> 'Colonna di sinistra',
 	'COLUMN_RIGHT'				=> 'Colonna di destra',
