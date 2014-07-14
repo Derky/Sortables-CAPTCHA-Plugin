@@ -102,7 +102,7 @@
 				<date>2013-02-13</date>
 				<rev-version>1.0.5</rev-version>
 				<changelog lang="en">
-					<change>Added languages: CS, HE, HU, RO, SK, SR, SR-LATN</change>
+					<change>Added languages: CS, ET, HE, HU, RO, SK, SR, SR-LATN</change>
 					<change>Fix typos in Croatian (HR) language</change>
 					<change>Improved Italian (IT) language</change>
 					<change>Removed duplicate INDEX from PRIMARY_KEY field on phpbb_sortables_answers table</change>
@@ -118,6 +118,7 @@
 			<link type="language" href="contrib/cs.xml" lang="en">Czech</link>
 			<link type="language" href="contrib/da.xml" lang="en">Danish</link>
 			<link type="language" href="contrib/nl.xml" lang="en">Dutch</link>
+			<link type="language" href="contrib/et.xml" lang="en">Estonian</link>
 			<link type="language" href="contrib/fr.xml" lang="en">French</link>
 			<link type="language" href="contrib/de.xml" lang="en">German</link>
 			<link type="language" href="contrib/he.xml" lang="en">Hebrew</link>
