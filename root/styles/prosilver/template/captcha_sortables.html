@@ -89,26 +89,26 @@ $(function() {
 	<dt><label>{SORTABLES_CONFIRM_QUESTION}</label><br /><span>{L_CONFIRM_QUESTION_EXPLAIN}</span></dt>
 	<dd>
 
-		<div class="attachbox" style="clear:none; *width:20em;"><!-- *width:20em; is for nub IE-only -->
-		<strong><!-- IF SORTABLES_NAME_LEFT -->{SORTABLES_NAME_LEFT}<!-- ELSE -->{L_COLUMN_LEFT}<!-- ENDIF --></strong><hr />
-		<ul id="sortable1" class="connectedSortable" style="min-height: 100px; min-width:100px; list-style-type: none; padding: 0 5px 5px 5px;">
-		<!-- IF SORTABLES_DEFAULT_SORT == 'LEFT' -->
-			<!-- BEGIN options -->
-			<li class="bg2" style="cursor:move; margin: 5px 0 5px 0; padding: 5px;" id="answer_{options.ID}">{options.TEXT}</li>
-			<!-- END options -->
-		<!-- ENDIF -->
-		</ul>
+		<div class="attachbox sortables_captcha_box" style="clear:none; *width:20em;"><!-- *width:20em; is for nub IE-only -->
+			<strong><!-- IF SORTABLES_NAME_LEFT -->{SORTABLES_NAME_LEFT}<!-- ELSE -->{L_COLUMN_LEFT}<!-- ENDIF --></strong><hr />
+			<ul id="sortable1" class="connectedSortable" style="min-height: 100px; min-width:100px; list-style-type: none; padding: 0 5px 5px 5px;">
+			<!-- IF SORTABLES_DEFAULT_SORT == 'LEFT' -->
+				<!-- BEGIN options -->
+				<li class="bg2" style="cursor:move; margin: 5px 0 5px 0; padding: 5px;" id="answer_{options.ID}">{options.TEXT}</li>
+				<!-- END options -->
+			<!-- ENDIF -->
+			</ul>
 		</div>
 		
-		<div class="attachbox" style="clear:none; *width:20em;"><!-- *width:20em; is for nub IE-only -->
-		<strong><!-- IF SORTABLES_NAME_RIGHT -->{SORTABLES_NAME_RIGHT}<!-- ELSE -->{L_COLUMN_RIGHT}<!-- ENDIF --></strong><hr />
-		<ul id="sortable2" class="connectedSortable" style="min-height: 100px; min-width:100px; list-style-type: none; padding: 0 5px 5px 5px;">
-		<!-- IF SORTABLES_DEFAULT_SORT == 'RIGHT' -->
-			<!-- BEGIN options -->
-			<li class="bg2" style="cursor:move; margin: 5px 0 5px 0; padding: 5px;" id="answer_{options.ID}">{options.TEXT}</li>
-			<!-- END options -->
-		<!-- ENDIF -->
-		</ul>
+		<div class="attachbox sortables_captcha_box" style="clear:none; *width:20em;"><!-- *width:20em; is for nub IE-only -->
+			<strong><!-- IF SORTABLES_NAME_RIGHT -->{SORTABLES_NAME_RIGHT}<!-- ELSE -->{L_COLUMN_RIGHT}<!-- ENDIF --></strong><hr />
+			<ul id="sortable2" class="connectedSortable" style="min-height: 100px; min-width:100px; list-style-type: none; padding: 0 5px 5px 5px;">
+			<!-- IF SORTABLES_DEFAULT_SORT == 'RIGHT' -->
+				<!-- BEGIN options -->
+				<li class="bg2" style="cursor:move; margin: 5px 0 5px 0; padding: 5px;" id="answer_{options.ID}">{options.TEXT}</li>
+				<!-- END options -->
+			<!-- ENDIF -->
+			</ul>
 		</div>
 		
 		<input type="hidden" name="sortables_confirm_id" id="confirm_id" value="{SORTABLES_CONFIRM_ID}" />

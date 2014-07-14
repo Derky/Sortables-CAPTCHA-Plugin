@@ -107,6 +107,7 @@
 					<change>Improved Italian (IT) language</change>
 					<change>Removed duplicate answer_id INDEX for the phpbb_sortables_answers table</change>
 					<change>Fixed RANDOM() statement for SQLite, Oracle and Firebird databases</change>
+					<change>Add custom CSS class 'sortables_captcha_box' for easier customisation</change>
 				</changelog>
 			</entry>
 		</history>

@@ -45,6 +45,15 @@
 					<change>Touch devices support (iPhone, iPad, Android, etc)</change>
 				</changelog>
 			</entry>
+			
+			<entry>
+				<date>2013-02-13</date>
+				<rev-version>1.0.5</rev-version>
+				<changelog lang="en">
+					<change>Add custom CSS class 'sortables_captcha_box' for easier customisation</change>
+				</changelog>
+			</entry>
+			
 		</history>
 		
 		<link-group>
