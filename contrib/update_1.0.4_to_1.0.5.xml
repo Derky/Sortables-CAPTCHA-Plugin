@@ -36,11 +36,46 @@
 	
 	<action-group>
 	
-		<sql><![CDATA[#
+		<!-- MySQL -->
+		<sql dbms="mysql_40"><![CDATA[#
 # Make sure the phpbb_ prefix is correct.
 # If this query isn't working for you, you should replace the table name with: phpbb_captcha_sortables_answers
 #	
-ALTER TABLE 'phpbb_sortables_answers' DROP INDEX 'answer_id';]]></sql>
+DROP INDEX aid ON phpbb_sortables_answers;]]></sql>
+		<sql dbms="mysql_41"><![CDATA[#
+# Make sure the phpbb_ prefix is correct.
+# If this query isn't working for you, you should replace the table name with: phpbb_captcha_sortables_answers
+#	
+DROP INDEX aid ON phpbb_sortables_answers;]]></sql>
+
+		<!-- MSSQL -->
+		<sql dbms="mssql"><![CDATA[#
+# Make sure the phpbb_ prefix is correct.
+# If this query isn't working for you, you should replace the table name with: phpbb_captcha_sortables_answers
+#	
+DROP INDEX phpbb_sortables_answers.aid;]]></sql>
+
+		<!-- Oracle, Postgres, SQLite, Firebird-->
+		<sql dbms="oracle"><![CDATA[#
+# Make sure the phpbb_ prefix is correct.
+# If this query isn't working for you, you should replace the table name with: phpbb_captcha_sortables_answers
+#	
+DROP INDEX phpbb_sortables_answers_aid;]]></sql>
+		<sql dbms="postgres"><![CDATA[#
+# Make sure the phpbb_ prefix is correct.
+# If this query isn't working for you, you should replace the table name with: phpbb_captcha_sortables_answers
+#	
+DROP INDEX phpbb_sortables_answers_aid;]]></sql>
+		<sql dbms="sqlite"><![CDATA[#
+# Make sure the phpbb_ prefix is correct.
+# If this query isn't working for you, you should replace the table name with: phpbb_captcha_sortables_answers
+#	
+DROP INDEX phpbb_sortables_answers_aid;]]></sql>
+		<sql dbms="firebird"><![CDATA[#
+# Make sure the phpbb_ prefix is correct.
+# If this query isn't working for you, you should replace the table name with: phpbb_captcha_sortables_answers
+#	
+DROP INDEX phpbb_sortables_answers_aid;]]></sql>
 		
 		<copy>
 			<file from="root/includes/captcha/plugins/phpbb_captcha_sortables_plugin.php" to="includes/captcha/plugins/phpbb_captcha_sortables_plugin.php" />
