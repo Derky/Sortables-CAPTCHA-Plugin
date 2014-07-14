@@ -550,14 +550,11 @@ class phpbb_captcha_sortables extends phpbb_captcha_qa
 			$this->name_left = $row['name_left'];
 			$this->name_right = $row['name_right'];
 			
-			// Postgres random fix
-			$order_by = ($db->sql_layer == 'postgres') ? 'ORDER BY RANDOM()' : 'ORDER BY RAND()';
-			
 			// Let's load the answers
 			$sql = 'SELECT answer_id, answer_text
 				FROM ' . CAPTCHA_SORTABLES_ANSWERS_TABLE . "
-				WHERE question_id = '" . (int) $this->question . "'
-				$order_by";
+				WHERE question_id = '" . (int) $this->question . "' 
+				ORDER BY " . $this->sql_random();
 			$result = $db->sql_query($sql);
 			
 			$template->destroy_block_vars('options'); // It's running twice, only grab the lastest see topic 1732385
@@ -1129,6 +1126,36 @@ class phpbb_captcha_sortables extends phpbb_captcha_qa
 		}
 		
 		return $random;
+	}
+	
+	/**
+	*	Get the random statement for this database layer
+	*/
+	function sql_random()
+	{
+		global $db;
+		
+		$statement = '';
+		
+		switch ($db->sql_layer)
+		{
+			case 'firebird':
+			case 'oracle':
+			case 'postgres':
+			case 'sqlite':
+				$statement = 'RANDOM()';
+			break;
+			
+			case 'mssql':
+			case 'mssqlnative':
+			case 'mysql_40':
+			case 'mysql_41':
+			case 'mysqli':
+			default:
+				$statement = 'RAND()';
+			break;
+		}
+		return $statement;
 	}
 }
 

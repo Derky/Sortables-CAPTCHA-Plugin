@@ -105,7 +105,8 @@
 					<change>Added languages: CS, ET, HE, HU, RO, SK, SR, SR-LATN</change>
 					<change>Fix typos in Croatian (HR) language</change>
 					<change>Improved Italian (IT) language</change>
-					<change>Removed duplicate INDEX from PRIMARY_KEY field on phpbb_sortables_answers table</change>
+					<change>Removed duplicate answer_id INDEX for the phpbb_sortables_answers table</change>
+					<change>Fixed RANDOM() statement for SQLite, Oracle and Firebird databases</change>
 				</changelog>
 			</entry>
 		</history>
