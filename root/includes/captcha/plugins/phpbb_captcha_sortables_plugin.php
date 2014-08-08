@@ -37,11 +37,7 @@ global $table_prefix, $config;
 if (!isset($config['sortables_bc']))
 {
 	global $db;
-	if (!class_exists('phpbb_db_tools'))
-	{
-		include("$phpbb_root_path/includes/db/db_tools.$phpEx");
-	}
-	$db_tool = new phpbb_db_tools($db);
+	$db_tool = new \phpbb\db\tools($db);
 
 	// Find out if we need backwards compatibility
 	($db_tool->sql_table_exists($table_prefix . 'captcha_sortables_questions')) ? set_config('sortables_bc', 1) : set_config('sortables_bc', 0);
@@ -138,38 +134,35 @@ class phpbb_captcha_sortables extends phpbb_captcha_qa
 	/**
 	*  API function
 	*/
-	function &get_instance()
+	static public function get_instance()
 	{
-		$instance =& new phpbb_captcha_sortables();
+		$instance = new phpbb_captcha_sortables();
 		return $instance;
 	}
 
 	/**
 	* See if the captcha has created its tables.
 	*/
-	function is_installed()
+	static public function is_installed()
 	{
 		global $db, $phpbb_root_path, $phpEx;
 
-		if (!class_exists('phpbb_db_tools'))
-		{
-			include("$phpbb_root_path/includes/db/db_tools.$phpEx");
-		}
-		$db_tool = new phpbb_db_tools($db);
+		$db_tool = new \phpbb\db\tools($db);
+		
 		return $db_tool->sql_table_exists(CAPTCHA_SORTABLES_QUESTIONS_TABLE);
 	}
 	
 	/**
 	*  API function - for the captcha to be available, it must have installed itself and there has to be at least one question in the board's default lang
 	*/
-	function is_available()
+	static public function is_available()
 	{
 		global $config, $db, $phpbb_root_path, $phpEx, $user;
 		
 		// load language file for pretty display in the ACP dropdown
 		$user->add_lang('mods/captcha_sortables');
 		
-		if (!phpbb_captcha_sortables::is_installed())
+		if (!self::is_installed())
 		{
 			return false;
 		}
@@ -194,7 +187,7 @@ class phpbb_captcha_sortables extends phpbb_captcha_qa
 	/**
 	*  API function
 	*/
-	function get_name()
+	static public function get_name()
 	{
 		return 'CAPTCHA_SORTABLES';
 	}
@@ -230,7 +223,6 @@ class phpbb_captcha_sortables extends phpbb_captcha_qa
 				'S_TYPE'						=> $this->type,
 				
 				// Set version numbers here, so jQuery updates don't require a template refresh anymore
-				'SORTABLES_JQUERY_VERSION'		=> '1.8.3',
 				'SORTABLES_JQUERYUI_VERSION'	=> '1.9.2',
 			));
 
@@ -313,11 +305,7 @@ class phpbb_captcha_sortables extends phpbb_captcha_qa
 	{
 		global $db, $phpbb_root_path, $phpEx;
 		
-		if (!class_exists('phpbb_db_tools'))
-		{
-			include("$phpbb_root_path/includes/db/db_tools.$phpEx");
-		}
-		$db_tool = new phpbb_db_tools($db);
+		$db_tool = new \phpbb\db\tools($db);
 		$tables = array(CAPTCHA_SORTABLES_QUESTIONS_TABLE, CAPTCHA_SORTABLES_ANSWERS_TABLE, CAPTCHA_SORTABLES_CONFIRM_TABLE);
 		
 		$schemas = array(
@@ -1137,7 +1125,7 @@ class phpbb_captcha_sortables extends phpbb_captcha_qa
 		
 		$statement = '';
 		
-		switch ($db->sql_layer)
+		switch ($db->get_sql_layer())
 		{
 			case 'firebird':
 			case 'oracle':
