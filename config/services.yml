@@ -1,0 +1,11 @@
+services:
+    derky.sortablescaptcha.captcha.sortables:
+        class: derky\sortablescaptcha\captcha\sortables
+        arguments:
+            - @dbal.conn
+            - @cache
+            - @config
+            - @template
+            - @user
+        tags:
+            - { name: captchas.plugins }

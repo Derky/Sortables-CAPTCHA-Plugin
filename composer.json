@@ -1,0 +1,26 @@
+{
+	"name": "derky/sortablescaptcha",
+	"type": "phpbb-extension",
+	"description": "Sortables Captcha Extension for phpBB 3.1",
+	"homepage": "https://github.com/Derky/Sortables-CAPTCHA-Plugin",
+	"version": "2.0.0-DEV",
+	"time": "2014-08-09",
+	"license": "GPL-2.0",
+	"authors": [{
+			"name": "Derky",
+			"homepage": "http://www.derky.nl",
+			"role": "Developer"
+		}],
+	"require": {
+		"php": ">=5.3.3"
+	},
+	"require-dev": {
+		"phpbb/epv": "dev-master"
+	},
+	"extra": {
+		"display-name": "Sortables Captcha",
+		"soft-require": {
+			"phpbb/phpbb": ">=3.1.0-RC3,<3.2.*@dev"
+		}
+	}
+}
