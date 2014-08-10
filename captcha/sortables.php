@@ -76,32 +76,11 @@ class sortables extends \phpbb\captcha\plugins\qa
 		// This global will be removed when all database specific changes are moved to migrations.
 		global $table_prefix;
 		
-		/**
-		* Hack for phpBB 3.0.9 table/index name limitations
-		* Add a backwards_compatibility boolean to $this->config
-		* Due to static API calls, this has to be defined here
-		*/
-		if (!isset($this->config['sortables_bc']))
-		{
-			$this->db_tool = new \phpbb\db\tools($this->db);
+		// Define sortables captcha tables
+		define('CAPTCHA_SORTABLES_QUESTIONS_TABLE',	$table_prefix . 'sortables_questions');
+		define('CAPTCHA_SORTABLES_ANSWERS_TABLE',	$table_prefix . 'sortables_answers');
+		define('CAPTCHA_SORTABLES_CONFIRM_TABLE',	$table_prefix . 'sortables_confirm');
 
-			// Find out if we need backwards compatibility
-			($this->db_tool->sql_table_exists($table_prefix . 'captcha_sortables_questions')) ? set_config('sortables_bc', 1) : set_config('sortables_bc', 0);
-		}
-
-		// Use the backwards compatible table names? (longer then 30 digits and already created on a phpBB 3.0.8 installation or lower)
-		if ($this->config['sortables_bc'])
-		{
-			define('CAPTCHA_SORTABLES_QUESTIONS_TABLE',	$table_prefix . 'captcha_sortables_questions');
-			define('CAPTCHA_SORTABLES_ANSWERS_TABLE',	$table_prefix . 'captcha_sortables_answers');
-			define('CAPTCHA_SORTABLES_CONFIRM_TABLE',	$table_prefix . 'captcha_sortables_confirm');
-		}
-		else // The new shorted table names
-		{
-			define('CAPTCHA_SORTABLES_QUESTIONS_TABLE',	$table_prefix . 'sortables_questions');
-			define('CAPTCHA_SORTABLES_ANSWERS_TABLE',	$table_prefix . 'sortables_answers');
-			define('CAPTCHA_SORTABLES_CONFIRM_TABLE',	$table_prefix . 'sortables_confirm');
-		}
 	}
 
 	/**
@@ -322,64 +301,9 @@ class sortables extends \phpbb\captcha\plugins\qa
 	*/
 	function install()
 	{
-		$this->db_tool = new \phpbb\db\tools($this->db);
-		$tables = array(CAPTCHA_SORTABLES_QUESTIONS_TABLE, CAPTCHA_SORTABLES_ANSWERS_TABLE, CAPTCHA_SORTABLES_CONFIRM_TABLE);
-		
-		$schemas = array(
-				CAPTCHA_SORTABLES_QUESTIONS_TABLE		=> array (
-								'COLUMNS' => array(
-									'question_id'	=> array('UINT', Null, 'auto_increment'),
-									'sort'			=> array('BOOL', 0),
-									'lang_id'		=> array('UINT', 0),
-									'lang_iso'		=> array('VCHAR:30', ''),
-									'question_text'	=> array('TEXT_UNI', ''),
-									'name_left'		=> array('STEXT_UNI', 0), // Column names
-									'name_right'	=> array('STEXT_UNI', 0),
-								),
-								'PRIMARY_KEY'		=> 'question_id',
-								'KEYS'				=> array(
-									'iso'			=> array('INDEX', 'lang_iso'),
-								),
-				),
-				CAPTCHA_SORTABLES_ANSWERS_TABLE		=> array (
-								'COLUMNS' => array(
-									'answer_id'		=> array('UINT', Null, 'auto_increment'),
-									'question_id'	=> array('UINT', 0),
-									'answer_sort'	=> array('BOOL', 0),
-									'answer_text'	=> array('STEXT_UNI', ''),
-								),
-								'PRIMARY_KEY'		=> 'answer_id',
-								'KEYS'				=> array(
-									'qid'				=> array('INDEX', 'question_id'),
-									'asort'				=> array('INDEX', 'answer_sort'),
-								),
-				),
-				CAPTCHA_SORTABLES_CONFIRM_TABLE		=> array (
-								'COLUMNS' => array(
-									'session_id'	=> array('CHAR:32', ''),
-									'confirm_id'	=> array('CHAR:32', ''),
-									'lang_iso'		=> array('VCHAR:30', ''),
-									'question_id'	=> array('UINT', 0),
-									'attempts'		=> array('UINT', 0),
-									'confirm_type'	=> array('USINT', 0),
-								),
-								'KEYS'				=> array(
-									'sid'				=> array('INDEX', 'session_id'),
-									'lookup'			=> array('INDEX', array('confirm_id', 'session_id', 'lang_iso')),
-								),
-								'PRIMARY_KEY'		=> 'confirm_id',
-				),
-		);
-		
-		foreach ($schemas as $table => $schema)
-		{
-			if (!$this->db_tool->sql_table_exists($table))
-			{
-				$this->db_tool->sql_create_table($table, $schema);
-			}
-		}
+		// This is now handled by migrations when enabling this extension.
+		// Because this class extends the Q&A captcha, this function needs to be specified here to prevent generation of the QA captcha tables.
 	}
-
 
 	/**
 	*  API function - see what has to be done to validate
