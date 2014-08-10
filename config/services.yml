@@ -8,4 +8,4 @@ services:
             - @template
             - @user
         tags:
-            - { name: captchas.plugins }
+            - { name: captcha.plugins }
