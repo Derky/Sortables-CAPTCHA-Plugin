@@ -195,14 +195,6 @@ class sortables extends \phpbb\captcha\plugins\qa
 	}
 
 	/**
-	*  API function
-	*/
-	function get_service_name()
-	{
-		return 'derky.sortablescaptcha.captcha.sortables';
-	}
-
-	/**
 	*  API function - send the question to the template
 	*/
 	function get_template()

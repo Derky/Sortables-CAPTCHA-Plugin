@@ -1,6 +1,8 @@
 services:
     derky.sortablescaptcha.captcha.sortables:
         class: derky\sortablescaptcha\captcha\sortables
+        calls:
+            - [set_name, [derky.sortablescaptcha.captcha.sortables]]
         arguments:
             - @dbal.conn
             - @cache
