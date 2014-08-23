@@ -36,12 +36,12 @@
 			</author>
 		</author-group>
 		
-		<mod-version>1.0.4</mod-version>
+		<mod-version>1.0.5</mod-version>
 		
 		<installation>
 			<level>easy</level>
 			<time>60</time>
-			<target-version>3.0.11</target-version>
+			<target-version>3.0.12</target-version>
 		</installation>
 
 		<history>
@@ -54,7 +54,7 @@
 				</changelog>
 			</entry>
 			<entry>
-				<date>2012-03-31</date>
+				<date>2014-08-23</date>
 				<rev-version>1.0.5</rev-version>
 				<changelog lang="en">
 					<change>Fix typos in Croatian (HR) language</change>

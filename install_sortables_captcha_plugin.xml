@@ -29,12 +29,12 @@
 			</author>
 		</author-group>
 		
-		<mod-version>1.0.5-DEV</mod-version>
+		<mod-version>1.0.5</mod-version>
 		
 		<installation>
 			<level>easy</level>
 			<time>120</time>
-			<target-version>3.0.11</target-version>
+			<target-version>3.0.12</target-version>
 		</installation>
 
 		<history>
@@ -99,7 +99,7 @@
 			</entry>
 			
 			<entry>
-				<date>2013-02-13</date>
+				<date>2014-08-23</date>
 				<rev-version>1.0.5</rev-version>
 				<changelog lang="en">
 					<change>Added languages: CS, ET, HE, HU, RO, SK, SR, SR-LATN</change>
