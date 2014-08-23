@@ -83,8 +83,8 @@ DROP INDEX phpbb_sortables_answers_aid;]]></sql>
 			<file from="root/styles/prosilver/template/js/*.*" to="styles/prosilver/template/js/*.*" />
 		</copy>
 		<delete>
-			<file name="styles/prosilver/template/js/jquery-1.4.4.min.js @TODOOOOOOOOOOOOOOOOOOOO" />
-			<file name="styles/prosilver/template/js/jquery-ui-1.8.9.custom.min.js @TODOOOOOOOOOOOOOOOOOOOO" />
+			<file name="styles/prosilver/template/js/jquery-1.8.3.min.js" />
+			<file name="styles/prosilver/template/js/jquery-ui-1.9.2.custom.min.js" />
 		</delete>
 		
 		<diy-instructions lang="en">Go to the Administration Control Panel and click 'Purge Cache'. After purging the cache go to the tab 'Styles', click on 'Templates' and refresh the prosilver template.</diy-instructions>

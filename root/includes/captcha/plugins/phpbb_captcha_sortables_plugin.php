@@ -230,8 +230,8 @@ class phpbb_captcha_sortables extends phpbb_captcha_qa
 				'S_TYPE'						=> $this->type,
 				
 				// Set version numbers here, so jQuery updates don't require a template refresh anymore
-				'SORTABLES_JQUERY_VERSION'		=> '1.8.3',
-				'SORTABLES_JQUERYUI_VERSION'	=> '1.9.2',
+				'SORTABLES_JQUERY_VERSION'		=> '1.11.1',
+				'SORTABLES_JQUERYUI_VERSION'	=> '1.11.1',
 			));
 
 			return 'captcha_sortables.html';

@@ -51,6 +51,7 @@
 				<rev-version>1.0.5</rev-version>
 				<changelog lang="en">
 					<change>Add custom CSS class 'sortables_captcha_box' for easier customisation</change>
+					<change>Update jQuery to 1.11.1, jQuery UI to 1.11.1 and jQuery UI Touch Punch to 0.2.3</change>
 				</changelog>
 			</entry>
 			
@@ -65,9 +66,7 @@
 	<action-group>
 		<copy>
 			<file from="root/styles/subsilver2/template/captcha_sortables.html" to="styles/subsilver2/template/captcha_sortables.html" />
-			<file from="root/styles/subsilver2/template/js/jquery-1.8.3.min.js" to="styles/subsilver2/template/js/jquery-1.8.3.min.js" />
-			<file from="root/styles/subsilver2/template/js/jquery-ui-1.9.2.custom.min.js" to="styles/subsilver2/template/js/jquery-ui-1.9.2.custom.min.js" />
-			<file from="root/styles/subsilver2/template/js/jquery-ui-touch-punch.min.js" to="styles/subsilver2/template/js/jquery-ui-touch-punch.min.js" />
+			<file from="root/styles/subsilver2/template/js/*.*" to="styles/subsilver2/template/js/*.*" />
 		</copy>
 		
 		<diy-instructions lang="en">Go to the Administration Control Panel > Styles > Templates > And refresh subsilver2</diy-instructions>
