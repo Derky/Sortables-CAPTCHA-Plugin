@@ -215,7 +215,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 				'S_TYPE'						=> $this->type,
 				
 				// Set version numbers here, so jQuery updates don't require a template refresh anymore
-				'SORTABLES_JQUERYUI_VERSION'	=> '1.9.2',
+				'SORTABLES_JQUERYUI_VERSION'	=> '1.11.1',
 			));
 
 			return '@derky_sortablescaptcha/captcha_sortables.html';
