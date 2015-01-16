@@ -913,25 +913,17 @@ class sortables extends \phpbb\captcha\plugins\qa
 	{
 		$langs = $this->get_languages();
 		
-		if (!isset($question_data['lang_iso']) ||
-			!isset($question_data['question_text']) ||
+		if (empty($question_data['lang_iso']) || !isset($langs[$question_data['lang_iso']]) ||
+			empty($question_data['question_text']) ||
 			!isset($question_data['sort']) ||
-			!isset($question_data['name_left']) ||
-			!isset($question_data['name_right']) ||
-			!isset($question_data['options_left']) ||
-			!isset($question_data['options_right']))
+			!isset($question_data['name_left']) || !strlen($question_data['name_left']) ||		// "0" as input is allowed
+			!isset($question_data['name_right']) ||	!strlen($question_data['name_right']) ||	// "0" as input is allowed
+			empty($question_data['options_left']) || !is_array($question_data['options_left']) || 
+			empty($question_data['options_right']) || !is_array($question_data['options_right']))
 		{
 			return false;
 		}
-		
-		if (!isset($langs[$question_data['lang_iso']]) ||
-			!$question_data['question_text'] ||
-			!sizeof($question_data['options_left']) || 
-			!sizeof($question_data['options_right']))
-		{
-			return false;
-		}
-		
+	
 		return true;
 	}	
 
