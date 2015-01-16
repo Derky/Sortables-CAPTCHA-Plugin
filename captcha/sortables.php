@@ -800,8 +800,8 @@ class sortables extends \phpbb\captcha\plugins\qa
 			'lang_iso'		=> request_var('lang_iso', ''),
 			'name_left'		=> request_var('name_left', '', true),
 			'name_right'	=> request_var('name_right', '', true),
-			'options_left'	=> explode("\n", request_var('options_left', '', true)),
-			'options_right'	=> explode("\n", request_var('options_right', '', true)),
+			'options_left'	=> array_filter(array_map('trim', explode("\n", request_var('options_left', '', true)))),	// Trim additional spaces and remove empty values from array
+			'options_right'	=> array_filter(array_map('trim', explode("\n", request_var('options_right', '', true)))),
 		);
 		
 		return $question;
