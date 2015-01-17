@@ -48,6 +48,11 @@ class sortables extends \phpbb\captcha\plugins\qa
 	protected $config;
 	
 	/**
+	* @var type \phpbb\request\request
+	*/
+	protected $request;
+	
+	/**
 	* @var \phpbb\template\template
 	*/
 	protected $template;
@@ -62,14 +67,16 @@ class sortables extends \phpbb\captcha\plugins\qa
 	 * @param \phpbb\db\driver\driver_interface $db
 	 * @param \phpbb\cache\service $cache
 	 * @param \phpbb\config\config $config
+	 * @param \phpbb\request\request $request
 	 * @param \phpbb\template\template $template
 	 * @param \phpbb\user $user
 	 */
-	public function __construct(\phpbb\db\driver\driver_interface $db, \phpbb\cache\service $cache, \phpbb\config\config $config, \phpbb\template\template $template, \phpbb\user $user)
+	public function __construct(\phpbb\db\driver\driver_interface $db, \phpbb\cache\service $cache, \phpbb\config\config $config, \phpbb\request\request $request, \phpbb\template\template $template, \phpbb\user $user)
 	{
 		$this->db = $db;
 		$this->cache = $cache;
 		$this->config = $config;
+		$this->request = $request;
 		$this->template = $template;
 		$this->user = $user;
 		
@@ -92,7 +99,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 		$this->user->add_lang_ext('derky/sortablescaptcha', 'captcha_sortables');
 		
 		// read input
-		$this->confirm_id = request_var('sortables_confirm_id', '');
+		$this->confirm_id = $this->request->variable('sortables_confirm_id', '');
 
 		$this->type = (int) $type;
 		$this->question_lang = $this->user->lang_name;
@@ -480,8 +487,8 @@ class sortables extends \phpbb\captcha\plugins\qa
 	function check_answer()
 	{
 		// Well how did the user sorted it
-		$options_left = request_var('sortables_options_left', array(0));
-		$options_right = request_var('sortables_options_right', array(0));
+		$options_left = $this->request->variable('sortables_options_left', array(0));
+		$options_right = $this->request->variable('sortables_options_right', array(0));
 		
 		// Make sure the didn't submitted more options then it should (like trying everything... left/right: options ^ 2 )
 		if ($this->total_options === sizeof($options_left) + sizeof($options_right))
@@ -548,7 +555,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	*/
 	function is_solved()
 	{
-		if (request_var('qa_answer', false) && $this->solved === 0)
+		if ($this->request->variable('qa_answer', false) && $this->solved === 0)
 		{
 			$this->validate();
 		}
@@ -573,9 +580,9 @@ class sortables extends \phpbb\captcha\plugins\qa
 		$form_key = 'acp_captcha';
 		add_form_key($form_key);
 
-		$submit = request_var('submit', false);
-		$question_id = request_var('question_id', 0);
-		$action = request_var('action', '');
+		$submit = $this->request->variable('submit', false);
+		$question_id = $this->request->variable('question_id', 0);
+		$action = $this->request->variable('action', '');
 		
 		// we have two pages, so users might want to navigate from one to the other
 		$list_url = $module->u_action . "&amp;configure=1&amp;select_captcha=" . $this->get_service_name();
@@ -620,13 +627,13 @@ class sortables extends \phpbb\captcha\plugins\qa
 		{
 			// okay, show the editor
 			$error = false;
-			$input_question = request_var('question_text', '', true);
-			$input_name_left = request_var('name_left', '', true);
-			$input_name_right = request_var('name_right', '', true);
-			$input_options_left = request_var('options_left', '', true);
-			$input_options_right = request_var('options_right', '', true);
-			$input_lang = request_var('lang_iso', '');
-			$input_sort = request_var('sort', false);
+			$input_question = $this->request->variable('question_text', '', true);
+			$input_name_left = $this->request->variable('name_left', '', true);
+			$input_name_right = $this->request->variable('name_right', '', true);
+			$input_options_left = $this->request->variable('options_left', '', true);
+			$input_options_right = $this->request->variable('options_right', '', true);
+			$input_lang = $this->request->variable('lang_iso', '');
+			$input_sort = $this->request->variable('sort', false);
 			$langs = $this->get_languages();
 			foreach ($langs as $lang => $entry)
 			{
@@ -785,13 +792,13 @@ class sortables extends \phpbb\captcha\plugins\qa
 	function acp_get_question_input()
 	{
 		$question = array(
-			'question_text'	=> request_var('question_text', '', true),
-			'sort'			=> request_var('sort', false),
-			'lang_iso'		=> request_var('lang_iso', ''),
-			'name_left'		=> request_var('name_left', '', true),
-			'name_right'	=> request_var('name_right', '', true),
-			'options_left'	=> array_filter(array_map('trim', explode("\n", request_var('options_left', '', true)))),	// Trim additional spaces and remove empty values from array
-			'options_right'	=> array_filter(array_map('trim', explode("\n", request_var('options_right', '', true)))),
+			'question_text'	=> $this->request->variable('question_text', '', true),
+			'sort'			=> $this->request->variable('sort', false),
+			'lang_iso'		=> $this->request->variable('lang_iso', ''),
+			'name_left'		=> $this->request->variable('name_left', '', true),
+			'name_right'	=> $this->request->variable('name_right', '', true),
+			'options_left'	=> array_filter(array_map('trim', explode("\n", $this->request->variable('options_left', '', true)))),	// Trim additional spaces and remove empty values from array
+			'options_right'	=> array_filter(array_map('trim', explode("\n", $this->request->variable('options_right', '', true)))),
 		);
 		
 		return $question;
