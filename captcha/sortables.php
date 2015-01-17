@@ -622,12 +622,14 @@ class sortables extends \phpbb\captcha\plugins\qa
 			// okay, show the editor
 			$error = false;
 			$input_question = $this->request->variable('question_text', '', true);
+			$input_lang = $this->request->variable('lang_iso', '');
+			$input_sort = $this->request->variable('sort', false);
 			$input_name_left = $this->request->variable('name_left', '', true);
 			$input_name_right = $this->request->variable('name_right', '', true);
 			$input_options_left = $this->request->variable('options_left', '', true);
 			$input_options_right = $this->request->variable('options_right', '', true);
-			$input_lang = $this->request->variable('lang_iso', '');
-			$input_sort = $this->request->variable('sort', false);
+			
+			// Create language selectbox
 			$langs = $this->get_languages();
 			foreach ($langs as $lang => $entry)
 			{
@@ -640,20 +642,20 @@ class sortables extends \phpbb\captcha\plugins\qa
 			$this->template->assign_vars(array(
 				'U_LIST'		=> $list_url,
 			));
+			
 			if ($question_id)
 			{
 				if ($question = $this->acp_get_question_data($question_id))
 				{
-					$options_left = (isset($input_options_left[$lang])) ? $input_options_left[$lang] : implode("\n", $question['options_left']);
-					$options_right = (isset($input_options_right[$lang])) ? $input_options_right[$lang] : implode("\n", $question['options_right']);
+					// If question is submitted, show submitted data, else return the question from the database. (This output is also shown when an error occurs)
 					$this->template->assign_vars(array(
-						'QUESTION_TEXT'		=> ($input_question) ? $input_question : $question['question_text'],
-						'LANG_ISO'			=> ($input_lang) ? $input_lang : $question['lang_iso'],
-						'SORT'				=> (isset($_REQUEST['sort'])) ? $input_sort : $question['sort'],
-						'NAME_LEFT'			=> ($input_name_left) ? $input_name_left : $question['name_left'],
-						'NAME_RIGHT'		=> ($input_name_right) ? $input_name_right : $question['name_right'],
-						'OPTIONS_LEFT'		=> $options_left,
-						'OPTIONS_RIGHT'		=> $options_right,
+						'QUESTION_TEXT'		=> $this->request->is_set('question_text') ? $input_question : $question['question_text'],
+						'LANG_ISO'			=> $this->request->is_set('lang_iso') ? $input_lang : $question['lang_iso'],
+						'SORT'				=> $this->request->is_set('sort') ? $input_sort : $question['sort'],
+						'NAME_LEFT'			=> $this->request->is_set('name_left') ? $input_name_left : $question['name_left'],
+						'NAME_RIGHT'		=> $this->request->is_set('name_right') ? $input_name_right : $question['name_right'],
+						'OPTIONS_LEFT'		=> $this->request->is_set('options_left') ? $input_options_left : implode("\n", $question['options_left']),
+						'OPTIONS_RIGHT'		=> $this->request->is_set('options_right') ? $input_options_right : implode("\n", $question['options_right']),
 					));
 				}
 				else
