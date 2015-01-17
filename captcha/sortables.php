@@ -32,46 +32,46 @@ class sortables extends \phpbb\captcha\plugins\qa
 	// dirty trick: 0 is false, but can still encode that the captcha is not yet validated
 	var $solved = 0;
 	
-	/**
-	* @var \phpbb\db\driver\driver_interface
-	 */
+	/** @var \phpbb\db\driver\driver_interface */
 	protected $db;
 	
-	/**
-	* @var \phpbb\cache\service
-	*/
+	/** @var \phpbb\cache\service */
 	protected $cache;
 	
-	/**
-	* @var \phpbb\config\config
-	*/
+	/** @var \phpbb\config\config */
 	protected $config;
 	
-	/**
-	* @var type \phpbb\request\request
-	*/
+	/** @var type \phpbb\request\request */
 	protected $request;
 	
-	/**
-	* @var \phpbb\template\template
-	*/
+	/** @var \phpbb\template\template */
 	protected $template;
 	
-	/**
-	* @var \phpbb\user
-	*/
+	/** @var \phpbb\user */
 	protected $user;
+	
+	/** @var string */
+	protected $table_sortables_questions;
+	
+	/** @var string */
+	protected $table_sortables_answers;
+	
+	/** @var string */
+	protected $table_sortables_confirm;
 	
 	/**
 	 * 
-	 * @param \phpbb\db\driver\driver_interface $db
-	 * @param \phpbb\cache\service $cache
-	 * @param \phpbb\config\config $config
-	 * @param \phpbb\request\request $request
-	 * @param \phpbb\template\template $template
-	 * @param \phpbb\user $user
+	 * @param \phpbb\db\driver\driver_interface	$db
+	 * @param \phpbb\cache\service				$cache
+	 * @param \phpbb\config\config				$config
+	 * @param \phpbb\request\request			$request
+	 * @param \phpbb\template\template			$template
+	 * @param \phpbb\user						$user
+	 * @param string							$table_sortables_questions
+	 * @param string							$table_sortables_answers
+	 * @param string							$table_sortables_confirm
 	 */
-	public function __construct(\phpbb\db\driver\driver_interface $db, \phpbb\cache\service $cache, \phpbb\config\config $config, \phpbb\request\request $request, \phpbb\template\template $template, \phpbb\user $user)
+	public function __construct(\phpbb\db\driver\driver_interface $db, \phpbb\cache\service $cache, \phpbb\config\config $config, \phpbb\request\request $request, \phpbb\template\template $template, \phpbb\user $user, $table_sortables_questions, $table_sortables_answers, $table_sortables_confirm)
 	{
 		$this->db = $db;
 		$this->cache = $cache;
@@ -79,15 +79,9 @@ class sortables extends \phpbb\captcha\plugins\qa
 		$this->request = $request;
 		$this->template = $template;
 		$this->user = $user;
-		
-		// This global will be removed when all database specific changes are moved to migrations.
-		global $table_prefix;
-		
-		// Define sortables captcha tables
-		define('CAPTCHA_SORTABLES_QUESTIONS_TABLE',	$table_prefix . 'sortables_questions');
-		define('CAPTCHA_SORTABLES_ANSWERS_TABLE',	$table_prefix . 'sortables_answers');
-		define('CAPTCHA_SORTABLES_CONFIRM_TABLE',	$table_prefix . 'sortables_confirm');
-
+		$this->table_sortables_questions = $table_sortables_questions;
+		$this->table_sortables_answers = $table_sortables_answers;
+		$this->table_sortables_confirm = $table_sortables_confirm;
 	}
 
 	/**
@@ -107,7 +101,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 		// we need all defined questions - shouldn't be too many, so we can just grab them
 		// try the user's lang first
 		$sql = 'SELECT question_id 
-				FROM ' . CAPTCHA_SORTABLES_QUESTIONS_TABLE . "
+				FROM ' . $this->table_sortables_questions . "
 				WHERE lang_iso = '" . $this->db->sql_escape($this->user->lang_name) . "'";
 		$result = $this->db->sql_query($sql, 3600);
 		
@@ -123,7 +117,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 			$this->question_lang = $this->config['default_lang'];
 			
 			$sql = 'SELECT question_id 
-					FROM ' . CAPTCHA_SORTABLES_QUESTIONS_TABLE . "
+					FROM ' . $this->table_sortables_questions . "
 					WHERE lang_iso = '" . $this->db->sql_escape($this->config['default_lang']) . "'"; 
 			$result = $this->db->sql_query($sql, 7200);
 			
@@ -149,7 +143,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	{
 		$this->db_tool = new \phpbb\db\tools($this->db);
 
-		return $this->db_tool->sql_table_exists(CAPTCHA_SORTABLES_QUESTIONS_TABLE);
+		return $this->db_tool->sql_table_exists($this->table_sortables_questions);
 	}
 	
 	/**
@@ -166,7 +160,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 		}
 
 		$sql = 'SELECT COUNT(question_id) AS question_count 
-			FROM ' . CAPTCHA_SORTABLES_QUESTIONS_TABLE . " 
+			FROM ' . $this->table_sortables_questions . " 
 			WHERE lang_iso = '" . $this->db->sql_escape($this->config['default_lang']) . "'"; 
 		$result = $this->db->sql_query($sql);
 		$question_count = $this->db->sql_fetchfield('question_count');
@@ -250,7 +244,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	function garbage_collect($type = 0)
 	{
 		$sql = 'SELECT c.confirm_id
-			FROM ' . CAPTCHA_SORTABLES_CONFIRM_TABLE . ' c
+			FROM ' . $this->table_sortables_confirm . ' c
 			LEFT JOIN ' . SESSIONS_TABLE . ' s 
 				ON (c.session_id = s.session_id)
 			WHERE s.session_id IS NULL' .
@@ -269,7 +263,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 
 			if (sizeof($sql_in))
 			{
-				$sql = 'DELETE FROM ' . CAPTCHA_SORTABLES_CONFIRM_TABLE . '
+				$sql = 'DELETE FROM ' . $this->table_sortables_confirm . '
 					WHERE ' . $this->db->sql_in_set('confirm_id', $sql_in);
 				$this->db->sql_query($sql);
 			}
@@ -349,7 +343,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 		$this->confirm_id = md5(unique_id($this->user->ip));
 		$this->question = (int) array_rand($this->question_ids);
 		
-		$sql = 'INSERT INTO ' . CAPTCHA_SORTABLES_CONFIRM_TABLE . ' ' . $this->db->sql_build_array('INSERT', array(
+		$sql = 'INSERT INTO ' . $this->table_sortables_confirm . ' ' . $this->db->sql_build_array('INSERT', array(
 			'confirm_id'	=> (string) $this->confirm_id,
 			'session_id'	=> (string) $this->user->session_id,
 			'lang_iso'		=> (string) $this->question_lang,
@@ -374,7 +368,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 		$this->question = (int) array_rand($this->question_ids);
 		$this->solved = 0;
 
-		$sql = 'UPDATE ' . CAPTCHA_SORTABLES_CONFIRM_TABLE . ' 
+		$sql = 'UPDATE ' . $this->table_sortables_confirm . ' 
 			SET question_id = ' . (int) $this->question . "
 			WHERE confirm_id = '" . $this->db->sql_escape($this->confirm_id) . "' 
 				AND session_id = '" . $this->db->sql_escape($this->user->session_id) . "'";
@@ -392,7 +386,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 		$this->question = (int) array_rand($this->question_ids);
 		$this->solved = 0;
 
-		$sql = 'UPDATE ' . CAPTCHA_SORTABLES_CONFIRM_TABLE . ' 
+		$sql = 'UPDATE ' . $this->table_sortables_confirm . ' 
 			SET question_id = ' . (int) $this->question . ",
 				attempts = attempts + 1
 			WHERE confirm_id = '" . $this->db->sql_escape($this->confirm_id) . "' 
@@ -409,7 +403,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	function load_confirm_id()
 	{
 		$sql = 'SELECT confirm_id
-			FROM ' . CAPTCHA_SORTABLES_CONFIRM_TABLE . " 
+			FROM ' . $this->table_sortables_confirm . " 
 			WHERE 
 				session_id = '" . $this->db->sql_escape($this->user->session_id) . "'
 				AND lang_iso = '" . $this->db->sql_escape($this->question_lang) . "'
@@ -437,7 +431,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 		}
 
 		$sql = 'SELECT con.question_id, attempts, question_text, sort, name_left, name_right
-			FROM ' . CAPTCHA_SORTABLES_CONFIRM_TABLE . ' con, ' . CAPTCHA_SORTABLES_QUESTIONS_TABLE . " qes 
+			FROM ' . $this->table_sortables_confirm . ' con, ' . $this->table_sortables_questions . " qes 
 			WHERE con.question_id = qes.question_id
 				AND confirm_id = '" . $this->db->sql_escape($this->confirm_id) . "'
 				AND session_id = '" . $this->db->sql_escape($this->user->session_id) . "'
@@ -458,7 +452,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 			
 			// Let's load the answers
 			$sql = 'SELECT answer_id, answer_text
-				FROM ' . CAPTCHA_SORTABLES_ANSWERS_TABLE . "
+				FROM ' . $this->table_sortables_answers . "
 				WHERE question_id = '" . (int) $this->question . "' 
 				ORDER BY " . $this->sql_random();
 			$result = $this->db->sql_query($sql);
@@ -495,7 +489,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 		{
 			// Let's count how many options the user sorted correctly		
 			$sql = 'SELECT COUNT(*) AS total 
-							FROM ' . CAPTCHA_SORTABLES_ANSWERS_TABLE . '
+							FROM ' . $this->table_sortables_answers . '
 							WHERE question_id = ' . (int) $this->question . '
 									AND ((answer_sort = 0 AND ' . $this->db->sql_in_set('answer_id', $options_left, false, true) . ')
 									OR (answer_sort = 1 AND ' . $this->db->sql_in_set('answer_id', $options_right, false, true) .'))';
@@ -521,7 +515,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	*/
 	function delete_code()
 	{
-		$sql = 'DELETE FROM ' . CAPTCHA_SORTABLES_CONFIRM_TABLE . "
+		$sql = 'DELETE FROM ' . $this->table_sortables_confirm . "
 				WHERE confirm_id = '" . $this->db->sql_escape($confirm_id) . "'
 					AND session_id = '" . $this->db->sql_escape($this->user->session_id) . "'
 					AND confirm_type = " . $this->type;
@@ -541,7 +535,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	*/
 	function reset()
 	{
-		$sql = 'DELETE FROM ' . CAPTCHA_SORTABLES_CONFIRM_TABLE . "
+		$sql = 'DELETE FROM ' . $this->table_sortables_confirm . "
 				WHERE session_id = '" . $this->db->sql_escape($this->user->session_id) . "'
 					AND confirm_type = " . (int) $this->type;
 		$this->db->sql_query($sql);
@@ -719,7 +713,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	function acp_question_list(&$module)
 	{
 		$sql = 'SELECT * 
-				FROM ' . CAPTCHA_SORTABLES_QUESTIONS_TABLE;
+				FROM ' . $this->table_sortables_questions;
 		$result = $this->db->sql_query($sql);
 		$this->template->assign_vars(array(
 			'S_LIST'			=> true,
@@ -748,7 +742,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 		if ($question_id)
 		{
 			$sql = 'SELECT * 
-				FROM ' . CAPTCHA_SORTABLES_QUESTIONS_TABLE . ' 
+				FROM ' . $this->table_sortables_questions . ' 
 				WHERE question_id = ' . $question_id;
 			$result = $this->db->sql_query($sql);
 			$question = $this->db->sql_fetchrow($result);
@@ -764,7 +758,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 			$question['options_right'] = array();
 	
 			$sql = 'SELECT * 
-				FROM ' . CAPTCHA_SORTABLES_ANSWERS_TABLE . ' 
+				FROM ' . $this->table_sortables_answers . ' 
 				WHERE question_id = ' . $question_id;
 			$result = $this->db->sql_query($sql);
 			
@@ -811,7 +805,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	function acp_update_question($data, $question_id)
 	{
 		// easier to delete all answers than to figure out which to update
-		$sql = 'DELETE FROM ' . CAPTCHA_SORTABLES_ANSWERS_TABLE . " WHERE question_id = $question_id";
+		$sql = 'DELETE FROM ' . $this->table_sortables_answers . " WHERE question_id = $question_id";
 		$this->db->sql_query($sql);
 		
 		$langs = $this->get_languages();
@@ -820,14 +814,14 @@ class sortables extends \phpbb\captcha\plugins\qa
 		unset($question_ary['options_left']);
 		unset($question_ary['options_right']);
 		
-		$sql = "UPDATE " . CAPTCHA_SORTABLES_QUESTIONS_TABLE . ' 
+		$sql = "UPDATE " . $this->table_sortables_questions . ' 
 			SET ' . $this->db->sql_build_array('UPDATE', $question_ary) . "
 			WHERE question_id = $question_id";
 		$this->db->sql_query($sql);
 		
 		$this->acp_insert_answers($data, $question_id);
 		
-		$this->cache->destroy('sql', CAPTCHA_SORTABLES_QUESTIONS_TABLE);
+		$this->cache->destroy('sql', $this->table_sortables_questions);
 	}
 	
 	/**
@@ -843,14 +837,14 @@ class sortables extends \phpbb\captcha\plugins\qa
 		unset($question_ary['options_left']);
 		unset($question_ary['options_right']);
 		
-		$sql = 'INSERT INTO ' . CAPTCHA_SORTABLES_QUESTIONS_TABLE . $this->db->sql_build_array('INSERT', $question_ary);
+		$sql = 'INSERT INTO ' . $this->table_sortables_questions . $this->db->sql_build_array('INSERT', $question_ary);
 		$this->db->sql_query($sql);
 		
 		$question_id = $this->db->sql_nextid();
 		
 		$this->acp_insert_answers($data, $question_id);
 		
-		$this->cache->destroy('sql', CAPTCHA_SORTABLES_QUESTIONS_TABLE);
+		$this->cache->destroy('sql', $this->table_sortables_questions);
 	}
 	
 	/**
@@ -867,7 +861,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 				'answer_sort'	=> 0,
 				'answer_text'	=> $answer,
 			);
-			$sql = 'INSERT INTO ' . CAPTCHA_SORTABLES_ANSWERS_TABLE . $this->db->sql_build_array('INSERT', $answer_ary);
+			$sql = 'INSERT INTO ' . $this->table_sortables_answers . $this->db->sql_build_array('INSERT', $answer_ary);
 			$this->db->sql_query($sql);
 		}
 		foreach ($data['options_right'] as $answer)
@@ -878,11 +872,11 @@ class sortables extends \phpbb\captcha\plugins\qa
 				'answer_sort'	=> 1,
 				'answer_text'	=> $answer,
 			);
-			$sql = 'INSERT INTO ' . CAPTCHA_SORTABLES_ANSWERS_TABLE . $this->db->sql_build_array('INSERT', $answer_ary);
+			$sql = 'INSERT INTO ' . $this->table_sortables_answers . $this->db->sql_build_array('INSERT', $answer_ary);
 			$this->db->sql_query($sql);
 		}
 		
-		$this->cache->destroy('sql', CAPTCHA_SORTABLES_ANSWERS_TABLE);
+		$this->cache->destroy('sql', $this->table_sortables_answers);
 	}
 	
 
@@ -891,7 +885,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	*/
 	function acp_delete_question($question_id)
 	{
-		$tables = array(CAPTCHA_SORTABLES_QUESTIONS_TABLE, CAPTCHA_SORTABLES_ANSWERS_TABLE);
+		$tables = array($this->table_sortables_questions, $this->table_sortables_answers);
 		foreach ($tables as $table)
 		{
 			$sql = "DELETE FROM $table 
@@ -932,7 +926,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 		if ($question_id)
 		{
 			$sql = 'SELECT question_id
-				FROM ' . CAPTCHA_SORTABLES_QUESTIONS_TABLE . "
+				FROM ' . $this->table_sortables_questions . "
 				WHERE lang_iso = '" . $this->db->sql_escape($this->config['default_lang']) . "'
 					AND  question_id <> " .  (int) $question_id;
 			$result = $this->db->sql_query_limit($sql, 1);
@@ -960,7 +954,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 		
 		// Get all answer ids
 		$sql = 'SELECT answer_id 
-				FROM ' . CAPTCHA_SORTABLES_ANSWERS_TABLE;
+				FROM ' . $this->table_sortables_answers;
 		$result = $this->db->sql_query($sql);
 		
 		// Fill it up
