@@ -136,16 +136,6 @@ class sortables extends \phpbb\captcha\plugins\qa
 	}
 	
 	/**
-	*  API function
-	*/
-	static public function get_instance()
-	{
-		$instance = new phpbb_captcha_sortables_plugin();
-
-		return $instance;
-	}
-
-	/**
 	* See if the captcha has created its tables.
 	*/
 	public function is_installed()
