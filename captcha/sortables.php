@@ -41,6 +41,9 @@ class sortables extends \phpbb\captcha\plugins\qa
 	/** @var \phpbb\config\config */
 	protected $config;
 	
+	/** @var \phpbb\log\log */
+	protected $log;
+	
 	/** @var type \phpbb\request\request */
 	protected $request;
 	
@@ -64,6 +67,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	 * @param \phpbb\db\driver\driver_interface	$db
 	 * @param \phpbb\cache\service				$cache
 	 * @param \phpbb\config\config				$config
+	 * @param \phpbb\log\log					$log
 	 * @param \phpbb\request\request			$request
 	 * @param \phpbb\template\template			$template
 	 * @param \phpbb\user						$user
@@ -71,11 +75,12 @@ class sortables extends \phpbb\captcha\plugins\qa
 	 * @param string							$table_sortables_answers
 	 * @param string							$table_sortables_confirm
 	 */
-	public function __construct(\phpbb\db\driver\driver_interface $db, \phpbb\cache\service $cache, \phpbb\config\config $config, \phpbb\request\request $request, \phpbb\template\template $template, \phpbb\user $user, $table_sortables_questions, $table_sortables_answers, $table_sortables_confirm)
+	public function __construct(\phpbb\db\driver\driver_interface $db, \phpbb\cache\service $cache, \phpbb\config\config $config, \phpbb\log\log $log, \phpbb\request\request $request, \phpbb\template\template $template, \phpbb\user $user, $table_sortables_questions, $table_sortables_answers, $table_sortables_confirm)
 	{
 		$this->db = $db;
 		$this->cache = $cache;
 		$this->config = $config;
+		$this->log = $log;
 		$this->request = $request;
 		$this->template = $template;
 		$this->user = $user;
@@ -678,7 +683,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 						$this->acp_add_question($data);
 					}
 					
-					add_log('admin', 'LOG_CONFIG_VISUAL');
+					$this->log->add('admin', $this->user->data['user_id'], $this->user->ip, 'LOG_CONFIG_VISUAL');
 					trigger_error($this->user->lang['CONFIG_UPDATED'] . adm_back_link($list_url));
 				}
 			}

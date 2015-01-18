@@ -10,6 +10,7 @@ services:
             - @dbal.conn
             - @cache
             - @config
+            - @log
             - @request
             - @template
             - @user
