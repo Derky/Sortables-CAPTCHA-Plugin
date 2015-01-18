@@ -137,27 +137,12 @@ class sortables extends \phpbb\captcha\plugins\qa
 	}
 	
 	/**
-	* See if the captcha has created its tables.
-	*/
-	public function is_installed()
-	{
-		$this->db_tool = new \phpbb\db\tools($this->db);
-
-		return $this->db_tool->sql_table_exists($this->table_sortables_questions);
-	}
-	
-	/**
 	*  API function - for the captcha to be available, it must have installed itself and there has to be at least one question in the board's default lang
 	*/
 	public function is_available()
 	{
 		// load language file for pretty display in the ACP dropdown
 		$this->user->add_lang_ext('derky/sortablescaptcha', 'captcha_sortables');
-
-		if (!self::is_installed())
-		{
-			return false;
-		}
 
 		$sql = 'SELECT COUNT(question_id) AS question_count 
 			FROM ' . $this->table_sortables_questions . " 
@@ -565,10 +550,6 @@ class sortables extends \phpbb\captcha\plugins\qa
 		$this->user->add_lang('acp/board');
 		$this->user->add_lang_ext('derky/sortablescaptcha', 'captcha_sortables');
 
-		if (!$this->is_installed())
-		{
-			$this->install();
-		}
 		$module->tpl_name = '@derky_sortablescaptcha/captcha_sortables_acp';
 		$module->page_title = 'ACP_VC_SETTINGS';
 		$form_key = 'acp_captcha';
