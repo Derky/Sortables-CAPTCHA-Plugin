@@ -19,8 +19,8 @@
 		
 	<dd>		
 		<div style="width:300px; float:left;">
-			<div style="width:150px; float:left;"><strong><!-- IF SORTABLES_NAME_LEFT -->{SORTABLES_NAME_LEFT}<!-- ELSE -->{L_COLUMN_LEFT}<!-- ENDIF --></strong></div>
-			<div style="width:150px; float:right; text-align:right;"><strong><!-- IF SORTABLES_NAME_RIGHT -->{SORTABLES_NAME_RIGHT}<!-- ELSE -->{L_COLUMN_RIGHT}<!-- ENDIF --></strong></div>
+			<div style="width:150px; float:left;"><strong><!-- IF SORTABLES_NAME_LEFT != "" -->{SORTABLES_NAME_LEFT}<!-- ELSE -->{L_COLUMN_LEFT}<!-- ENDIF --></strong></div>
+			<div style="width:150px; float:right; text-align:right;"><strong><!-- IF SORTABLES_NAME_RIGHT != "" -->{SORTABLES_NAME_RIGHT}<!-- ELSE -->{L_COLUMN_RIGHT}<!-- ENDIF --></strong></div>
 			<!-- BEGIN options -->
 			<div style="width:10px; float:left; clear:left; height:2em;"><input type="checkbox" name="sortables_options_left[]" value="{options.ID}"/></div>
 			<div style="width:280px; float:left; text-align:center;	height:2em;">{options.TEXT}</div>
@@ -37,7 +37,7 @@
 	<dd>
 
 		<div class="attachbox sortables_captcha_box" style="clear:none; *width:20em;"><!-- *width:20em; is for nub IE-only -->
-			<strong><!-- IF SORTABLES_NAME_LEFT -->{SORTABLES_NAME_LEFT}<!-- ELSE -->{L_COLUMN_LEFT}<!-- ENDIF --></strong><hr />
+			<strong><!-- IF SORTABLES_NAME_LEFT != "" -->{SORTABLES_NAME_LEFT}<!-- ELSE -->{L_COLUMN_LEFT}<!-- ENDIF --></strong><hr />
 			<ul id="sortable1" class="connectedSortable" style="min-height: 100px; min-width:100px; list-style-type: none; padding: 0 5px 5px 5px;">
 			<!-- IF SORTABLES_DEFAULT_SORT == 'LEFT' -->
 				<!-- BEGIN options -->
@@ -48,7 +48,7 @@
 		</div>
 		
 		<div class="attachbox sortables_captcha_box" style="clear:none; *width:20em;"><!-- *width:20em; is for nub IE-only -->
-			<strong><!-- IF SORTABLES_NAME_RIGHT -->{SORTABLES_NAME_RIGHT}<!-- ELSE -->{L_COLUMN_RIGHT}<!-- ENDIF --></strong><hr />
+			<strong><!-- IF SORTABLES_NAME_RIGHT != "" -->{SORTABLES_NAME_RIGHT}<!-- ELSE -->{L_COLUMN_RIGHT}<!-- ENDIF --></strong><hr />
 			<ul id="sortable2" class="connectedSortable" style="min-height: 100px; min-width:100px; list-style-type: none; padding: 0 5px 5px 5px;">
 			<!-- IF SORTABLES_DEFAULT_SORT == 'RIGHT' -->
 				<!-- BEGIN options -->
