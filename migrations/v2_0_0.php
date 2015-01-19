@@ -65,7 +65,7 @@ class v2_0_0 extends \phpbb\db\migration\migration
 			),
 		);
 	}
-	
+
 	public function revert_schema()
 	{
 		return array(

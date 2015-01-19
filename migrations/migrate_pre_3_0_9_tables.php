@@ -16,12 +16,12 @@ class migrate_pre_3_0_9_tables extends \phpbb\db\migration\migration
 			'\derky\sortablescaptcha\migrations\v2_0_0',
 		);
 	}
-	
+
 	public function effectively_installed()
 	{
 		return !$this->db_tools->sql_table_exists($this->table_prefix . 'captcha_sortables_questions');
 	}
-	
+
 	public function update_data()
 	{
 		return array(
@@ -36,13 +36,13 @@ class migrate_pre_3_0_9_tables extends \phpbb\db\migration\migration
 			$this->table_prefix . 'captcha_sortables_answers'	=> $this->table_prefix . 'sortables_answers',
 			$this->table_prefix . 'captcha_sortables_confirm'	=> $this->table_prefix . 'sortables_confirm'
 		);
-		
+
 		// Loop through the tables
 		foreach ($old_new_tables as $old_table => $new_table) {
-			
+
 			// Create an insert buffer for the new table
 			$insert_buffer = new \phpbb\db\sql_insert_buffer($this->db, $new_table);
-			
+
 			// Select everything from the old table
 			$sql = 'SELECT *
 					FROM ' . $old_table;
@@ -56,13 +56,13 @@ class migrate_pre_3_0_9_tables extends \phpbb\db\migration\migration
 
 			// Insert everything into the new table
 			$insert_buffer->flush();
-			
+
 			// Unset the insert buffer for the current table
 			unset($insert_buffer);
-			
+
 			// Remove table
 			$this->db_tools->sql_table_drop($old_table);
 		}
 	}
-	
+
 }

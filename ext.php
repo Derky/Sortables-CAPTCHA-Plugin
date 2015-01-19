@@ -1,22 +1,17 @@
 <?php
 /**
 *
-* @package phpBB Extension - Acme Demo
-* @copyright (c) 2013 phpBB Group
-* @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
+* @copyright (c) Derky <http://www.derky.nl>
+* @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
 
 namespace derky\sortablescaptcha;
 
-/**
-* @ignore
-*/
-
 class ext extends \phpbb\extension\base
 {
 	/**
-	* Single disable step 
+	* Single disable step
 	*
 	* @param mixed $old_state State returned by previous call of this method
 	* @return mixed Returns false after last step, otherwise temporary state
@@ -26,10 +21,10 @@ class ext extends \phpbb\extension\base
 		switch ($old_state)
 		{
 			case '': // Empty means nothing has run yet
-				
+
 				// Get config
 				$config = $this->container->get('config');
-				
+
 				// Check if sortables currently is the default captcha
 				if ($config['captcha_plugin'] === $this->container->get('derky.sortablescaptcha.captcha.sortables')->get_service_name())
 				{

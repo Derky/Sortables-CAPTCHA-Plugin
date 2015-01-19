@@ -16,14 +16,14 @@ class delete_bc_config extends \phpbb\db\migration\migration
 			'\derky\sortablescaptcha\migrations\v2_0_0',
 		);
 	}
-	
+
 	public function effectively_installed()
 	{
 		// This migration will delete the sortables_bc config value.
 		// So if the config value does not exist, don't run this migration
 		return !isset($this->config['sortables_bc']);
 	}
-	
+
 	public function update_data()
 	{
 		return array(
@@ -35,5 +35,5 @@ class delete_bc_config extends \phpbb\db\migration\migration
 	{
 		$this->config->delete('sortables_bc');
 	}
-	
+
 }
