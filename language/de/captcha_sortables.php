@@ -1,13 +1,11 @@
 <?php
 /**
 *
-* sortables captcha [German] by Chalong www.chalong.de
+* sortables captcha [German]
 *
-* @package language
-* @version $Id: captcha_sortables.php 9875 2009-08-13 21:40:23Z Derky $
-* @copyright (c) 2009 phpBB Group
-* @copyright (c) 2009 Derky - phpBB3styles.net
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+* @copyright (c) Derky <http://www.derky.nl>
+* @copyright (c) Chalong <http://www.chalong.de>
+* @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
 
@@ -55,14 +53,14 @@ $lang = array_merge($lang, array(
 	'QUESTION_LANG_EXPLAIN'		=> 'Die Sprache in der die Frage und ihre möglichen Antworten formuliert wurde.',
 	'QUESTION_SORT'				=> 'Standard-Auswahlliste',
 	'QUESTION_SORT_EXPLAIN'		=> 'In welcher Spalte sollen die Antworten standardmässig stehen ?',
-	
+
 	'COLUMN_LEFT'				=> 'Linke Spalte',
 	'COLUMN_RIGHT'				=> 'Rechte Spalte',
 	'COLUMN_NAME'				=> 'Spaltenname',
 	'COLUMN_NAME_LEFT_EXPLAIN'	=> 'Beispiel: Notwendige Dinge',
 	'COLUMN_NAME_RIGHT_EXPLAIN'	=> 'Beispiel: Unnötige Dinge',
-	
-	'DEMO_QUESTION'				=> 'Was wird für Tomatensuppe benötigt?',	
+
+	'DEMO_QUESTION'				=> 'Was wird für Tomatensuppe benötigt?',
 	'DEMO_NAME_LEFT'			=> 'In den Topf',
 	'DEMO_NAME_RIGHT'			=> 'Verwerfen',
 	'DEMO_OPTION_BANANAS'		=> 'Bananen',
@@ -75,5 +73,3 @@ $lang = array_merge($lang, array(
 
 	'SORTABLES_ERROR_MSG'		=> 'Bitte fülle alle Felder aus und gib mindestens eine Auswahlmöglichkeit für beide Spalten an.',
 ));
-
-?>

@@ -3,12 +3,10 @@
 *
 * sortables captcha [Russian]
 *
-* @package language
-* @version $Id: captcha_sortables.php 9875 2009-08-13 21:40:23Z Derky $
-* @copyright (c) 2009 phpBB Group
-* @copyright (c) 2009 Derky - phpBB3styles.net
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
-* @translate http://www.multart.org
+* @copyright (c) Derky <http://www.derky.nl>
+* @copyright (c) <http://www.multart.org>
+* @license GNU General Public License, version 2 (GPL-2.0)
+*
 */
 
 /**
@@ -55,14 +53,14 @@ $lang = array_merge($lang, array(
 	'QUESTION_LANG_EXPLAIN'		=> 'Вопросы под разные языки на форуме.',
 	'QUESTION_SORT'				=> 'Сортировать список по умолчанию',
 	'QUESTION_SORT_EXPLAIN'		=> 'В каком столбце должны быть ответы на все вопросы по умолчанию.',
-	
+
 	'COLUMN_LEFT'				=> 'Левая колонка',
 	'COLUMN_RIGHT'				=> 'Правая колонка',
 	'COLUMN_NAME'				=> 'Имя колонки',
 	'COLUMN_NAME_LEFT_EXPLAIN'	=> 'Например: Нужное',
 	'COLUMN_NAME_RIGHT_EXPLAIN'	=> 'Например: Не нужное',
-	
-	'DEMO_QUESTION'				=> 'Что входит в суп из томатов?',	
+
+	'DEMO_QUESTION'				=> 'Что входит в суп из томатов?',
 	'DEMO_NAME_LEFT'			=> 'В кастрюлю',
 	'DEMO_NAME_RIGHT'			=> 'Выбросить',
 	'DEMO_OPTION_BANANAS'		=> 'Бананы',
@@ -75,5 +73,3 @@ $lang = array_merge($lang, array(
 
 	'SORTABLES_ERROR_MSG'		=> 'Пожалуйста, заполните все поля и введите хотя бы один из вариантов для обеих колонок.',
 ));
-
-?>

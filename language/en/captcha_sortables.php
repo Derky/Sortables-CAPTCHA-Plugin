@@ -3,11 +3,8 @@
 *
 * sortables captcha [English]
 *
-* @package language
-* @version $Id: captcha_sortables.php 9875 2009-08-13 21:40:23Z Derky $
-* @copyright (c) 2009 phpBB Group
-* @copyright (c) 2009 Derky - phpBB3styles.net
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+* @copyright (c) Derky <http://www.derky.nl>
+* @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
 
@@ -55,14 +52,14 @@ $lang = array_merge($lang, array(
 	'QUESTION_LANG_EXPLAIN'		=> 'The language this question and its options is written in.',
 	'QUESTION_SORT'				=> 'Default sort list',
 	'QUESTION_SORT_EXPLAIN'		=> 'In which column should all the answers display by default.',
-	
+
 	'COLUMN_LEFT'				=> 'Left column',
 	'COLUMN_RIGHT'				=> 'Right column',
 	'COLUMN_NAME'				=> 'Column name',
 	'COLUMN_NAME_LEFT_EXPLAIN'	=> 'Like: Things I need',
 	'COLUMN_NAME_RIGHT_EXPLAIN'	=> 'Like: Things I don\'t need',
-	
-	'DEMO_QUESTION'				=> 'What to include for tomato soup',	
+
+	'DEMO_QUESTION'				=> 'What to include for tomato soup',
 	'DEMO_NAME_LEFT'			=> 'In the pan',
 	'DEMO_NAME_RIGHT'			=> 'Throw away',
 	'DEMO_OPTION_BANANAS'		=> 'Bananas',
@@ -75,5 +72,3 @@ $lang = array_merge($lang, array(
 
 	'SORTABLES_ERROR_MSG'		=> 'Please fill out all fields and enter at least one option for both columns.',
 ));
-
-?>

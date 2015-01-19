@@ -3,12 +3,9 @@
 *
 * sortables captcha [Spanish]
 *
-* @package language
-* @version $Id: captcha_sortables.php 9875 2009-08-13 21:40:23Z Derky $
-* @copyright (c) 2009 phpBB Group
-* @copyright (c) 2009 Derky - phpBB3styles.net
-* @copyright (c) 2011 Spanish lang by Juan_CAT - joanjerez.wordpress.com
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+* @copyright (c) Derky <http://www.derky.nl>
+* @copyright (c) Juan_CAT <http://joanjerez.wordpress.com>
+* @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
 
@@ -56,14 +53,14 @@ $lang = array_merge($lang, array(
 	'QUESTION_LANG_EXPLAIN'		=> 'El idioma en el cual esta pregunta y sus opciones están escritas.',
 	'QUESTION_SORT'				=> 'Lista de clasificación por defecto',
 	'QUESTION_SORT_EXPLAIN'		=> 'En qué columna deberían mostrarse todas las respuestas por defecto.',
-	
+
 	'COLUMN_LEFT'				=> 'Columna izquierda',
 	'COLUMN_RIGHT'				=> 'Columna derecha',
 	'COLUMN_NAME'				=> 'Nombre de la columna',
 	'COLUMN_NAME_LEFT_EXPLAIN'	=> 'Como: Cosas que necesito',
 	'COLUMN_NAME_RIGHT_EXPLAIN'	=> 'Como: Cosas que no necesito',
-	
-	'DEMO_QUESTION'				=> '¿Qué hay que incluir para una sopa de tomate?',	
+
+	'DEMO_QUESTION'				=> '¿Qué hay que incluir para una sopa de tomate?',
 	'DEMO_NAME_LEFT'			=> 'En la paella',
 	'DEMO_NAME_RIGHT'			=> 'Tirar',
 	'DEMO_OPTION_BANANAS'		=> 'Bananas',
@@ -76,5 +73,3 @@ $lang = array_merge($lang, array(
 
 	'SORTABLES_ERROR_MSG'		=> 'Por favor, rellena todos los campos y introduce al menos una opción para las dos columnas.',
 ));
-
-?>

@@ -3,12 +3,9 @@
 *
 * sortables captcha [Czech]
 *
-* @package language
-* @version $Id: captcha_sortables.php 9875 2009-08-13 21:40:23Z Derky $
-* @copyright (c) 2009 phpBB Group
-* @copyright (c) 2009 Derky - phpBB3styles.net
-* @copyright (c) 2013 ansysko - phpbb.sk
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+* @copyright (c) Derky <http://www.derky.nl>
+* @copyright (c) ansysko <http://phpbb.sk>
+* @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
 
@@ -56,14 +53,14 @@ $lang = array_merge($lang, array(
 	'QUESTION_LANG_EXPLAIN'		=> 'Jazyk ve kterém bude otázka a odpověď.',
 	'QUESTION_SORT'				=> 'Předvolený seznam odpovědí',
 	'QUESTION_SORT_EXPLAIN'		=> 'Ve kterém sloupci budou otázky zobrazeny standartne.',
-	
+
 	'COLUMN_LEFT'				=> 'Vlevo',
 	'COLUMN_RIGHT'				=> 'Vpravo',
 	'COLUMN_NAME'				=> 'Název sloupce',
 	'COLUMN_NAME_LEFT_EXPLAIN'	=> 'Správne odpovědi',
 	'COLUMN_NAME_RIGHT_EXPLAIN'	=> 'Nesprávne odpovědi',
-	
-	'DEMO_QUESTION'				=> 'Města',	
+
+	'DEMO_QUESTION'				=> 'Města',
 	'DEMO_NAME_LEFT'			=> 'Všechny města',
 	'DEMO_NAME_RIGHT'			=> 'Města v ČR',
 	'DEMO_OPTION_BANANAS'		=> 'Praha',
@@ -76,5 +73,3 @@ $lang = array_merge($lang, array(
 
 	'SORTABLES_ERROR_MSG'		=> 'Prosím, vyplňte všechny pole a zadejte alespoň jednu možnosť pro oba sloupce.',
 ));
-
-?>

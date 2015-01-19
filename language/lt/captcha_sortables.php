@@ -3,12 +3,9 @@
 *
 * sortables captcha [Lithuanian]
 *
-* @package language
-* @version $Id: captcha_sortables.php 9875 2009-08-13 21:40:23Z Derky $
-* @copyright (c) 2009 phpBB Group
-* @copyright (c) 2009 Derky - phpBB3styles.net
-* @copyright (c) 2012 Lithuanian lang by Isverte djsaras skype:djsaras1989
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+* @copyright (c) Derky <http://www.derky.nl>
+* @copyright (c) Isverte djsaras skype:djsaras1989
+* @license GNU General Public License, version 2 (GPL-2.0)
 */
 
 /**
@@ -61,8 +58,8 @@ $lang = array_merge($lang, array(
 	'COLUMN_NAME'				=> 'Laukelio pavadinimas',
 	'COLUMN_NAME_LEFT_EXPLAIN'	=> 'Pvz.: dalykai kūrių man reikia',
 	'COLUMN_NAME_RIGHT_EXPLAIN'	=> 'Pvz.: Dalykai kūrių man nereikia',
-	
-	'DEMO_QUESTION'				=> 'Ko reikia kad išvirtum pamidorų sriubą',	
+
+	'DEMO_QUESTION'				=> 'Ko reikia kad išvirtum pamidorų sriubą',
 	'DEMO_NAME_LEFT'			=> 'Puode',
 	'DEMO_NAME_RIGHT'			=> 'Išmesti lauk',
 	'DEMO_OPTION_BANANAS'		=> 'Bananai',
@@ -75,5 +72,3 @@ $lang = array_merge($lang, array(
 
 	'SORTABLES_ERROR_MSG'		=> 'Prašome užpildyti visus laukelius ir įrašyti bent po vieną atsakymą kiekviename langelyje.',
 ));
-
-?>

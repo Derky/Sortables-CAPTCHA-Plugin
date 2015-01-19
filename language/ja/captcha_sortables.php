@@ -1,13 +1,11 @@
 <?php
 /**
 *
-* sortables captcha [Japanese] by xing.netsphere
+* sortables captcha [Japanese]
 *
-* @package language
-* @version $Id: captcha_sortables.php 9875 2009-08-13 21:40:23Z Derky $
-* @copyright (c) 2009 phpBB Group
-* @copyright (c) 2009 Derky - phpBB3styles.net
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+* @copyright (c) Derky <http://www.derky.nl>
+* @copyright (c) xing.netsphere
+* @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
 
@@ -55,14 +53,14 @@ $lang = array_merge($lang, array(
 	'QUESTION_LANG_EXPLAIN'		=> 'この質問が書かれた言語を選択します。',
 	'QUESTION_SORT'				=> 'デフォルトの項目欄',
 	'QUESTION_SORT_EXPLAIN'		=> 'デフォルトでどちらの欄に項目をまとめておくか設定します。',
-	
+
 	'COLUMN_LEFT'				=> '左の欄',
 	'COLUMN_RIGHT'				=> '右の欄',
 	'COLUMN_NAME'				=> '欄名',
 	'COLUMN_NAME_LEFT_EXPLAIN'	=> '例えば: 必要だと思うもの',
 	'COLUMN_NAME_RIGHT_EXPLAIN'	=> '例えば: 必要でないと思うもの',
-	
-	'DEMO_QUESTION'				=> 'トマトスープには何が含まれていますか？',	
+
+	'DEMO_QUESTION'				=> 'トマトスープには何が含まれていますか？',
 	'DEMO_NAME_LEFT'			=> '鍋に入れるもの',
 	'DEMO_NAME_RIGHT'			=> 'ポイするもの',
 	'DEMO_OPTION_BANANAS'		=> 'バナナ',
@@ -75,5 +73,3 @@ $lang = array_merge($lang, array(
 
 	'SORTABLES_ERROR_MSG'		=> 'どちらの欄にも最低限1つの項目を入力してください。',
 ));
-
-?>

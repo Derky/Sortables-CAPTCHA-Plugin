@@ -3,12 +3,9 @@
 *
 * sortables captcha [Chinese (Traditional)]
 *
-* @package language
-* @version $Id: captcha_sortables.php 9875 2009-08-13 21:40:23Z Derky $
-* @copyright (c) 2009 phpBB Group
-* @copyright (c) 2009 Derky - phpBB3styles.net
-* @copyright (c) 2011 Chinese lang by chukaml
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+* @copyright (c) Derky <http://www.derky.nl>
+* @copyright (c) chukaml
+* @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
 
@@ -56,14 +53,14 @@ $lang = array_merge($lang, array(
 	'QUESTION_LANG_EXPLAIN'		=> '這條問題和內含的項目所使用的語言。',
 	'QUESTION_SORT'				=> '預設分類清單',
 	'QUESTION_SORT_EXPLAIN'		=> '答案要預設放到哪一欄之中。',
-	
+
 	'COLUMN_LEFT'				=> '左欄',
 	'COLUMN_RIGHT'				=> '右欄',
 	'COLUMN_NAME'				=> '欄名',
 	'COLUMN_NAME_LEFT_EXPLAIN'	=> '例如：你想要的東西',
 	'COLUMN_NAME_RIGHT_EXPLAIN'	=> '例如：你不想要的東西',
-	
-	'DEMO_QUESTION'				=> '番茄湯要包含哪些材料？',	
+
+	'DEMO_QUESTION'				=> '番茄湯要包含哪些材料？',
 	'DEMO_NAME_LEFT'			=> '放到鍋中的材料',
 	'DEMO_NAME_RIGHT'			=> '不要放到鍋中的東西',
 	'DEMO_OPTION_BANANAS'		=> '香蕉',
@@ -76,5 +73,3 @@ $lang = array_merge($lang, array(
 
 	'SORTABLES_ERROR_MSG'		=> '每一欄目都請填妥，並且左右兩欄都請至少各輸入一個項目。',
 ));
-
-?>

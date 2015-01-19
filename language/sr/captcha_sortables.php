@@ -3,12 +3,9 @@
 *
 * sortables captcha [Serbian (Cyrillic Script)]
 *
-* @package language
-* @version $Id: captcha_sortables.php 9875 2009-08-13 21:40:23Z Derky $
-* @copyright (c) 2009 phpBB Group
-* @copyright (c) 2009 Derky - phpBB3styles.net
-* @copyright (c) 2013 stojadinovicp - stojadinovic.net
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+* @copyright (c) Derky <http://www.derky.nl>
+* @copyright (c) stojadinovicp <http://stojadinovic.net>
+* @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
 
@@ -63,7 +60,7 @@ $lang = array_merge($lang, array(
 	'COLUMN_NAME_LEFT_EXPLAIN'	=> 'Као: ствари које су потребне',
 	'COLUMN_NAME_RIGHT_EXPLAIN'	=> 'Као: Ствари које нису потребне',
 
-	'DEMO_QUESTION'				=> 'Шта стављамо у чорбу од парадајза',	
+	'DEMO_QUESTION'				=> 'Шта стављамо у чорбу од парадајза',
 	'DEMO_NAME_LEFT'			=> 'Остави',
 	'DEMO_NAME_RIGHT'			=> 'Одбаци',
 	'DEMO_OPTION_BANANAS'		=> 'Банана',
@@ -76,5 +73,3 @@ $lang = array_merge($lang, array(
 
 	'SORTABLES_ERROR_MSG'		=> 'Молимо испуните сва поља и унесите барем једну могућност за обе колоне.',
 ));
-
-?>

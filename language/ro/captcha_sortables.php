@@ -3,12 +3,9 @@
 *
 * sortables captcha [Romanian]
 *
-* @package language
-* @version $Id: captcha_sortables.php 9875 2009-08-13 21:40:23Z Derky $
-* @copyright (c) 2009 phpBB Group
-* @copyright (c) 2009 Derky - phpBB3styles.net
-* @copyright (c) 2013 ciubex
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+* @copyright (c) Derky <http://www.derky.nl>
+* @copyright (c) ciubex
+* @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
 
@@ -56,14 +53,14 @@ $lang = array_merge($lang, array(
 	'QUESTION_LANG_EXPLAIN'		=> 'Limba in care sunt scrise intrebarea si optiunile ei.',
 	'QUESTION_SORT'				=> 'Lista sortata implicit',
 	'QUESTION_SORT_EXPLAIN'		=> 'In ce coloana ar trebui sa afiseze toate raspunsurile in mod implicit.',
-	
+
 	'COLUMN_LEFT'				=> 'Coloana stanga',
 	'COLUMN_RIGHT'				=> 'Coloana dreapta',
 	'COLUMN_NAME'				=> 'Coloana nume',
 	'COLUMN_NAME_LEFT_EXPLAIN'	=> 'Precum: Lucruri de care am nevoie',
 	'COLUMN_NAME_RIGHT_EXPLAIN'	=> 'Precum: Lucruri nefolositoare',
-	
-	'DEMO_QUESTION'				=> 'Ce ingrediente sunt pentru supa de rosii',	
+
+	'DEMO_QUESTION'				=> 'Ce ingrediente sunt pentru supa de rosii',
 	'DEMO_NAME_LEFT'			=> 'In tigaie',
 	'DEMO_NAME_RIGHT'			=> 'Arunca',
 	'DEMO_OPTION_BANANAS'		=> 'Banane',
@@ -76,5 +73,3 @@ $lang = array_merge($lang, array(
 
 	'SORTABLES_ERROR_MSG'		=> 'Completeaza toate campurile si introdu cel putin o optiune pentru amandoua coloanele.',
 ));
-
-?>

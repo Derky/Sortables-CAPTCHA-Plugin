@@ -3,12 +3,9 @@
 *
 * sortables captcha [Slovak]
 *
-* @package language
-* @version $Id: captcha_sortables.php 9875 2009-08-13 21:40:23Z Derky $
-* @copyright (c) 2009 phpBB Group
-* @copyright (c) 2009 Derky - phpBB3styles.net
-* @copyright (c) 2013 ansysko - phpbb.sk
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+* @copyright (c) Derky <http://www.derky.nl>
+* @copyright (c) ansysko <http://phpbb.sk>
+* @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
 
@@ -56,14 +53,14 @@ $lang = array_merge($lang, array(
 	'QUESTION_LANG_EXPLAIN'		=> 'Jazyk v ktorom bude otázka a odpovede.',
 	'QUESTION_SORT'				=> 'Predvolený zoznam odpovedí',
 	'QUESTION_SORT_EXPLAIN'		=> 'V ktorom stĺpci budú otázky zobrazené štandardne.',
-	
+
 	'COLUMN_LEFT'				=> 'Vľavo',
 	'COLUMN_RIGHT'				=> 'Vpravo',
 	'COLUMN_NAME'				=> 'Názov stĺpca',
 	'COLUMN_NAME_LEFT_EXPLAIN'	=> 'Správne',
 	'COLUMN_NAME_RIGHT_EXPLAIN'	=> 'Nesprávne',
-	
-	'DEMO_QUESTION'				=> 'Mestá',	
+
+	'DEMO_QUESTION'				=> 'Mestá',
 	'DEMO_NAME_LEFT'			=> 'Všetky mestá',
 	'DEMO_NAME_RIGHT'			=> 'Mestá v SR',
 	'DEMO_OPTION_BANANAS'		=> 'Bratislava',
@@ -76,5 +73,3 @@ $lang = array_merge($lang, array(
 
 	'SORTABLES_ERROR_MSG'		=> 'Prosím, vyplňte všetky polia a zadajte aspoň jednu možnosť pre oba stĺpce.',
 ));
-
-?>

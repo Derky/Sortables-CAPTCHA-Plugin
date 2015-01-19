@@ -3,12 +3,9 @@
 *
 * sortables captcha [Catalan]
 *
-* @package language
-* @version $Id: captcha_sortables.php 9875 2009-08-13 21:40:23Z Derky $
-* @copyright (c) 2009 phpBB Group
-* @copyright (c) 2009 Derky - phpBB3styles.net
-* @copyright (c) 2011 Catalan lang by Juan_CAT - joanjerez.wordpress.com
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+* @copyright (c) Derky <http://www.derky.nl>
+* @copyright (c) Juan_CAT <http://joanjerez.wordpress.com>
+* @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
 
@@ -56,14 +53,14 @@ $lang = array_merge($lang, array(
 	'QUESTION_LANG_EXPLAIN'		=> 'Llengua en la qual aquesta pregunta i les seves opciones estan escrites.',
 	'QUESTION_SORT'				=> 'Llista de classificació per defecte',
 	'QUESTION_SORT_EXPLAIN'		=> 'En quina columna s\'haurien de mostrar totes les respostes per defecte.',
-	
+
 	'COLUMN_LEFT'				=> 'Columna esquerra',
 	'COLUMN_RIGHT'				=> 'Columna dreta',
 	'COLUMN_NAME'				=> 'Nom de la columna',
 	'COLUMN_NAME_LEFT_EXPLAIN'	=> 'Com: Coses que necessito',
 	'COLUMN_NAME_RIGHT_EXPLAIN'	=> 'Com: Coses que no necessito',
-	
-	'DEMO_QUESTION'				=> 'Què s\'ha d\'incloure per una sopa de tomàquet?',	
+
+	'DEMO_QUESTION'				=> 'Què s\'ha d\'incloure per una sopa de tomàquet?',
 	'DEMO_NAME_LEFT'			=> 'A la paella',
 	'DEMO_NAME_RIGHT'			=> 'Llençar',
 	'DEMO_OPTION_BANANAS'		=> 'Plàtans',
@@ -76,5 +73,3 @@ $lang = array_merge($lang, array(
 
 	'SORTABLES_ERROR_MSG'		=> 'Per favor, omple tots els camps i introdueix al menys una opció per ambdues columnes.',
 ));
-
-?>

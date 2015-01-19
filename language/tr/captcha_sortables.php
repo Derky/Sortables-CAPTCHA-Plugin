@@ -3,11 +3,9 @@
 *
 * sortables captcha [Turkish]
 *
-* @package language
-* @copyright (c) 2009 phpBB Group
-* @copyright (c) 2009 Derky - phpBB3styles.net
-* @copyright (c) 2013 Tukish lang by ESQARE - phpbbturkey.com
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+* @copyright (c) Derky <http://www.derky.nl>
+* @copyright (c) ESQARE <http://phpbbturkey.com>
+* @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
 
@@ -55,14 +53,14 @@ $lang = array_merge($lang, array(
 	'QUESTION_LANG_EXPLAIN'		=> 'Bu soru ve seçeneklerinin yazılacağı dil.',
 	'QUESTION_SORT'				=> 'Varsayılan sıralama listesi',
 	'QUESTION_SORT_EXPLAIN'		=> 'Varsayılan olarak cevapların hangi sütunda gösterilmesi gerektiğini belirleyin.',
-	
+
 	'COLUMN_LEFT'				=> 'Sol sütun',
 	'COLUMN_RIGHT'				=> 'Sağ sütun',
 	'COLUMN_NAME'				=> 'Sütun adı',
 	'COLUMN_NAME_LEFT_EXPLAIN'	=> 'Ör: İhtiyacım olan şeyler',
 	'COLUMN_NAME_RIGHT_EXPLAIN'	=> 'Ör: İhtiyacım olmayan şeyler',
-	
-	'DEMO_QUESTION'				=> 'Domates çorbasının içerisine neler koyulur',	
+
+	'DEMO_QUESTION'				=> 'Domates çorbasının içerisine neler koyulur',
 	'DEMO_NAME_LEFT'			=> 'Tenceredekiler',
 	'DEMO_NAME_RIGHT'			=> 'Koyulacaklar',
 	'DEMO_OPTION_BANANAS'		=> 'Muz',
@@ -75,5 +73,3 @@ $lang = array_merge($lang, array(
 
 	'SORTABLES_ERROR_MSG'		=> 'Lütfen her iki sütundaki tüm alanları doldurun ve en az bir seçenek girin.',
 ));
-
-?>

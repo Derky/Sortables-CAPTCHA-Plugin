@@ -3,11 +3,8 @@
 *
 * sortables captcha [Dutch]
 *
-* @package language
-* @version $Id: captcha_sortables.php 9875 2009-10-27 21:40:23Z Derky $
-* @copyright (c) 2009 phpBB Group
-* @copyright (c) 2009 Derky - phpBB3styles.net
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+* @copyright (c) Derky <http://www.derky.nl>
+* @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
 
@@ -55,14 +52,14 @@ $lang = array_merge($lang, array(
 	'QUESTION_LANG_EXPLAIN'		=> 'De taal waarin deze vraag en de opties zijn geschreven',
 	'QUESTION_SORT'				=> 'Standaard sorteren',
 	'QUESTION_SORT_EXPLAIN'		=> 'In welke kolom moeten standaard, alle antwoorden komen te staan.',
-	
+
 	'COLUMN_LEFT'				=> 'Linkerkolom',
 	'COLUMN_RIGHT'				=> 'Rechterkolom',
 	'COLUMN_NAME'				=> 'Kolomnaam',
 	'COLUMN_NAME_LEFT_EXPLAIN'	=> 'Bijv: Dit heb ik nodig',
 	'COLUMN_NAME_RIGHT_EXPLAIN'	=> 'Bijv: Dit heb ik niet nodig',
-	
-	'DEMO_QUESTION'				=> 'Wat heb je nodig voor tomatensoep',	
+
+	'DEMO_QUESTION'				=> 'Wat heb je nodig voor tomatensoep',
 	'DEMO_NAME_LEFT'			=> 'In de pan',
 	'DEMO_NAME_RIGHT'			=> 'Gooi weg',
 	'DEMO_OPTION_BANANAS'		=> 'Bananen',
@@ -75,5 +72,3 @@ $lang = array_merge($lang, array(
 
 	'SORTABLES_ERROR_MSG'		=> 'Vul alle velden in, en tenminste één optie voor beide kolommen.',
 ));
-
-?>

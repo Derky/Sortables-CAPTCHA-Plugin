@@ -3,12 +3,9 @@
 *
 * sortables captcha [Hungarian]
 *
-* @package language
-* @version $Id: captcha_sortables.php 9875 2009-08-13 21:40:23Z Derky $
-* @copyright (c) 2009 phpBB Group
-* @copyright (c) 2009 Derky - phpBB3styles.net
-* @copyright (c) 2013 truly80
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+* @copyright (c) Derky <http://www.derky.nl>
+* @copyright (c) truly80
+* @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
 
@@ -56,14 +53,14 @@ $lang = array_merge($lang, array(
 	'QUESTION_LANG_EXPLAIN'		=> 'A nyelv, amin az adott kérdés és válaszai íródtak.',
 	'QUESTION_SORT'				=> 'Alap átrendezendő lista',
 	'QUESTION_SORT_EXPLAIN'		=> 'Alap beállításként ebben az oszlopban jelenjenek meg a válaszok.',
-	
+
 	'COLUMN_LEFT'				=> 'Bal oldali oszlop',
 	'COLUMN_RIGHT'				=> 'Jobb oldali oszlop',
 	'COLUMN_NAME'				=> 'Oszlop név',
 	'COLUMN_NAME_LEFT_EXPLAIN'	=> 'Pl.: Amik kellenek hozzá',
 	'COLUMN_NAME_RIGHT_EXPLAIN'	=> 'Pl.: Amik nem kellenek bele',
-	
-	'DEMO_QUESTION'				=> 'Az alábbiak közül mire van szükségem a paradicsomleves elkészítéséhez',	
+
+	'DEMO_QUESTION'				=> 'Az alábbiak közül mire van szükségem a paradicsomleves elkészítéséhez',
 	'DEMO_NAME_LEFT'			=> 'A lábasba',
 	'DEMO_NAME_RIGHT'			=> 'Kidobásra',
 	'DEMO_OPTION_BANANAS'		=> 'Banán',
@@ -76,5 +73,3 @@ $lang = array_merge($lang, array(
 
 	'SORTABLES_ERROR_MSG'		=> 'Kérlek tölts ki minden mezőt és legalább egy lehetőséget adj meg mindkét oszlopba.',
 ));
-
-?>

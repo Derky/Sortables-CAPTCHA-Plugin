@@ -3,10 +3,9 @@
 *
 * sortables captcha [Hebrew]
 *
-* @package language
-* @version $Id: captcha_sortables.php 1 2012-07-13 00:04:33Z Sawyer X $
-* @copyright (c) 2012 Sawyer X
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+* @copyright (c) Derky <http://www.derky.nl>
+* @copyright (c) Sawyer X
+* @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
 
@@ -54,14 +53,14 @@ $lang = array_merge($lang, array(
 	'QUESTION_LANG_EXPLAIN'		=> 'השפה עבור השאלה הזאת והאפשרויות שלה.',
 	'QUESTION_SORT'				=> 'רשימת סידור ברירת מחדל',
 	'QUESTION_SORT_EXPLAIN'		=> 'באיזה עמוד התשובות יופיעו כברירת מחדל.',
-	
+
 	'COLUMN_LEFT'				=> 'עמוד שמאלי',
 	'COLUMN_RIGHT'				=> 'עמוד ימני',
 	'COLUMN_NAME'				=> 'שם עמוד',
 	'COLUMN_NAME_LEFT_EXPLAIN'	=> 'דוגמא: דברים הנחוצים עבורי',
 	'COLUMN_NAME_RIGHT_EXPLAIN'	=> 'דוגמא: דברים שאינם נחוצים עבורי',
-	
-	'DEMO_QUESTION'				=> 'מה לכלול במרק עגבניות',	
+
+	'DEMO_QUESTION'				=> 'מה לכלול במרק עגבניות',
 	'DEMO_NAME_LEFT'			=> 'בסיר',
 	'DEMO_NAME_RIGHT'			=> 'לשים בצד',
 	'DEMO_OPTION_BANANAS'		=> 'בננות',
@@ -74,5 +73,3 @@ $lang = array_merge($lang, array(
 
 	'SORTABLES_ERROR_MSG'		=> 'אנא מלאו את כל השדות והכניסו לפחות אופציה אחת עבור שני העמודים.',
 ));
-
-?>

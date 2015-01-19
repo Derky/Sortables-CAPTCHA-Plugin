@@ -1,13 +1,11 @@
 <?php
 /**
 *
-* sortables captcha [Brazilian Portuguese] by Pavlov
+* sortables captcha [Brazilian Portuguese]
 *
-* @package language
-* @version $Id: captcha_sortables.php 9875 2009-08-13 21:40:23Z Derky $
-* @copyright (c) 2009 phpBB Group
-* @copyright (c) 2009 Derky - phpBB3styles.net
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+* @copyright (c) Derky <http://www.derky.nl>
+* @copyright (c) Pavlov
+* @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
 
@@ -55,14 +53,14 @@ $lang = array_merge($lang, array(
 	'QUESTION_LANG_EXPLAIN'		=> 'O idioma desta pergunta e suas opções está escrito em.',
 	'QUESTION_SORT'				=> 'Lista de classificação padrão',
 	'QUESTION_SORT_EXPLAIN'		=> 'Qual coluna deve exibir todas as respostas por padrão.',
-	
+
 	'COLUMN_LEFT'				=> 'Coluna esquerda',
 	'COLUMN_RIGHT'				=> 'Coluna direita',
 	'COLUMN_NAME'				=> 'Nome da coluna',
 	'COLUMN_NAME_LEFT_EXPLAIN'	=> 'Exemplo: Coisas que preciso',
 	'COLUMN_NAME_RIGHT_EXPLAIN'	=> 'Exemplo: Coisas que não preciso',
-	
-	'DEMO_QUESTION'				=> 'O que incluir na sopa de tomate',	
+
+	'DEMO_QUESTION'				=> 'O que incluir na sopa de tomate',
 	'DEMO_NAME_LEFT'			=> 'Na panela',
 	'DEMO_NAME_RIGHT'			=> 'Desperdiçar',
 	'DEMO_OPTION_BANANAS'		=> 'Bananas',
@@ -75,5 +73,3 @@ $lang = array_merge($lang, array(
 
 	'SORTABLES_ERROR_MSG'		=> 'Por favor, preencha todos os campos e insira pelo menos uma opção para ambas as colunas.',
 ));
-
-?>

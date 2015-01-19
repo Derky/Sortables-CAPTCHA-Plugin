@@ -2,13 +2,10 @@
 /**
 *
 * sortables captcha [French]
-* Translated by: Maël Soucaze <maelsoucaze@gmail.com> http://mael.soucaze.com/
 *
-* @package language
-* @version $Id: captcha_sortables.php 9875 2009-08-13 21:40:23Z Derky $
-* @copyright (c) 2009 phpBB Group
-* @copyright (c) 2009 Derky - phpBB3styles.net
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+* @copyright (c) Derky <http://www.derky.nl>
+* @copyright (c) Maël Soucaze <http://mael.soucaze.com/>
+* @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
 
@@ -56,14 +53,14 @@ $lang = array_merge($lang, array(
 	'QUESTION_LANG_EXPLAIN'		=> 'La langue dans laquelle cette question et ses réponses sont rédigées.',
 	'QUESTION_SORT'				=> 'Liste de tri par défaut',
 	'QUESTION_SORT_EXPLAIN'		=> 'Correspond à la colonne dans laquelle toutes les réponses seront affichées par défaut.',
-	
+
 	'COLUMN_LEFT'				=> 'Colonne de gauche',
 	'COLUMN_RIGHT'				=> 'Colonne de droite',
 	'COLUMN_NAME'				=> 'Nom de la colonne',
 	'COLUMN_NAME_LEFT_EXPLAIN'	=> 'Exemple : les choses que je veux',
 	'COLUMN_NAME_RIGHT_EXPLAIN'	=> 'Exemple : les choses que je ne veux pas',
-	
-	'DEMO_QUESTION'				=> 'Qu’est-ce qui compose une soupe à la tomate ?',	
+
+	'DEMO_QUESTION'				=> 'Qu’est-ce qui compose une soupe à la tomate ?',
 	'DEMO_NAME_LEFT'			=> 'À cuisiner',
 	'DEMO_NAME_RIGHT'			=> 'À jeter',
 	'DEMO_OPTION_BANANAS'		=> 'Bananes',
@@ -76,5 +73,3 @@ $lang = array_merge($lang, array(
 
 	'SORTABLES_ERROR_MSG'		=> 'Veuillez remplir tous les champs et saisir au moins une réponse toutes les deux colonnes.',
 ));
-
-?>

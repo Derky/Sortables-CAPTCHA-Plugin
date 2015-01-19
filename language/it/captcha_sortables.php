@@ -3,13 +3,10 @@
 *
 * sortables captcha [Italian]
 *
-* @package language
-* @version $Id: captcha_sortables.php 9875 2009-08-13 21:40:23Z Derky $
-* @copyright (c) 2009 phpBB Group
-* @copyright (c) 2009 Derky - phpBB3styles.net
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
-*
-* Translated by etms51 and MaFeSa
+* @copyright (c) Derky <http://www.derky.nl>
+* @copyright (c) etms51
+* @copyright (c) MaFeSa
+* @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
 
@@ -57,14 +54,14 @@ $lang = array_merge($lang, array(
 	'QUESTION_LANG_EXPLAIN'		=> 'La lingua per questa domanda e le sue opzioni sono scritte in',
 	'QUESTION_SORT'				=> 'Elenco predefinito ordinabile',
 	'QUESTION_SORT_EXPLAIN'		=> 'In quale colonna devono essere visualizzate le risposte di default',
-	
+
 	'COLUMN_LEFT'				=> 'Colonna di sinistra',
 	'COLUMN_RIGHT'				=> 'Colonna di destra',
 	'COLUMN_NAME'				=> 'Nome colonna',
 	'COLUMN_NAME_LEFT_EXPLAIN'	=> 'Come: Cose che ho bisogno',
 	'COLUMN_NAME_RIGHT_EXPLAIN'	=> 'Come: Cose che non ho bisogno',
-	
-	'DEMO_QUESTION'				=> 'Che cosa è incluso nella zuppa di pomodoro',	
+
+	'DEMO_QUESTION'				=> 'Che cosa è incluso nella zuppa di pomodoro',
 	'DEMO_NAME_LEFT'			=> 'In padella',
 	'DEMO_NAME_RIGHT'			=> 'Buttare via',
 	'DEMO_OPTION_BANANAS'		=> 'Banane',
@@ -77,5 +74,3 @@ $lang = array_merge($lang, array(
 
 	'SORTABLES_ERROR_MSG'		=> 'Si prega di compilare tutti i campi e inserire almeno una opzione per entrambe le colonne.',
 ));
-
-?>

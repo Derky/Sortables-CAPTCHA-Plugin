@@ -3,12 +3,9 @@
 *
 * sortables captcha [Polish]
 *
-* @package language
-* @version $Id: captcha_sortables.php 9875 2009-08-13 21:40:23Z Derky $
-* @copyright (c) 2009 phpBB Group
-* @copyright (c) 2009 Derky - phpBB3styles.net
-* @copyright (c) 2011 Polish lang by all4phone - bbcode.pl
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+* @copyright (c) Derky <http://www.derky.nl>
+* @copyright (c) all4phone <http://bbcode.pl>
+* @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
 
@@ -56,14 +53,14 @@ $lang = array_merge($lang, array(
 	'QUESTION_LANG_EXPLAIN'		=> 'Język, w którym jest napisane to pytanie i jego opcje.',
 	'QUESTION_SORT'				=> 'Domyślne sortowanie listy',
 	'QUESTION_SORT_EXPLAIN'		=> 'W której kolumnie należy domyślnie wyświetlać wszystkie odpowiedzi.',
-	
+
 	'COLUMN_LEFT'				=> 'Lewa kolumna',
 	'COLUMN_RIGHT'				=> 'Prawa kolumna',
 	'COLUMN_NAME'				=> 'Nazwa kolumny',
 	'COLUMN_NAME_LEFT_EXPLAIN'	=> 'Np: Co potrzebne',
 	'COLUMN_NAME_RIGHT_EXPLAIN'	=> 'Np: Czego nie potrzeba',
-	
-	'DEMO_QUESTION'				=> 'Co jest potrzebne do zupy pomidorowej',	
+
+	'DEMO_QUESTION'				=> 'Co jest potrzebne do zupy pomidorowej',
 	'DEMO_NAME_LEFT'			=> 'W garnku',
 	'DEMO_NAME_RIGHT'			=> 'Odrzuć',
 	'DEMO_OPTION_BANANAS'		=> 'Banany',
@@ -76,5 +73,3 @@ $lang = array_merge($lang, array(
 
 	'SORTABLES_ERROR_MSG'		=> 'Proszę wypełnić wszystkie pola i podać co najmniej jedną opcję dla obu kolumn.',
 ));
-
-?>

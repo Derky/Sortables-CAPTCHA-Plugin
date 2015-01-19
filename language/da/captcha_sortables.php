@@ -3,12 +3,9 @@
 *
 * sortables captcha [Danish]
 *
-* @package language
-* @version $Id$
-* @copyright (c) 2009 phpBB Group
-* @copyright (c) 2009 Derky - phpBB3styles.net
-* @copyright (c) 2009 Danish lang by AlleyKat - phpbb2.dk
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+* @copyright (c) Derky <http://www.derky.nl>
+* @copyright (c) AlleyKat <http://phpbb2.dk>
+* @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
 
@@ -56,14 +53,14 @@ $lang = array_merge($lang, array(
 	'QUESTION_LANG_EXPLAIN'		=> 'Sproget som dette spørgsmål og dets svar er skrevet i.',
 	'QUESTION_SORT'				=> 'Standard sorteringskolonne',
 	'QUESTION_SORT_EXPLAIN'		=> 'I hvilken kolonne skal alle svar vises som standard.',
-	
+
 	'COLUMN_LEFT'				=> 'Venstre kolonne',
 	'COLUMN_RIGHT'				=> 'Højre kolonne',
 	'COLUMN_NAME'				=> 'Kolonnenavn',
 	'COLUMN_NAME_LEFT_EXPLAIN'	=> 'F.eks.: Ting jeg har brug for',
 	'COLUMN_NAME_RIGHT_EXPLAIN'	=> 'F.eks.: Ting jeg ikke har brug for',
-	
-	'DEMO_QUESTION'				=> 'Hvilke ingredienser i tomatsuppe',	
+
+	'DEMO_QUESTION'				=> 'Hvilke ingredienser i tomatsuppe',
 	'DEMO_NAME_LEFT'			=> 'I gryden',
 	'DEMO_NAME_RIGHT'			=> 'Smid væk',
 	'DEMO_OPTION_BANANAS'		=> 'Bananer',
@@ -76,5 +73,3 @@ $lang = array_merge($lang, array(
 
 	'SORTABLES_ERROR_MSG'		=> 'Udfyld venligst alle felter og indtast mindst én mulighed for begge kolonner.',
 ));
-
-?>

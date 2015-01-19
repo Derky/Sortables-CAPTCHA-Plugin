@@ -3,12 +3,9 @@
 *
 * sortables captcha [Estonian]
 *
-* @package language
-* @version $Id: captcha_sortables.php 9875 2009-08-13 21:40:23Z Derky $
-* @copyright (c) 2009 phpBB Group
-* @copyright (c) 2009 Derky - phpBB3styles.net
-* @copyright (c) 2014 www.phpbb.planet.ee
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+* @copyright (c) Derky <http://www.derky.nl>
+* @copyright (c) phpBBeesti.com <http://www.phpbb.planet.ee>
+* @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
 
@@ -56,14 +53,14 @@ $lang = array_merge($lang, array(
 	'QUESTION_LANG_EXPLAIN'		=> 'Keelevalik. Millise keelefailiga antud küsimust näidatakse?',
 	'QUESTION_SORT'				=> 'Sorteerimise nimekiri vaikimisi',
 	'QUESTION_SORT_EXPLAIN'		=> 'Millises veerus näidatakse vaikimisi kõiki vastuse variante.',
-	
+
 	'COLUMN_LEFT'				=> 'Vasak veerg',
 	'COLUMN_RIGHT'				=> 'Parem veerg',
 	'COLUMN_NAME'				=> 'Veeru nimi',
 	'COLUMN_NAME_LEFT_EXPLAIN'	=> 'Näiteks: Mida ma vajan',
 	'COLUMN_NAME_RIGHT_EXPLAIN'	=> 'Näiteks: Mida ma ei vaja',
-	
-	'DEMO_QUESTION'				=> 'Mida läheb vaja tomatisupis',	
+
+	'DEMO_QUESTION'				=> 'Mida läheb vaja tomatisupis',
 	'DEMO_NAME_LEFT'			=> 'Läheb vaja',
 	'DEMO_NAME_RIGHT'			=> 'Ei lähe vaja',
 	'DEMO_OPTION_BANANAS'		=> 'Banaane',
@@ -76,5 +73,3 @@ $lang = array_merge($lang, array(
 
 	'SORTABLES_ERROR_MSG'		=> 'Palun täida kõik väljad, ning sisesta vähemalt üks valik mõlemasse veergu.',
 ));
-
-?>
