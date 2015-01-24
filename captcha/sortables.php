@@ -38,7 +38,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	/** @var \phpbb\log\log */
 	protected $log;
 
-	/** @var type \phpbb\request\request */
+	/** @var \phpbb\request\request */
 	protected $request;
 
 	/** @var \phpbb\template\template */
@@ -292,7 +292,6 @@ class sortables extends \phpbb\captcha\plugins\qa
 		{
 			if ($this->check_answer())
 			{
-				// $this->delete_code(); commented out to allow posting.php to repeat the question
 				$this->solved = true;
 			}
 			else
@@ -495,18 +494,6 @@ class sortables extends \phpbb\captcha\plugins\qa
 	}
 
 	/**
-	*  API function - clean the entry
-	*/
-	function delete_code()
-	{
-		$sql = 'DELETE FROM ' . $this->table_sortables_confirm . "
-				WHERE confirm_id = '" . $this->db->sql_escape($confirm_id) . "'
-					AND session_id = '" . $this->db->sql_escape($this->user->session_id) . "'
-					AND confirm_type = " . $this->type;
-		$this->db->sql_query($sql);
-	}
-
-	/**
 	*  API function
 	*/
 	function get_attempt_count()
@@ -600,7 +587,6 @@ class sortables extends \phpbb\captcha\plugins\qa
 		else
 		{
 			// okay, show the editor
-			$error = false;
 			$input_question = $this->request->variable('question_text', '', true);
 			$input_lang = $this->request->variable('lang_iso', '');
 			$input_sort = $this->request->variable('sort', false);
@@ -980,8 +966,6 @@ class sortables extends \phpbb\captcha\plugins\qa
 	*/
 	function sql_random()
 	{
-		$statement = '';
-
 		switch ($this->db->get_sql_layer())
 		{
 			case 'firebird':
