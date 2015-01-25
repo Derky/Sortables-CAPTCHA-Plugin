@@ -11,6 +11,36 @@ namespace derky\sortablescaptcha\captcha\tests\unit;
 class sortables_acp_test extends \phpbb_test_case
 {
 
+	public static function acp_input_options_to_array_data()
+	{
+		return array(
+			array('a', array('a')),
+			array("a\n\nb", array('a', 'b')),
+			array("   a  \n   \n   b ", array('a', 'b')),
+			array('0', array('0')),
+		);
+	}
+
+	/**
+	* @dataProvider acp_input_options_to_array_data
+	*/
+	public function test_acp_input_options_to_array($input_options_string, $expected_options_array)
+	{
+		$sortables = new \derky\sortablescaptcha\captcha\sortables(
+			$this->getMock('phpbb\db\driver\driver_interface'),
+			$this->getMockBuilder('\phpbb\cache\service')->disableOriginalConstructor()->getMock(),
+			new \phpbb\config\config(array()),
+			new \phpbb\log\null(),
+			new \phpbb_mock_request(),
+			$this->getMock('\phpbb\template\template'),
+			new \phpbb\user('\phpbb\datetime'),
+			'phpbb_sortables_questions',
+			'phpbb_sortables_answers',
+			'phpbb_sortables_confirm');
+
+		$this->assertEquals($expected_options_array, $sortables->acp_input_options_to_array($input_options_string));
+	}
+
 	public static function acp_get_question_input_data()
 	{
 		return array(
@@ -29,6 +59,10 @@ class sortables_acp_test extends \phpbb_test_case
 			// Test automatic removal of blank line with some spaces between 2 valid options
 			array(array('question_text' => '', 'sort' => '', 'lang_iso' => '', 'name_left' => '', 'name_right' => '', 'options_left' => "E\n    \nF", 'options_right' => "G\n    \nH"),
 				  array('question_text' => '', 'sort' => '', 'lang_iso' => '', 'name_left' => '', 'name_right' => '', 'options_left' => array('E', 'F'), 'options_right' => array('G', 'H'))),
+
+			// Test the valid option zero: "0" (this option should not be removed, this test makes sure that empty() is not used)
+			array(array('question_text' => '', 'sort' => '', 'lang_iso' => '', 'name_left' => '', 'name_right' => '', 'options_left' => "0", 'options_right' => "1"),
+				  array('question_text' => '', 'sort' => '', 'lang_iso' => '', 'name_left' => '', 'name_right' => '', 'options_left' => array('0'), 'options_right' => array('1'))),
 		);
 	}
 

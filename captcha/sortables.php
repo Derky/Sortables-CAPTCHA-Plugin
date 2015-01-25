@@ -759,11 +759,35 @@ class sortables extends \phpbb\captcha\plugins\qa
 			'lang_iso'		=> $this->request->variable('lang_iso', ''),
 			'name_left'		=> $this->request->variable('name_left', '', true),
 			'name_right'	=> $this->request->variable('name_right', '', true),
-			'options_left'	=> array_values(array_filter(array_map('trim', explode("\n", $this->request->variable('options_left', '', true))))),	// Trim additional spaces and remove empty values from array
-			'options_right'	=> array_values(array_filter(array_map('trim', explode("\n", $this->request->variable('options_right', '', true))))),
+			'options_left'	=> $this->acp_input_options_to_array($this->request->variable('options_left', '', true)),
+			'options_right'	=> $this->acp_input_options_to_array($this->request->variable('options_right', '', true)),
 		);
 
 		return $question;
+	}
+
+	/**
+	* Split a string on new lines, trim spaces, remove blank options and return an option array.
+	*
+	* @param string $options
+	* @return array $options_array
+	*/
+	function acp_input_options_to_array($options) {
+
+		// Split options (per line) to an array
+		$options_array = explode("\n", $options);
+
+		// Trim spaces from each option
+		$options_array = array_map('trim', $options_array);
+
+		// Remove empty options, but allow "0" as option
+		$options_array = array_filter($options_array, 'strlen');
+
+		// Re-index array keys
+		$options_array = array_values($options_array);
+
+		// Return the options as array
+		return $options_array;
 	}
 
 	/**
