@@ -33,14 +33,10 @@ class ext extends \phpbb\extension\base
 				}
 				return 'default_captcha_changed';
 
-			break;
-
 			default:
 
 				// Run parent disable step method
 				return parent::disable_step($old_state);
-
-			break;
 		}
 	}
 }
