@@ -23,8 +23,12 @@ class sortables extends \phpbb\captcha\plugins\qa
 	var $question_sort;
 	var $attempts = 0;
 	var $type;
-	// dirty trick: 0 is false, but can still encode that the captcha is not yet validated
 	var $solved = 0;
+
+	// Constants for $this->solved status
+	const NOT_VALIDATED = 0;
+	const SOLVED = 1;
+	const INCORRECT = 2;
 
 	/** @var \phpbb\db\driver\driver_interface */
 	protected $db;
@@ -213,7 +217,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 		$hidden_fields = array();
 
 		// this is required - otherwise we would forget about the captcha being already solved
-		if ($this->solved)
+		if ($this->solved === $this::SOLVED)
 		{
 			$hidden_fields['sortables_options_left'] = $this->options_left;
 			$hidden_fields['sortables_options_right'] = $this->options_right;
@@ -292,7 +296,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 		{
 			if ($this->check_answer())
 			{
-				$this->solved = true;
+				$this->solved = $this::SOLVED;
 			}
 			else
 			{
@@ -304,7 +308,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 		{
 			// okay, incorrect answer. Let's ask a new question.
 			$this->new_attempt();
-			$this->solved = false;
+			$this->solved = $this::INCORRECT;
 
 			return $error;
 		}
@@ -349,7 +353,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 		}
 
 		$this->question = (int) array_rand($this->question_ids);
-		$this->solved = 0;
+		$this->solved = $this::NOT_VALIDATED;
 
 		$sql = 'UPDATE ' . $this->table_sortables_confirm . '
 			SET question_id = ' . (int) $this->question . "
@@ -367,7 +371,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	{
 		// yah, I would prefer a stronger rand, but this should work
 		$this->question = (int) array_rand($this->question_ids);
-		$this->solved = 0;
+		$this->solved = $this::NOT_VALIDATED;
 
 		$sql = 'UPDATE ' . $this->table_sortables_confirm . '
 			SET question_id = ' . (int) $this->question . ",
@@ -482,7 +486,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 			// Now compare that amount with the total amount of options for this question
 			if ($this->total_options === $total_options_good)
 			{
-				$this->solved = true;
+				$this->solved = $this::SOLVED;
 				// Remember this for the hidden fields
 				$this->options_left = $options_left;
 				$this->options_right = $options_right;
@@ -490,7 +494,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 			$this->db->sql_freeresult($result);
 		}
 
-		return $this->solved;
+		return ($this->solved === $this::SOLVED);
 	}
 
 	/**
@@ -520,11 +524,11 @@ class sortables extends \phpbb\captcha\plugins\qa
 	*/
 	function is_solved()
 	{
-		if ($this->request->variable('qa_answer', false) && $this->solved === 0)
+		if ($this->request->variable('qa_answer', false) && $this->solved === $this::NOT_VALIDATED)
 		{
 			$this->validate();
 		}
-		return (bool) $this->solved;
+		return (bool) ($this->solved === $this::SOLVED);
 	}
 
 
