@@ -772,8 +772,8 @@ class sortables extends \phpbb\captcha\plugins\qa
 	* @param string $options
 	* @return array $options_array
 	*/
-	function acp_input_options_to_array($options) {
-
+	function acp_input_options_to_array($options)
+	{
 		// Split options (per line) to an array
 		$options_array = explode("\n", $options);
 
