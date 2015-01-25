@@ -972,18 +972,16 @@ class sortables extends \phpbb\captcha\plugins\qa
 			case 'oracle':
 			case 'postgres':
 			case 'sqlite':
-				$statement = 'RANDOM()';
-			break;
+				return 'RANDOM()';
 
+			/* All other cases should use the default
 			case 'mssql':
 			case 'mssqlnative':
 			case 'mysql_40':
 			case 'mysql_41':
-			case 'mysqli':
+			case 'mysqli':*/
 			default:
-				$statement = 'RAND()';
-			break;
+				return 'RAND()';
 		}
-		return $statement;
 	}
 }
