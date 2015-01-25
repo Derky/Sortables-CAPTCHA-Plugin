@@ -35,10 +35,10 @@ class sortables extends \phpbb\captcha\plugins\qa
 	/** @var \phpbb\config\config */
 	protected $config;
 
-	/** @var \phpbb\log\log */
+	/** @var \phpbb\log\log_interface */
 	protected $log;
 
-	/** @var \phpbb\request\request */
+	/** @var \phpbb\request\request_interface */
 	protected $request;
 
 	/** @var \phpbb\template\template */
@@ -61,15 +61,15 @@ class sortables extends \phpbb\captcha\plugins\qa
 	 * @param \phpbb\db\driver\driver_interface	$db
 	 * @param \phpbb\cache\service				$cache
 	 * @param \phpbb\config\config				$config
-	 * @param \phpbb\log\log					$log
-	 * @param \phpbb\request\request			$request
+	 * @param \phpbb\log\log_interface			$log
+	 * @param \phpbb\request\request_interface	$request
 	 * @param \phpbb\template\template			$template
 	 * @param \phpbb\user						$user
 	 * @param string							$table_sortables_questions
 	 * @param string							$table_sortables_answers
 	 * @param string							$table_sortables_confirm
 	 */
-	public function __construct(\phpbb\db\driver\driver_interface $db, \phpbb\cache\service $cache, \phpbb\config\config $config, \phpbb\log\log $log, \phpbb\request\request $request, \phpbb\template\template $template, \phpbb\user $user, $table_sortables_questions, $table_sortables_answers, $table_sortables_confirm)
+	public function __construct(\phpbb\db\driver\driver_interface $db, \phpbb\cache\service $cache, \phpbb\config\config $config, \phpbb\log\log_interface $log, \phpbb\request\request_interface $request, \phpbb\template\template $template, \phpbb\user $user, $table_sortables_questions, $table_sortables_answers, $table_sortables_confirm)
 	{
 		$this->db = $db;
 		$this->cache = $cache;
