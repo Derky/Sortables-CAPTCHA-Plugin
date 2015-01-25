@@ -759,8 +759,8 @@ class sortables extends \phpbb\captcha\plugins\qa
 			'lang_iso'		=> $this->request->variable('lang_iso', ''),
 			'name_left'		=> $this->request->variable('name_left', '', true),
 			'name_right'	=> $this->request->variable('name_right', '', true),
-			'options_left'	=> array_filter(array_map('trim', explode("\n", $this->request->variable('options_left', '', true)))),	// Trim additional spaces and remove empty values from array
-			'options_right'	=> array_filter(array_map('trim', explode("\n", $this->request->variable('options_right', '', true)))),
+			'options_left'	=> array_values(array_filter(array_map('trim', explode("\n", $this->request->variable('options_left', '', true))))),	// Trim additional spaces and remove empty values from array
+			'options_right'	=> array_values(array_filter(array_map('trim', explode("\n", $this->request->variable('options_right', '', true))))),
 		);
 
 		return $question;
