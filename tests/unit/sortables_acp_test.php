@@ -34,7 +34,7 @@ class sortables_acp_test extends \phpbb_test_case
 			new \phpbb\log\null(),
 			new \phpbb_mock_request(),
 			$this->getMock('\phpbb\template\template'),
-			new \phpbb\user('\phpbb\datetime'),
+			$this->getMock('\phpbb\user', array(), array('\phpbb\datetime')),
 			'phpbb_sortables_questions',
 			'phpbb_sortables_answers',
 			'phpbb_sortables_confirm');
@@ -81,7 +81,7 @@ class sortables_acp_test extends \phpbb_test_case
 			new \phpbb\log\null(),
 			$request,
 			$this->getMock('\phpbb\template\template'),
-			new \phpbb\user('\phpbb\datetime'),
+			$this->getMock('\phpbb\user', array(), array('\phpbb\datetime')),
 			'phpbb_sortables_questions',
 			'phpbb_sortables_answers',
 			'phpbb_sortables_confirm');
