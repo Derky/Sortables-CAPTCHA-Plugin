@@ -33,7 +33,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	/** @var \phpbb\db\driver\driver_interface */
 	protected $db;
 
-	/** @var \phpbb\cache\service */
+	/** @var \phpbb\cache\driver\driver_interface */
 	protected $cache;
 
 	/** @var \phpbb\config\config */
@@ -62,18 +62,18 @@ class sortables extends \phpbb\captcha\plugins\qa
 
 	/**
 	 *
-	 * @param \phpbb\db\driver\driver_interface	$db
-	 * @param \phpbb\cache\service				$cache
-	 * @param \phpbb\config\config				$config
-	 * @param \phpbb\log\log_interface			$log
-	 * @param \phpbb\request\request_interface	$request
-	 * @param \phpbb\template\template			$template
-	 * @param \phpbb\user						$user
-	 * @param string							$table_sortables_questions
-	 * @param string							$table_sortables_answers
-	 * @param string							$table_sortables_confirm
+	 * @param \phpbb\db\driver\driver_interface		$db
+	 * @param \phpbb\cache\driver\driver_interface	$cache
+	 * @param \phpbb\config\config					$config
+	 * @param \phpbb\log\log_interface				$log
+	 * @param \phpbb\request\request_interface		$request
+	 * @param \phpbb\template\template				$template
+	 * @param \phpbb\user							$user
+	 * @param string								$table_sortables_questions
+	 * @param string								$table_sortables_answers
+	 * @param string								$table_sortables_confirm
 	 */
-	public function __construct(\phpbb\db\driver\driver_interface $db, \phpbb\cache\service $cache, \phpbb\config\config $config, \phpbb\log\log_interface $log, \phpbb\request\request_interface $request, \phpbb\template\template $template, \phpbb\user $user, $table_sortables_questions, $table_sortables_answers, $table_sortables_confirm)
+	public function __construct(\phpbb\db\driver\driver_interface $db, \phpbb\cache\driver\driver_interface $cache, \phpbb\config\config $config, \phpbb\log\log_interface $log, \phpbb\request\request_interface $request, \phpbb\template\template $template, \phpbb\user $user, $table_sortables_questions, $table_sortables_answers, $table_sortables_confirm)
 	{
 		$this->db = $db;
 		$this->cache = $cache;

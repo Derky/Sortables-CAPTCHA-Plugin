@@ -28,7 +28,7 @@ class sortables_acp_test extends \phpbb_test_case
 	{
 		$sortables = new \derky\sortablescaptcha\captcha\sortables(
 			$this->getMock('phpbb\db\driver\driver_interface'),
-			$this->getMockBuilder('\phpbb\cache\service')->disableOriginalConstructor()->getMock(),
+			$this->getMock('\phpbb\cache\driver\driver_interface'),
 			new \phpbb\config\config(array()),
 			new \phpbb\log\null(),
 			new \phpbb_mock_request(),
@@ -75,7 +75,7 @@ class sortables_acp_test extends \phpbb_test_case
 
 		$sortables = new \derky\sortablescaptcha\captcha\sortables(
 			$this->getMock('phpbb\db\driver\driver_interface'),
-			$this->getMockBuilder('\phpbb\cache\service')->disableOriginalConstructor()->getMock(),
+			$this->getMock('\phpbb\cache\driver\driver_interface'),
 			new \phpbb\config\config(array()),
 			new \phpbb\log\null(),
 			$request,
