@@ -14,6 +14,7 @@ class sortables_acp_test extends \phpbb_test_case
 	public static function acp_input_options_to_array_data()
 	{
 		return array(
+			array(''), array(),
 			array('a', array('a')),
 			array("a\n\nb", array('a', 'b')),
 			array("   a  \n   \n   b ", array('a', 'b')),
@@ -24,7 +25,7 @@ class sortables_acp_test extends \phpbb_test_case
 	/**
 	* @dataProvider acp_input_options_to_array_data
 	*/
-	public function test_acp_input_options_to_array($input_options_string, $expected_options_array)
+	public function test_acp_input_options_to_array($input_options_string = '', $expected_options_array = array())
 	{
 		$sortables = new \derky\sortablescaptcha\captcha\sortables(
 			$this->getMock('phpbb\db\driver\driver_interface'),
