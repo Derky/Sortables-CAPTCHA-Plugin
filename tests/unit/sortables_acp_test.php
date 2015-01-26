@@ -11,6 +11,29 @@ namespace derky\sortablescaptcha\captcha\tests\unit;
 class sortables_acp_test extends \phpbb_test_case
 {
 
+	/**
+	 * Construct sortables class with mocked services
+	 *
+	 * @param array $input_post_array Variables like submitted with $_POST
+	 * @return \derky\sortablescaptcha\captcha\sortables
+	 */
+	public function get_sortables($input_post_array = array())
+	{
+		$request = new \phpbb_mock_request(array(), $input_post_array);
+
+		return new \derky\sortablescaptcha\captcha\sortables(
+			$this->getMock('phpbb\db\driver\driver_interface'),
+			$this->getMock('\phpbb\cache\driver\driver_interface'),
+			new \phpbb\config\config(array()),
+			new \phpbb\log\null(),
+			$request,
+			$this->getMock('\phpbb\template\template'),
+			$this->getMock('\phpbb\user', array(), array('\phpbb\datetime')),
+			'phpbb_sortables_questions',
+			'phpbb_sortables_answers',
+			'phpbb_sortables_confirm');
+	}
+
 	public static function acp_input_options_to_array_data()
 	{
 		return array(
@@ -27,17 +50,7 @@ class sortables_acp_test extends \phpbb_test_case
 	*/
 	public function test_acp_input_options_to_array($input_options_string = '', $expected_options_array = array())
 	{
-		$sortables = new \derky\sortablescaptcha\captcha\sortables(
-			$this->getMock('phpbb\db\driver\driver_interface'),
-			$this->getMock('\phpbb\cache\driver\driver_interface'),
-			new \phpbb\config\config(array()),
-			new \phpbb\log\null(),
-			new \phpbb_mock_request(),
-			$this->getMock('\phpbb\template\template'),
-			$this->getMock('\phpbb\user', array(), array('\phpbb\datetime')),
-			'phpbb_sortables_questions',
-			'phpbb_sortables_answers',
-			'phpbb_sortables_confirm');
+		$sortables = $this->get_sortables();
 
 		$this->assertEquals($expected_options_array, $sortables->acp_input_options_to_array($input_options_string));
 	}
@@ -72,21 +85,8 @@ class sortables_acp_test extends \phpbb_test_case
 	*/
 	public function test_acp_get_question_input($input_post_array, $expected_array)
 	{
-		$request = new \phpbb_mock_request(array(), $input_post_array);
-
-		$sortables = new \derky\sortablescaptcha\captcha\sortables(
-			$this->getMock('phpbb\db\driver\driver_interface'),
-			$this->getMock('\phpbb\cache\driver\driver_interface'),
-			new \phpbb\config\config(array()),
-			new \phpbb\log\null(),
-			$request,
-			$this->getMock('\phpbb\template\template'),
-			$this->getMock('\phpbb\user', array(), array('\phpbb\datetime')),
-			'phpbb_sortables_questions',
-			'phpbb_sortables_answers',
-			'phpbb_sortables_confirm');
+		$sortables = $this->get_sortables($input_post_array);
 
 		$this->assertEquals($expected_array, $sortables->acp_get_question_input());
 	}
-
 }
