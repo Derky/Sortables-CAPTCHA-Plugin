@@ -30,6 +30,8 @@ class sortables extends \phpbb\captcha\plugins\qa
 	const SOLVED = 1;
 	const INCORRECT = 2;
 
+	var $acp_list_url;
+
 	/** @var \phpbb\db\driver\driver_interface */
 	protected $db;
 
@@ -550,7 +552,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 		$action = $this->request->variable('action', '');
 
 		// we have two pages, so users might want to navigate from one to the other
-		$list_url = $module->u_action . "&amp;configure=1&amp;select_captcha=" . $this->get_service_name();
+		$this->acp_list_url = $list_url = $module->u_action . "&amp;configure=1&amp;select_captcha=" . $this->get_service_name();
 
 		$this->template->assign_vars(array(
 				'U_ACTION'		=> $module->u_action,
@@ -565,28 +567,8 @@ class sortables extends \phpbb\captcha\plugins\qa
 		}
 		else if ($question_id && $action == 'delete')
 		{
-			if ($this->get_service_name() !== $this->config['captcha_plugin'] || !$this->acp_is_last($question_id))
-			{
-				if (confirm_box(true))
-				{
-					$this->acp_delete_question($question_id);
-					trigger_error($this->user->lang['QUESTION_DELETED'] . adm_back_link($list_url));
-				}
-				else
-				{
-					confirm_box(false, $this->user->lang['CONFIRM_OPERATION'], build_hidden_fields(array(
-						'question_id'		=> $question_id,
-						'action'			=> $action,
-						'configure'			=> 1,
-						'select_captcha'	=> $this->get_service_name(),
-						))
-					);
-				}
-			}
-			else
-			{
-				trigger_error($this->user->lang['QA_LAST_QUESTION'] . adm_back_link($list_url), E_USER_WARNING);
-			}
+			// Show confirm box and check for last question
+			$this->acp_question_delete_confirm($question_id);
 		}
 		else
 		{
@@ -678,6 +660,41 @@ class sortables extends \phpbb\captcha\plugins\qa
 		}
 	}
 
+	/**
+	 * Shows a confirm_box and deletes the question when confirmed.
+	 * This function displays an error when an admin tries to delete the last question while this captcha plugin is set as default.
+	 *
+	 * @param int $question_id
+	 */
+	protected function acp_question_delete_confirm($question_id)
+	{
+		// Make sure the user is not deleting the latest question when this captcha is set as default
+		if ($this->get_service_name() !== $this->config['captcha_plugin'] || !$this->acp_is_last($question_id))
+		{
+			// When the deletion is confirmed
+			if (confirm_box(true))
+			{
+				$this->acp_delete_question($question_id);
+				trigger_error($this->user->lang['QUESTION_DELETED'] . adm_back_link($this->acp_list_url));
+			}
+			else
+			{
+				// Show deletion confirm box
+				confirm_box(false, $this->user->lang['CONFIRM_OPERATION'], build_hidden_fields(array(
+					'question_id'		=> $question_id,
+					'action'			=> 'delete',
+					'configure'			=> 1,
+					'select_captcha'	=> $this->get_service_name(),
+					))
+				);
+			}
+		}
+		else
+		{
+			// Prevent the deletion of the latest question since this captcha is set as default
+			trigger_error($this->user->lang['QA_LAST_QUESTION'] . adm_back_link($this->acp_list_url), E_USER_WARNING);
+		}
+	}
 
 	/**
 	*  This handles the list overview
@@ -885,7 +902,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 		foreach ($tables as $table)
 		{
 			$sql = "DELETE FROM $table
-				WHERE question_id = $question_id";
+				WHERE question_id = " . (int) $question_id;
 			$this->db->sql_query($sql);
 		}
 
