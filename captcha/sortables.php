@@ -619,7 +619,8 @@ class sortables extends \phpbb\captcha\plugins\qa
 			{
 				$this->acp_page_display_editor($question_input);
 			}
-			else {
+			else
+			{
 				// Use the database question data
 				$this->acp_page_display_editor($question);
 			}
@@ -931,22 +932,19 @@ class sortables extends \phpbb\captcha\plugins\qa
 	 */
 	function acp_is_last($question_id)
 	{
-		if ($question_id)
-		{
-			$sql = 'SELECT question_id
-				FROM ' . $this->table_sortables_questions . "
-				WHERE lang_iso = '" . $this->db->sql_escape($this->config['default_lang']) . "'
-					AND  question_id <> " .  (int) $question_id;
-			$result = $this->db->sql_query_limit($sql, 1);
-			$question = $this->db->sql_fetchrow($result);
-			$this->db->sql_freeresult($result);
+		$sql = 'SELECT question_id
+			FROM ' . $this->table_sortables_questions . "
+			WHERE lang_iso = '" . $this->db->sql_escape($this->config['default_lang']) . "'
+				AND  question_id <> " .  (int) $question_id;
+		$result = $this->db->sql_query_limit($sql, 1);
+		$question = $this->db->sql_fetchrow($result);
+		$this->db->sql_freeresult($result);
 
-			if (!$question)
-			{
-				return true;
-			}
-			return false;
+		if (!$question)
+		{
+			return true;
 		}
+		return false;
 	}
 
 	/**
