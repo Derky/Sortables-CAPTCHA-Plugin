@@ -574,6 +574,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 		else // okay, show the editor
 		{
 			// Load question data if $question_id exists
+			$question = array(); // Make code analyzer happy
 			if ($question_id && !$question = $this->acp_get_question_data($question_id))
 			{
 				// Display an error when question not found
