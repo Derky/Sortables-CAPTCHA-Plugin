@@ -711,7 +711,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 		{
 			$sql = 'SELECT *
 				FROM ' . $this->table_sortables_questions . '
-				WHERE question_id = ' . $question_id;
+				WHERE question_id = ' . (int) $question_id;
 			$result = $this->db->sql_query($sql);
 			$question = $this->db->sql_fetchrow($result);
 			$this->db->sql_freeresult($result);
@@ -727,7 +727,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 
 			$sql = 'SELECT *
 				FROM ' . $this->table_sortables_answers . '
-				WHERE question_id = ' . $question_id;
+				WHERE question_id = ' . (int) $question_id;
 			$result = $this->db->sql_query($sql);
 
 			while ($row = $this->db->sql_fetchrow($result))
@@ -744,9 +744,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 			$this->db->sql_freeresult($result);
 			return $question;
 		}
-
 	}
-
 
 	/**
 	*  Grab a question from input and bring it into a format the editor understands
@@ -871,10 +869,10 @@ class sortables extends \phpbb\captcha\plugins\qa
 		$this->cache->destroy('sql', $this->table_sortables_answers);
 	}
 
-
 	/**
-	*  Delete a question.
-	*/
+	 * Delete a question.
+	 * @param integer $question_id
+	 */
 	function acp_delete_question($question_id)
 	{
 		$tables = array($this->table_sortables_questions, $this->table_sortables_answers);
@@ -911,8 +909,11 @@ class sortables extends \phpbb\captcha\plugins\qa
 	}
 
 	/**
-	*  See if there is a question other than the one we have
-	*/
+	 * See if there is a question other than the one we have
+	 *
+	 * @param integer $question_id
+	 * @return boolean
+	 */
 	function acp_is_last($question_id)
 	{
 		if ($question_id)
