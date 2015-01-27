@@ -860,27 +860,27 @@ class sortables extends \phpbb\captcha\plugins\qa
 	*/
 	function acp_insert_answers($data, $question_id)
 	{
-		foreach ($data['options_left'] as $answer)
+		// The boxes with options
+		$option_boxes = array(
+			0 => 'options_left',
+			1 => 'options_right'
+		);
+
+		// Loop through the two boxes with options
+		foreach ($option_boxes as $box_id => $box_name)
 		{
-			$answer_ary = array(
-				'answer_id'		=> $this->acp_gen_random_answer_id(),
-				'question_id'	=> $question_id,
-				'answer_sort'	=> 0,
-				'answer_text'	=> $answer,
-			);
-			$sql = 'INSERT INTO ' . $this->table_sortables_answers . $this->db->sql_build_array('INSERT', $answer_ary);
-			$this->db->sql_query($sql);
-		}
-		foreach ($data['options_right'] as $answer)
-		{
-			$answer_ary = array(
-				'answer_id'		=> $this->acp_gen_random_answer_id(),
-				'question_id'	=> $question_id,
-				'answer_sort'	=> 1,
-				'answer_text'	=> $answer,
-			);
-			$sql = 'INSERT INTO ' . $this->table_sortables_answers . $this->db->sql_build_array('INSERT', $answer_ary);
-			$this->db->sql_query($sql);
+			// Loop through each of the options within this box
+			foreach ($data[$box_name] as $answer)
+			{
+				$answer_ary = array(
+					'answer_id'		=> $this->acp_gen_random_answer_id(),
+					'question_id'	=> $question_id,
+					'answer_sort'	=> $box_id,
+					'answer_text'	=> $answer,
+				);
+				$sql = 'INSERT INTO ' . $this->table_sortables_answers . $this->db->sql_build_array('INSERT', $answer_ary);
+				$this->db->sql_query($sql);
+			}
 		}
 
 		$this->cache->destroy('sql', $this->table_sortables_answers);
