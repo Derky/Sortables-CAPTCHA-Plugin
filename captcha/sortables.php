@@ -612,30 +612,45 @@ class sortables extends \phpbb\captcha\plugins\qa
 				trigger_error($this->user->lang['FORM_INVALID'] . adm_back_link($list_url), E_USER_WARNING);
 			}
 
-			// Show $question_input instead of $question from the database when the form is submitted (and a validation error has occured) or
-			// when showing the editor for a new question ($question_input will return a set of blank fields)
-			$use_question_input = ($submit || !$question_id) ? true : false;
-
 			// If no trigger_error has kicked in yet, display the question fields
-			$this->template->assign_vars(array(
-				'QUESTION_TEXT'		=> ($use_question_input) ? $question_input['question_text'] : $question['question_text'],
-				'LANG_ISO'			=> ($use_question_input) ? $question_input['lang_iso'] : $question['lang_iso'],
-				'SORT'				=> ($use_question_input) ? $question_input['sort'] : $question['sort'],
-				'NAME_LEFT'			=> ($use_question_input) ? $question_input['name_left'] : $question['name_left'],
-				'NAME_RIGHT'		=> ($use_question_input) ? $question_input['name_right'] : $question['name_right'],
-				'OPTIONS_LEFT'		=> ($use_question_input) ? implode("\n", $question_input['options_left']) : implode("\n", $question['options_left']),
-				'OPTIONS_RIGHT'		=> ($use_question_input) ? implode("\n", $question_input['options_right']) : implode("\n", $question['options_right']),
-			));
-
-			// Create language selectbox
-			$langs = $this->get_languages();
-			foreach ($langs as $lang => $entry)
+			// Use the $question_input when the form is submitted and a validation error has occured or
+			// when showing the editor for a new question ($question_input will return a set of blank fields)
+			if ($submit || !$question_id)
 			{
-				$this->template->assign_block_vars('langs', array(
-					'ISO' => $lang,
-					'NAME' => $entry['name'],
-				));
+				$this->acp_page_display_editor($question_input);
 			}
+			else {
+				// Use the database question data
+				$this->acp_page_display_editor($question);
+			}
+		}
+	}
+
+	/**
+	 * When no trigger_error's have kicked in on the acp_page, display the question data
+	 *
+	 * @param array $question Can be $question (from database) or $question_input (from user)
+	 */
+	protected function acp_page_display_editor($question)
+	{
+		$this->template->assign_vars(array(
+			'QUESTION_TEXT'		=> $question['question_text'],
+			'LANG_ISO'			=> $question['lang_iso'],
+			'SORT'				=> $question['sort'],
+			'NAME_LEFT'			=> $question['name_left'],
+			'NAME_RIGHT'		=> $question['name_right'],
+			'OPTIONS_LEFT'		=> implode("\n", $question['options_left']),
+			'OPTIONS_RIGHT'		=> implode("\n", $question['options_right']),
+		));
+
+		// Create language selectbox
+		$langs = $this->get_languages();
+		foreach ($langs as $lang => $entry)
+		{
+			$this->template->assign_block_vars('langs', array(
+				'ISO' => $lang,
+				'NAME' => $entry['name'],
+			));
 		}
 	}
 
