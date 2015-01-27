@@ -555,12 +555,13 @@ class sortables extends \phpbb\captcha\plugins\qa
 		$this->acp_list_url = $list_url = $module->u_action . "&amp;configure=1&amp;select_captcha=" . $this->get_service_name();
 
 		$this->template->assign_vars(array(
-				'U_ACTION'		=> $module->u_action,
-				'QUESTION_ID'	=> $question_id ,
-				'CLASS'			=> $this->get_service_name(),
+			'U_ACTION'		=> $module->u_action,
+			'QUESTION_ID'	=> $question_id ,
+			'CLASS'			=> $this->get_service_name(),
+			'U_LIST'		=> $list_url,
 		));
 
-		// show the list?
+		// Show the list?
 		if (!$question_id && $action != 'add')
 		{
 			$this->acp_question_list($module);
@@ -570,69 +571,22 @@ class sortables extends \phpbb\captcha\plugins\qa
 			// Show confirm box and check for last question
 			$this->acp_question_delete_confirm($question_id);
 		}
-		else
+		else // okay, show the editor
 		{
-			// okay, show the editor
-			$input_question = $this->request->variable('question_text', '', true);
-			$input_lang = $this->request->variable('lang_iso', '');
-			$input_sort = $this->request->variable('sort', false);
-			$input_name_left = $this->request->variable('name_left', '', true);
-			$input_name_right = $this->request->variable('name_right', '', true);
-			$input_options_left = $this->request->variable('options_left', '', true);
-			$input_options_right = $this->request->variable('options_right', '', true);
-
-			// Create language selectbox
-			$langs = $this->get_languages();
-			foreach ($langs as $lang => $entry)
+			// Load question data if $question_id exists
+			if ($question_id && !$question = $this->acp_get_question_data($question_id))
 			{
-				$this->template->assign_block_vars('langs', array(
-					'ISO' => $lang,
-					'NAME' => $entry['name'],
-				));
+				// Display an error when question not found
+				trigger_error($this->user->lang['FORM_INVALID'] . adm_back_link($list_url));
 			}
 
-			$this->template->assign_vars(array(
-				'U_LIST'		=> $list_url,
-			));
+			// Get possible question input data
+			$question_input = $this->acp_get_question_input();
 
-			if ($question_id)
-			{
-				if ($question = $this->acp_get_question_data($question_id))
-				{
-					// If question is submitted, show submitted data, else return the question from the database. (This output is also shown when an error occurs)
-					$this->template->assign_vars(array(
-						'QUESTION_TEXT'		=> $this->request->is_set('question_text') ? $input_question : $question['question_text'],
-						'LANG_ISO'			=> $this->request->is_set('lang_iso') ? $input_lang : $question['lang_iso'],
-						'SORT'				=> $this->request->is_set('sort') ? $input_sort : $question['sort'],
-						'NAME_LEFT'			=> $this->request->is_set('name_left') ? $input_name_left : $question['name_left'],
-						'NAME_RIGHT'		=> $this->request->is_set('name_right') ? $input_name_right : $question['name_right'],
-						'OPTIONS_LEFT'		=> $this->request->is_set('options_left') ? $input_options_left : implode("\n", $question['options_left']),
-						'OPTIONS_RIGHT'		=> $this->request->is_set('options_right') ? $input_options_right : implode("\n", $question['options_right']),
-					));
-				}
-				else
-				{
-					trigger_error($this->user->lang['FORM_INVALID'] . adm_back_link($list_url));
-				}
-			}
-			else
-			{
-
-				$this->template->assign_vars(array(
-						'QUESTION_TEXT'		=> $input_question,
-						'LANG_ISO'			=> $input_lang,
-						'SORT'				=> $input_sort,
-						'NAME_LEFT'			=> $input_name_left,
-						'NAME_RIGHT'		=> $input_name_right,
-						'OPTIONS_LEFT'		=> $input_options_left,
-						'OPTIONS_RIGHT'		=> $input_options_right,
-				));
-			}
-
+			// When the form submitted
 			if ($submit && check_form_key($form_key))
 			{
-				$data = $this->acp_get_question_input();
-				if (!$this->validate_input($data))
+				if (!$this->validate_input($question_input))
 				{
 					$this->template->assign_vars(array(
 						'S_ERROR'			=> true,
@@ -642,11 +596,11 @@ class sortables extends \phpbb\captcha\plugins\qa
 				{
 					if ($question_id)
 					{
-						$this->acp_update_question($data, $question_id);
+						$this->acp_update_question($question_input, $question_id);
 					}
 					else
 					{
-						$this->acp_add_question($data);
+						$this->acp_add_question($question_input);
 					}
 
 					$this->log->add('admin', $this->user->data['user_id'], $this->user->ip, 'LOG_CONFIG_VISUAL');
@@ -656,6 +610,31 @@ class sortables extends \phpbb\captcha\plugins\qa
 			else if ($submit)
 			{
 				trigger_error($this->user->lang['FORM_INVALID'] . adm_back_link($list_url), E_USER_WARNING);
+			}
+
+			// Show $question_input instead of $question from the database when the form is submitted (and a validation error has occured) or
+			// when showing the editor for a new question ($question_input will return a set of blank fields)
+			$use_question_input = ($submit || !$question_id) ? true : false;
+
+			// If no trigger_error has kicked in yet, display the question fields
+			$this->template->assign_vars(array(
+				'QUESTION_TEXT'		=> ($use_question_input) ? $question_input['question_text'] : $question['question_text'],
+				'LANG_ISO'			=> ($use_question_input) ? $question_input['lang_iso'] : $question['lang_iso'],
+				'SORT'				=> ($use_question_input) ? $question_input['sort'] : $question['sort'],
+				'NAME_LEFT'			=> ($use_question_input) ? $question_input['name_left'] : $question['name_left'],
+				'NAME_RIGHT'		=> ($use_question_input) ? $question_input['name_right'] : $question['name_right'],
+				'OPTIONS_LEFT'		=> ($use_question_input) ? implode("\n", $question_input['options_left']) : implode("\n", $question['options_left']),
+				'OPTIONS_RIGHT'		=> ($use_question_input) ? implode("\n", $question_input['options_right']) : implode("\n", $question['options_right']),
+			));
+
+			// Create language selectbox
+			$langs = $this->get_languages();
+			foreach ($langs as $lang => $entry)
+			{
+				$this->template->assign_block_vars('langs', array(
+					'ISO' => $lang,
+					'NAME' => $entry['name'],
+				));
 			}
 		}
 	}
