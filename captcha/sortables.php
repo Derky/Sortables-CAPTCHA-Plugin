@@ -105,32 +105,15 @@ class sortables extends \phpbb\captcha\plugins\qa
 
 		// we need all defined questions - shouldn't be too many, so we can just grab them
 		// try the user's lang first
-		$sql = 'SELECT question_id
-				FROM ' . $this->table_sortables_questions . "
-				WHERE lang_iso = '" . $this->db->sql_escape($this->user->lang_name) . "'";
-		$result = $this->db->sql_query($sql, 3600);
-
-		while ($row = $this->db->sql_fetchrow($result))
-		{
-			$this->question_ids[$row['question_id']] = $row['question_id'];
-		}
-		$this->db->sql_freeresult($result);
+		$this->load_question_ids($this->user->lang_name);
 
 		// fallback to the board default lang
 		if (!sizeof($this->question_ids))
 		{
+			$this->load_question_ids($this->config['default_lang']);
+
+			// Overwrite the question_lang because the comfirm table uses this as well.
 			$this->question_lang = $this->config['default_lang'];
-
-			$sql = 'SELECT question_id
-					FROM ' . $this->table_sortables_questions . "
-					WHERE lang_iso = '" . $this->db->sql_escape($this->config['default_lang']) . "'";
-			$result = $this->db->sql_query($sql, 7200);
-
-			while ($row = $this->db->sql_fetchrow($result))
-			{
-				$this->question_ids[$row['question_id']] = $row['question_id'];
-			}
-			$this->db->sql_freeresult($result);
 		}
 
 		// okay, if there is a confirm_id, we try to load that confirm's state. If not, we try to find one
@@ -139,6 +122,26 @@ class sortables extends \phpbb\captcha\plugins\qa
 			// we have no valid confirm ID, better get ready to ask something
 			$this->select_question();
 		}
+	}
+
+	/**
+	 * Try to load the question ids for the specified language.
+	 * Note that this function doe not return the question ids.
+	 *
+	 * @param string $lang_iso
+	 */
+	protected function load_question_ids($lang_iso)
+	{
+		$sql = 'SELECT question_id
+				FROM ' . $this->table_sortables_questions . "
+				WHERE lang_iso = '" . $this->db->sql_escape($lang_iso) . "'";
+		$result = $this->db->sql_query($sql, 3600);
+
+		while ($row = $this->db->sql_fetchrow($result))
+		{
+			$this->question_ids[$row['question_id']] = $row['question_id'];
+		}
+		$this->db->sql_freeresult($result);
 	}
 
 	/**
