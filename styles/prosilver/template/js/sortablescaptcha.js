@@ -24,6 +24,9 @@ var sortablescaptcha = {
 			sortablescaptcha.createData(arrSortableListItemsLeft, 'sortables_options_left', '#sortables_options_left');
 			sortablescaptcha.createData(arrSortableListItemsRight, 'sortables_options_right', '#sortables_options_right');
 		});
+		
+		// Init the minimal height of the columns
+		this.refreshColumnsHeight();
 	},
 	
 	createData: function(listnameobject, column, resultid)
@@ -36,6 +39,9 @@ var sortablescaptcha = {
 				data.removeChild( data.firstChild );       
 			}
 		}
+		
+		// Make sure there's enough room in every column to drag more answers
+		this.refreshColumnsHeight();
 
 		// Run through all childs
 		$.each(listnameobject, function(){
@@ -52,6 +58,36 @@ var sortablescaptcha = {
 			data.appendChild(inputbox);
 		});
 	},
+	
+	// Make sorting intensions clearer
+	// This function changes the height of the boxes to amount of answers + 1. This is done to indicate the list is not "full".
+	refreshColumnsHeight: function() {
+		
+		// Get the height and margin of an answer
+		var answer_inner_height = $(".ui-sortable-handle").outerHeight();
+		var answer_vertical_margin = (($(".ui-sortable-handle").outerHeight(true) - $(".ui-sortable-handle").outerHeight(false)) / 2);
+		
+		// Add the margin to the inner_height to get the total height
+		var answer_total_height = (parseInt(answer_inner_height) + parseInt(answer_vertical_margin));
+		
+		// Update the min-height of each column based on the current amount of answers in there
+		$.each(["#sortable1", "#sortable2"], function(index, column_id) {
+		
+			// Count the total amount of answers in this column
+			var answer_count = $(column_id + " .ui-sortable-handle").length;
+	
+			// Add room for 1 extra answer and calculate the new min-height
+			var min_height = (parseInt(answer_count) + 1) * (parseInt(answer_total_height));
+			
+			// The absolute minimum of the droppable area should not be under 100px
+			if (!min_height || min_height < 100) {
+				min_height = 100;
+			}
+			
+			// Update the min-height of the column
+			$(column_id).css('min-height', min_height + 'px');
+		});
+	}
 }
 
 $(function() {
