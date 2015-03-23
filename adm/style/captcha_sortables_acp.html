@@ -9,7 +9,7 @@
 
 	<p>{L_QUESTIONS_EXPLAIN}</p>
 <!-- IF S_LIST -->
-	<form id="captcha_qa" method="post" action="{U_ACTION}">
+	<form id="captcha_sortables" method="post" action="{U_ACTION}">
 
 	<fieldset class="tabulated">
 	<legend>{L_QUESTIONS}</legend>
@@ -55,21 +55,21 @@
 			<p>{L_SORTABLES_ERROR_MSG}</p>
 		</div>
 	<!-- ENDIF -->
-	<form id="captcha_qa" method="post" action="{U_ACTION}">
+	<form id="captcha_sortables" method="post" action="{U_ACTION}">
 	<fieldset>
 		<legend>{L_EDIT_QUESTION}</legend>
 	<dl> 
-		<dt><label for="sort">{L_QUESTION_SORT}:</label><br /><span>{L_QUESTION_SORT_EXPLAIN}</span></dt>
-		<dd><label><input type="radio" class="radio" name="sort" value="0"<!-- IF not SORT --> id="sort" checked="checked"<!-- ENDIF --> /> {L_COLUMN_LEFT}<!-- IF NAME_LEFT -->: {NAME_LEFT}<!-- ENDIF --></label>
-			<label><input type="radio" class="radio" name="sort" value="1"<!-- IF SORT --> id="sort" checked="checked"<!-- ENDIF --> /> {L_COLUMN_RIGHT}<!-- IF NAME_RIGHT -->: {NAME_RIGHT}<!-- ENDIF --></label></dd>
+		<dt><label for="sort">{L_QUESTION_SORT}{L_COLON}</label><br /><span>{L_QUESTION_SORT_EXPLAIN}</span></dt>
+		<dd><label><input type="radio" class="radio" name="sort" value="0"<!-- IF not SORT --> id="sort" checked="checked"<!-- ENDIF --> /> {L_COLUMN_LEFT}<!-- IF NAME_LEFT -->{L_COLON} {NAME_LEFT}<!-- ENDIF --></label>
+			<label><input type="radio" class="radio" name="sort" value="1"<!-- IF SORT --> id="sort" checked="checked"<!-- ENDIF --> /> {L_COLUMN_RIGHT}<!-- IF NAME_RIGHT -->{L_COLON} {NAME_RIGHT}<!-- ENDIF --></label></dd>
 	</dl>
 	
 	<dl> 
-		<dt><label for="lang_iso">{L_QUESTION_LANG}</label><br /><span>{L_QUESTION_LANG_EXPLAIN}</span></dt>
+		<dt><label for="lang_iso">{L_QUESTION_LANG}{L_COLON}</label><br /><span>{L_QUESTION_LANG_EXPLAIN}</span></dt>
 		<dd><select id="lang_iso" name="lang_iso"><!-- BEGIN langs --><option value="{langs.ISO}" <!-- IF langs.ISO == LANG_ISO --> selected="selected" <!-- ENDIF -->>{langs.NAME}</option><!-- END langs --></select></dd>
 	</dl>
 	<dl> 
-		<dt><label for="question_text">{L_QUESTION_TEXT}</label><br /><span>{L_QUESTION_TEXT_EXPLAIN}</span></dt>
+		<dt><label for="question_text">{L_QUESTION_TEXT}{L_COLON}</label><br /><span>{L_QUESTION_TEXT_EXPLAIN}</span></dt>
 		<dd><input id="question_text" maxlength="255" size="60" name="question_text" type="text" value="{QUESTION_TEXT}" /></dd>
 	</dl>
 	</fieldset>
@@ -78,7 +78,7 @@
 		<fieldset style="margin:0;">
 			<legend>{L_COLUMN_LEFT}</legend>
 		<dl>
-			<dt><label for="name_left">{L_COLUMN_NAME}</label><br /><span>{L_COLUMN_NAME_LEFT_EXPLAIN}</span></dt>
+			<dt><label for="name_left">{L_COLUMN_NAME}{L_COLON}</label><br /><span>{L_COLUMN_NAME_LEFT_EXPLAIN}</span></dt>
 			<dd><input id="name_left" maxlength="255" style="width:100%;" name="name_left" type="text" value="{NAME_LEFT}" /></dd>
 		</dl>
 		<dl>
@@ -92,7 +92,7 @@
 		<fieldset style="margin:0;">
 			<legend>{L_COLUMN_RIGHT}</legend>
 		<dl>
-			<dt><label for="name_right">{L_COLUMN_NAME}</label><br /><span>{L_COLUMN_NAME_RIGHT_EXPLAIN}</span></dt>
+			<dt><label for="name_right">{L_COLUMN_NAME}{L_COLON}</label><br /><span>{L_COLUMN_NAME_RIGHT_EXPLAIN}</span></dt>
 			<dd><input id="name_right" maxlength="255" style="width:100%;" name="name_right" type="text" value="{NAME_RIGHT}" /></dd>
 		</dl>
 		<dl>
