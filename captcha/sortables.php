@@ -92,7 +92,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	/**
 	* @param int $type  as per the CAPTCHA API docs, the type
 	*/
-	function init($type)
+	public function init($type)
 	{
 		// load our language file
 		$this->user->add_lang_ext('derky/sortablescaptcha', 'captcha_sortables');
@@ -165,7 +165,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	/**
 	*  API function
 	*/
-	function has_config()
+	public function has_config()
 	{
 		return true;
 	}
@@ -181,7 +181,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	/**
 	*  API function - send the question to the template
 	*/
-	function get_template()
+	public function get_template()
 	{
 		if ($this->is_solved())
 		{
@@ -209,7 +209,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	/**
 	*  API function - we just display a mockup so that the captcha doesn't need to be installed
 	*/
-	function get_demo_template()
+	public function get_demo_template()
 	{
 		return '@derky_sortablescaptcha/captcha_sortables_acp_demo.html';
 	}
@@ -217,7 +217,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	/**
 	*  API function
 	*/
-	function get_hidden_fields()
+	public function get_hidden_fields()
 	{
 		$hidden_fields = array();
 
@@ -234,7 +234,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	/**
 	*  API function, just the same from captcha_qa but with other table names
 	*/
-	function garbage_collect($type = 0)
+	public function garbage_collect($type = 0)
 	{
 		$sql = 'SELECT c.confirm_id
 			FROM ' . $this->table_sortables_confirm . ' c
@@ -267,7 +267,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	/**
 	*  API function - we don't drop the tables here, as that would cause the loss of all entered questions.
 	*/
-	function uninstall()
+	public function uninstall()
 	{
 		$this->garbage_collect(0);
 	}
@@ -275,7 +275,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	/**
 	*  API function - create the tables needed for sortables captcha
 	*/
-	function install()
+	public function install()
 	{
 		// This is now handled by migrations when enabling this extension.
 		// Because this class extends the Q&A captcha, this function needs to be specified here to prevent generation of the QA captcha tables.
@@ -284,7 +284,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	/**
 	*  API function - see what has to be done to validate
 	*/
-	function validate()
+	public function validate()
 	{
 		$error = '';
 
@@ -326,7 +326,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	/**
 	*  Select a question
 	*/
-	function select_question()
+	public function select_question()
 	{
 		if (!sizeof($this->question_ids))
 		{
@@ -350,7 +350,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	/**
 	* New Question, if desired.
 	*/
-	function reselect_question()
+	public function reselect_question()
 	{
 		if (!sizeof($this->question_ids))
 		{
@@ -372,7 +372,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	/**
 	* Wrong answer, so we increase the attempts and use a different question.
 	*/
-	function new_attempt()
+	public function new_attempt()
 	{
 		// yah, I would prefer a stronger rand, but this should work
 		$this->question = (int) array_rand($this->question_ids);
@@ -392,7 +392,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	/**
 	* See if there is already an entry for the current session.
 	*/
-	function load_confirm_id()
+	public function load_confirm_id()
 	{
 		$sql = 'SELECT confirm_id
 			FROM ' . $this->table_sortables_confirm . "
@@ -415,7 +415,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	/**
 	* Look up everything we need and populate the instance variables.
 	*/
-	function load_answer()
+	public function load_answer()
 	{
 		if (!strlen($this->confirm_id) || !sizeof($this->question_ids))
 		{
@@ -470,7 +470,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	/**
 	*  The actual validation
 	*/
-	function check_answer()
+	public function check_answer()
 	{
 		// Well how did the user sorted it
 		$options_left = $this->request->variable('sortables_options_left', array(0));
@@ -505,7 +505,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	/**
 	*  API function
 	*/
-	function get_attempt_count()
+	public function get_attempt_count()
 	{
 		return $this->attempts;
 	}
@@ -513,7 +513,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	/**
 	*  API function
 	*/
-	function reset()
+	public function reset()
 	{
 		$sql = 'DELETE FROM ' . $this->table_sortables_confirm . "
 				WHERE session_id = '" . $this->db->sql_escape($this->user->session_id) . "'
@@ -527,7 +527,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	/**
 	*  API function
 	*/
-	function is_solved()
+	public function is_solved()
 	{
 		if ($this->request->variable('qa_answer', false) && $this->solved === $this::NOT_VALIDATED)
 		{
@@ -540,7 +540,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	/**
 	*  API function - The ACP backend, this marks the end of the easy methods
 	*/
-	function acp_page($id, &$module)
+	public function acp_page($id, &$module)
 	{
 		$this->user->add_lang('acp/board');
 		$this->user->add_lang_ext('derky/sortablescaptcha', 'captcha_sortables');
@@ -698,7 +698,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	/**
 	*  This handles the list overview
 	*/
-	function acp_question_list(&$module)
+	public function acp_question_list(&$module)
 	{
 		$sql = 'SELECT *
 				FROM ' . $this->table_sortables_questions;
@@ -725,7 +725,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	/**
 	*  Grab a question and bring it into a format the editor understands
 	*/
-	function acp_get_question_data($question_id)
+	public function acp_get_question_data($question_id)
 	{
 		if ($question_id)
 		{
@@ -769,7 +769,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	/**
 	*  Grab a question from input and bring it into a format the editor understands
 	*/
-	function acp_get_question_input()
+	public function acp_get_question_input()
 	{
 		$question = array(
 			'question_text'	=> $this->request->variable('question_text', '', true),
@@ -790,7 +790,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	* @param string $options
 	* @return array $options_array
 	*/
-	function acp_input_options_to_array($options)
+	public function acp_input_options_to_array($options)
 	{
 		// Split options (per line) to an array
 		$options_array = explode("\n", $options);
@@ -812,7 +812,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	*  Update a question.
 	* param mixed $data : an array as created from acp_get_question_input or acp_get_question_data
 	*/
-	function acp_update_question($data, $question_id)
+	public function acp_update_question($data, $question_id)
 	{
 		// easier to delete all answers than to figure out which to update
 		$sql = 'DELETE FROM ' . $this->table_sortables_answers . " WHERE question_id = $question_id";
@@ -838,7 +838,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	*  Insert a question.
 	* param mixed $data : an array as created from acp_get_question_input or acp_get_question_data
 	*/
-	function acp_add_question($data)
+	public function acp_add_question($data)
 	{
 		$langs = $this->get_languages();
 		$question_ary = $data;
@@ -861,7 +861,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	*  Insert the answers.
 	* param mixed $data : an array as created from acp_get_question_input or acp_get_question_data
 	*/
-	function acp_insert_answers($data, $question_id)
+	public function acp_insert_answers($data, $question_id)
 	{
 		// The boxes with options
 		$option_boxes = array(
@@ -893,7 +893,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	 * Delete a question.
 	 * @param integer $question_id
 	 */
-	function acp_delete_question($question_id)
+	public function acp_delete_question($question_id)
 	{
 		$tables = array($this->table_sortables_questions, $this->table_sortables_answers);
 		foreach ($tables as $table)
@@ -910,7 +910,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	*  Check if the entered data can be inserted/used
 	* param mixed $data : an array as created from acp_get_question_input or acp_get_question_data
 	*/
-	function validate_input($question_data)
+	public function validate_input($question_data)
 	{
 		$langs = $this->get_languages();
 
@@ -934,7 +934,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	 * @param integer $question_id
 	 * @return boolean
 	 */
-	function acp_is_last($question_id)
+	public function acp_is_last($question_id)
 	{
 		$sql = 'SELECT question_id
 			FROM ' . $this->table_sortables_questions . "
@@ -954,7 +954,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	/**
 	*	Get all answer_ids (used to check if a random answer_id is not already used)
 	*/
-	function acp_get_answer_ids()
+	protected function acp_get_answer_ids()
 	{
 		// If it's ready set, then stop here
 		if ($this->answer_ids)
@@ -986,7 +986,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	/**
 	*	Generate an unique answer_id
 	*/
-	function acp_gen_random_answer_id()
+	protected function acp_gen_random_answer_id()
 	{
 		// Get the already used ids
 		$answer_ids = $this->acp_get_answer_ids();
@@ -1006,7 +1006,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	/**
 	*	Get the random statement for this database layer
 	*/
-	function sql_random()
+	protected function sql_random()
 	{
 		switch ($this->db->get_sql_layer())
 		{
