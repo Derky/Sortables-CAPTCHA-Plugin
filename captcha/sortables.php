@@ -25,12 +25,13 @@ class sortables extends \phpbb\captcha\plugins\qa
 	var $type;
 	var $solved = 0;
 
+	protected $acp_form_key = 'acp_captcha_sortables';
+	protected $acp_list_url;
+
 	// Constants for $this->solved status
 	const NOT_VALIDATED = 0;
 	const SOLVED = 1;
 	const INCORRECT = 2;
-
-	var $acp_list_url;
 
 	/** @var \phpbb\db\driver\driver_interface */
 	protected $db;
@@ -544,21 +545,20 @@ class sortables extends \phpbb\captcha\plugins\qa
 
 		$module->tpl_name = '@derky_sortablescaptcha/captcha_sortables_acp';
 		$module->page_title = 'ACP_VC_SETTINGS';
-		$form_key = 'acp_captcha';
-		add_form_key($form_key);
+		add_form_key($this->acp_form_key);
 
-		$submit = $this->request->variable('submit', false);
 		$question_id = $this->request->variable('question_id', 0);
 		$action = $this->request->variable('action', '');
+		$submit = $this->request->variable('submit', false);
 
 		// we have two pages, so users might want to navigate from one to the other
-		$this->acp_list_url = $list_url = $module->u_action . "&amp;configure=1&amp;select_captcha=" . $this->get_service_name();
+		$this->acp_list_url = $module->u_action . "&amp;configure=1&amp;select_captcha=" . $this->get_service_name();
 
 		$this->template->assign_vars(array(
 			'U_ACTION'		=> $module->u_action,
 			'QUESTION_ID'	=> $question_id ,
 			'CLASS'			=> $this->get_service_name(),
-			'U_LIST'		=> $list_url,
+			'U_LIST'		=> $this->acp_list_url,
 		));
 
 		// Show the list?
@@ -566,65 +566,77 @@ class sortables extends \phpbb\captcha\plugins\qa
 		{
 			$this->acp_question_list($module);
 		}
+		// Delete question
 		else if ($question_id && $action == 'delete')
 		{
 			// Show confirm box and check for last question
 			$this->acp_question_delete_confirm($question_id);
 		}
-		else // okay, show the editor
+		else // Add or edit question
 		{
-			// Load question data if $question_id exists
-			$question = array(); // Make code analyzer happy
-			if ($question_id && !$question = $this->acp_get_question_data($question_id))
-			{
-				// Display an error when question not found
-				trigger_error($this->user->lang['FORM_INVALID'] . adm_back_link($list_url));
-			}
+			$this->acp_add_or_edit_question($question_id, $submit);
+		}
+	}
 
-			// Get possible question input data
-			$question_input = $this->acp_get_question_input();
+	/**
+	 * Handle the ACP page for adding/editing questions. Validate input, display errors and save to database.
+	 *
+	 * @param int $question_id
+	 * @param boolean $submit Determines if the editor should just be shown or that it should be validated/saved.
+	 */
+	protected function acp_add_or_edit_question($question_id = 0, $submit = false)
+	{
+		// Load question data if $question_id exists
+		$question = array(); // Make code analyzer happy
+		if ($question_id && !$question = $this->acp_get_question_data($question_id))
+		{
+			// Display an error when question not found
+			trigger_error($this->user->lang['FORM_INVALID'] . adm_back_link($this->acp_list_url));
+		}
 
-			// When the form submitted
-			if ($submit && check_form_key($form_key))
-			{
-				if (!$this->validate_input($question_input))
-				{
-					$this->template->assign_vars(array(
-						'S_ERROR'			=> true,
-					));
-				}
-				else
-				{
-					if ($question_id)
-					{
-						$this->acp_update_question($question_input, $question_id);
-					}
-					else
-					{
-						$this->acp_insert_question($question_input);
-					}
+		// Get possible question input data
+		$question_input = $this->acp_get_question_input();
 
-					$this->log->add('admin', $this->user->data['user_id'], $this->user->ip, 'LOG_CONFIG_VISUAL');
-					trigger_error($this->user->lang['CONFIG_UPDATED'] . adm_back_link($list_url));
-				}
-			}
-			else if ($submit)
+		// When the form submitted
+		if ($submit && check_form_key($this->acp_form_key))
+		{
+			if (!$this->validate_input($question_input))
 			{
-				trigger_error($this->user->lang['FORM_INVALID'] . adm_back_link($list_url), E_USER_WARNING);
-			}
-
-			// If no trigger_error has kicked in yet, display the question fields
-			// Use the $question_input when the form is submitted and a validation error has occured or
-			// when showing the editor for a new question ($question_input will return a set of blank fields)
-			if ($submit || !$question_id)
-			{
-				$this->acp_page_display_editor($question_input);
+				$this->template->assign_vars(array(
+					'S_ERROR'			=> true,
+				));
 			}
 			else
 			{
-				// Use the database question data
-				$this->acp_page_display_editor($question);
+				if ($question_id)
+				{
+					$this->acp_update_question($question_input, $question_id);
+				}
+				else
+				{
+					$this->acp_insert_question($question_input);
+				}
+
+				$this->log->add('admin', $this->user->data['user_id'], $this->user->ip, 'LOG_CONFIG_VISUAL');
+				trigger_error($this->user->lang['CONFIG_UPDATED'] . adm_back_link($this->acp_list_url));
 			}
+		}
+		else if ($submit)
+		{
+			trigger_error($this->user->lang['FORM_INVALID'] . adm_back_link($this->acp_list_url), E_USER_WARNING);
+		}
+
+		// If no trigger_error has kicked in yet, display the question fields
+		// Use the $question_input when the form is submitted and a validation error has occured or
+		// when showing the editor for a new question ($question_input will return a set of blank fields)
+		if ($submit || !$question_id)
+		{
+			$this->acp_page_display_editor($question_input);
+		}
+		else
+		{
+			// Use the database question data
+			$this->acp_page_display_editor($question);
 		}
 	}
 
