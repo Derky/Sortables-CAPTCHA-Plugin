@@ -70,9 +70,9 @@ class ext extends \phpbb\extension\base
 
 				// Remove the remember flag for sortables being the default captcha.
 				return $this->handle_default_captcha_on('purge');
-				
+
 			default:
-				
+
 				// Run parent purge step method
 				return parent::purge_step($old_state);
 		}
@@ -85,8 +85,8 @@ class ext extends \phpbb\extension\base
 	 * @param string $step enable,disable,purge
 	 * @return string
 	 */
-	public function handle_default_captcha_on($step) {
-
+	public function handle_default_captcha_on($step)
+	{
 		// Get config
 		$config = $this->container->get('config');
 
@@ -103,9 +103,9 @@ class ext extends \phpbb\extension\base
 				// Always clean up the remember flag
 				$config->delete(self::CONFIG_SORTABLES_CAPTCHA_WAS_DEFAULT);
 			break;
-		
+
 			case 'disable':
-				
+
 				// Check if sortables currently is the default captcha
 				if ($config['captcha_plugin'] === self::SORTABLES_CAPTCHA_SERVICE_NAME)
 				{
@@ -122,7 +122,7 @@ class ext extends \phpbb\extension\base
 				$config->delete(self::CONFIG_SORTABLES_CAPTCHA_WAS_DEFAULT);
 			break;
 		}
-		
+
 		return 'default_captcha_handled';
 	}
 }
