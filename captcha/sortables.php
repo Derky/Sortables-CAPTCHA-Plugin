@@ -604,7 +604,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 					}
 					else
 					{
-						$this->acp_add_question($question_input);
+						$this->acp_insert_question($question_input);
 					}
 
 					$this->log->add('admin', $this->user->data['user_id'], $this->user->ip, 'LOG_CONFIG_VISUAL');
@@ -835,10 +835,10 @@ class sortables extends \phpbb\captcha\plugins\qa
 	}
 
 	/**
-	*  Insert a question.
-	* param mixed $data : an array as created from acp_get_question_input or acp_get_question_data
-	*/
-	public function acp_add_question($data)
+	 * Insert a question
+	 * @param mixed $data An array as created from acp_get_question_input or acp_get_question_data
+	 */
+	public function acp_insert_question($data)
 	{
 		$langs = $this->get_languages();
 		$question_ary = $data;
