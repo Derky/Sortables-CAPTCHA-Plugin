@@ -809,9 +809,11 @@ class sortables extends \phpbb\captcha\plugins\qa
 	}
 
 	/**
-	*  Update a question.
-	* param mixed $data : an array as created from acp_get_question_input or acp_get_question_data
-	*/
+	 * Update a question
+	 *
+	 * @param mixed $data An array as created from acp_get_question_input or acp_get_question_data
+	 * @param integer $question_id
+	 */
 	public function acp_update_question($data, $question_id)
 	{
 		// easier to delete all answers than to figure out which to update
@@ -890,7 +892,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	}
 
 	/**
-	 * Delete a question.
+	 * Delete a question
 	 * @param integer $question_id
 	 */
 	public function acp_delete_question($question_id)
