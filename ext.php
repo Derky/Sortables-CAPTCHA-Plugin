@@ -14,6 +14,18 @@ class ext extends \phpbb\extension\base
 	const CONFIG_SORTABLES_CAPTCHA_WAS_DEFAULT = 'sortables_captcha_was_default';
 
 	/**
+	 * Check the phpBB version to determine if this extension can be enabled.
+	 * The path of INCLUDECSS has changed since 3.1.3. This check is added to prevent usage with older versions where CSS will not being included.
+	 *
+	 * @return boolean
+	 */
+	public function is_enableable()
+	{
+		$config = $this->container->get('config');
+		return version_compare($config['version'], '3.1.3', '>=');
+	}
+
+	/**
 	* Single enable step
 	*
 	* @param mixed $old_state State returned by previous call of this method
