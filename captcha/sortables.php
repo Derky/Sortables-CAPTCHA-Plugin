@@ -443,7 +443,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 			// Let's load the answers
 			$sql = 'SELECT answer_id, answer_text
 				FROM ' . $this->table_sortables_answers . "
-				WHERE question_id = '" . (int) $this->question . "'
+				WHERE question_id = " . (int) $this->question . "
 				ORDER BY " . $this->sql_random();
 			$result = $this->db->sql_query($sql);
 
@@ -826,7 +826,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	public function acp_update_question($data, $question_id)
 	{
 		// easier to delete all answers than to figure out which to update
-		$sql = 'DELETE FROM ' . $this->table_sortables_answers . " WHERE question_id = $question_id";
+		$sql = 'DELETE FROM ' . $this->table_sortables_answers . " WHERE question_id = " . (int) $question_id;
 		$this->db->sql_query($sql);
 
 		$langs = $this->get_languages();
