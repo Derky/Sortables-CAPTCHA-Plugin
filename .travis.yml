@@ -36,8 +36,7 @@ env:
 
 branches:
   only:
-    - develop
-    - /^develop-.*$/
+    - master
 
 install:
   - composer install --dev --no-interaction --prefer-source
