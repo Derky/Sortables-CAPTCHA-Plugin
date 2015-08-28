@@ -1,10 +1,10 @@
 <?php
 /**
 *
-* Sortables Captcha extension for the phpBB Forum Software package.
+* sortables captcha [French]
 * French translation by Maël Soucaze <http://mael.soucaze.com/> & Galixte (http://www.galixte.com)
 *
-* @copyright (c) 2015 Derky <http://www.derky.nl>
+* @copyright (c) Derky <http://www.derky.nl>
 * @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
