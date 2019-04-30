@@ -538,7 +538,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	/**
 	*  API function - The ACP backend, this marks the end of the easy methods
 	*/
-	public function acp_page($id, &$module)
+	public function acp_page($id, $module)
 	{
 		$this->user->add_lang('acp/board');
 		$this->user->add_lang_ext('derky/sortablescaptcha', 'captcha_sortables');
@@ -707,7 +707,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	/**
 	*  This handles the list overview
 	*/
-	public function acp_question_list(&$module)
+	public function acp_question_list($module)
 	{
 		$sql = 'SELECT *
 				FROM ' . $this->table_sortables_questions;
