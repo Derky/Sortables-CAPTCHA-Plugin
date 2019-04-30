@@ -109,7 +109,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 		$this->load_question_ids($this->user->lang_name);
 
 		// fallback to the board default lang
-		if (!sizeof($this->question_ids))
+		if (!count($this->question_ids))
 		{
 			$this->load_question_ids($this->config['default_lang']);
 
@@ -252,7 +252,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 			}
 			while ($row = $this->db->sql_fetchrow($result));
 
-			if (sizeof($sql_in))
+			if (count($sql_in))
 			{
 				$sql = 'DELETE FROM ' . $this->table_sortables_confirm . '
 					WHERE ' . $this->db->sql_in_set('confirm_id', $sql_in);
@@ -286,7 +286,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	{
 		$error = '';
 
-		if (!sizeof($this->question_ids))
+		if (!count($this->question_ids))
 		{
 			return false;
 		}
@@ -326,7 +326,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	*/
 	public function select_question()
 	{
-		if (!sizeof($this->question_ids))
+		if (!count($this->question_ids))
 		{
 			return false;
 		}
@@ -350,7 +350,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	*/
 	public function reselect_question()
 	{
-		if (!sizeof($this->question_ids))
+		if (!count($this->question_ids))
 		{
 			return false;
 		}
@@ -415,7 +415,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	*/
 	public function load_answer()
 	{
-		if (!strlen($this->confirm_id) || !sizeof($this->question_ids))
+		if (!strlen($this->confirm_id) || !count($this->question_ids))
 		{
 			return false;
 		}
@@ -475,7 +475,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 		$options_right = $this->request->variable('sortables_options_right', array(0));
 
 		// Make sure the didn't submitted more options then it should (like trying everything... left/right: options ^ 2 )
-		if ($this->total_options === sizeof($options_left) + sizeof($options_right))
+		if ($this->total_options === count($options_left) + count($options_right))
 		{
 			// Let's count how many options the user sorted correctly
 			$sql = 'SELECT COUNT(*) AS total
