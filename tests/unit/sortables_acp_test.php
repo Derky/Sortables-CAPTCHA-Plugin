@@ -25,7 +25,7 @@ class sortables_acp_test extends \phpbb_test_case
 			$this->getMock('phpbb\db\driver\driver_interface'),
 			$this->getMock('\phpbb\cache\driver\driver_interface'),
 			new \phpbb\config\config(array()),
-			new \phpbb\log\null(),
+			new \phpbb\log\dummy(),
 			$request,
 			$this->getMock('\phpbb\template\template'),
 			$this->getMock('\phpbb\user', array(), array('\phpbb\datetime')),
