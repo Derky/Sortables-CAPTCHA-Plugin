@@ -10,6 +10,23 @@ namespace derky\sortablescaptcha\captcha\tests\unit;
 
 class sortables_acp_test extends \phpbb_test_case
 {
+	/** @var \phpbb\cache\driver\driver_interface|\PHPUnit_Framework_MockObject_MockObject */
+	protected $cache;
+
+	/** @var \phpbb\config\config */
+	protected $config;
+
+	/** @var \phpbb\db\driver\driver_interface|\PHPUnit_Framework_MockObject_MockObject */
+	protected $driver;
+
+	/** @var \phpbb\language\language */
+	protected $language;
+
+	/** @var \phpbb\user|\PHPUnit_Framework_MockObject_MockObject */
+	protected $user;
+
+	/** @var \phpbb\template\template|\PHPUnit_Framework_MockObject_MockObject */
+	protected $template;
 
 	/**
 	 * Construct sortables class with mocked services
@@ -19,16 +36,41 @@ class sortables_acp_test extends \phpbb_test_case
 	 */
 	public function get_sortables($input_post_array = array())
 	{
+		global $phpbb_root_path, $phpEx;
+		
 		$request = new \phpbb_mock_request(array(), $input_post_array);
 
+		$this->cache = $this->getMockBuilder('\phpbb\cache\driver\driver_interface')
+			->disableOriginalConstructor()
+			->getMock();
+
+		$this->config = new \phpbb\config\config(array());
+
+		$this->driver = $this->getMockBuilder('\phpbb\db\driver\driver_interface')
+			->disableOriginalConstructor()
+			->getMock();
+
+		$this->language = new \phpbb\language\language(new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx));
+		
+		$this->user = $this->getMockBuilder('\phpbb\user')
+			->setConstructorArgs(array(
+				$this->language,
+				'\phpbb\datetime'
+			))
+			->getMock();
+
+		$this->template = $this->getMockBuilder('\phpbb\template\template')
+			->disableOriginalConstructor()
+			->getMock();
+
 		return new \derky\sortablescaptcha\captcha\sortables(
-			$this->getMock('phpbb\db\driver\driver_interface'),
-			$this->getMock('\phpbb\cache\driver\driver_interface'),
+			$this->driver,
+			$this->cache,
 			new \phpbb\config\config(array()),
 			new \phpbb\log\dummy(),
 			$request,
-			$this->getMock('\phpbb\template\template'),
-			$this->getMock('\phpbb\user', array(), array('\phpbb\datetime')),
+			$this->template,
+			$this->user,
 			'phpbb_sortables_questions',
 			'phpbb_sortables_answers',
 			'phpbb_sortables_confirm');
