@@ -63,6 +63,18 @@ class sortables extends \phpbb\captcha\plugins\qa
 	/** @var string */
 	protected $table_sortables_confirm;
 
+	/** @var string */
+	private $question;
+
+	/** @var string */
+	private $name_left;
+
+	/** @var string */
+	private $name_right;
+
+	/** @var int */
+	private $total_options;
+
 	/**
 	 *
 	 * @param \phpbb\db\driver\driver_interface		$db
@@ -113,7 +125,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 		{
 			$this->load_question_ids($this->config['default_lang']);
 
-			// Overwrite the question_lang because the comfirm table uses this as well.
+			// Overwrite the question_lang because the confirm table uses this as well.
 			$this->question_lang = $this->config['default_lang'];
 		}
 
@@ -393,7 +405,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 			WHERE
 				session_id = '" . $this->db->sql_escape($this->user->session_id) . "'
 				AND lang_iso = '" . $this->db->sql_escape($this->question_lang) . "'
-				AND confirm_type = " . $this->type;
+				AND confirm_type = " . (int) $this->type;
 		$result = $this->db->sql_query_limit($sql, 1);
 		$confirm_id = $this->db->sql_fetchfield('confirm_id');
 		$this->db->sql_freeresult($result);
@@ -422,7 +434,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 				AND confirm_id = '" . $this->db->sql_escape($this->confirm_id) . "'
 				AND session_id = '" . $this->db->sql_escape($this->user->session_id) . "'
 				AND qes.lang_iso = '" . $this->db->sql_escape($this->question_lang) . "'
-				AND confirm_type = " . $this->type;
+				AND confirm_type = " . (int) $this->type;
 		$result = $this->db->sql_query($sql);
 		$row = $this->db->sql_fetchrow($result);
 		$this->db->sql_freeresult($result);
@@ -834,7 +846,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 
 		$sql = "UPDATE " . $this->table_sortables_questions . '
 			SET ' . $this->db->sql_build_array('UPDATE', $question_ary) . "
-			WHERE question_id = $question_id";
+			WHERE question_id = " . (int) $question_id;
 		$this->db->sql_query($sql);
 
 		$this->acp_insert_answers($data, $question_id);
