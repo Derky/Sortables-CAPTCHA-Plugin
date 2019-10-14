@@ -188,20 +188,18 @@ class sortables extends \phpbb\captcha\plugins\qa
 		{
 			return false;
 		}
-		else
-		{
-			$this->template->assign_vars(array(
-				'SORTABLES_CONFIRM_QUESTION'	=> $this->question_text,
-				'SORTABLES_CONFIRM_ID'			=> $this->confirm_id,
-				'SORTABLES_NAME_LEFT'			=> $this->name_left,
-				'SORTABLES_NAME_RIGHT'			=> $this->name_right,
-				'SORTABLES_DEFAULT_SORT'		=> (!$this->question_sort) ? 'LEFT' : 'RIGHT', // 0 = left, 1 = right
-				'S_CONFIRM_CODE'				=> true,
-				'S_TYPE'						=> $this->type,
-			));
 
-			return '@derky_sortablescaptcha/captcha_sortables.html';
-		}
+		$this->template->assign_vars(array(
+			'SORTABLES_CONFIRM_QUESTION'	=> $this->question_text,
+			'SORTABLES_CONFIRM_ID'			=> $this->confirm_id,
+			'SORTABLES_NAME_LEFT'			=> $this->name_left,
+			'SORTABLES_NAME_RIGHT'			=> $this->name_right,
+			'SORTABLES_DEFAULT_SORT'		=> (!$this->question_sort) ? 'LEFT' : 'RIGHT', // 0 = left, 1 = right
+			'S_CONFIRM_CODE'				=> true,
+			'S_TYPE'						=> $this->type,
+		));
+
+		return '@derky_sortablescaptcha/captcha_sortables.html';
 	}
 
 	/**
@@ -315,10 +313,8 @@ class sortables extends \phpbb\captcha\plugins\qa
 
 			return $error;
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
