@@ -558,7 +558,6 @@ class sortables extends \phpbb\captcha\plugins\qa
 			'U_ACTION'		=> $module->u_action,
 			'QUESTION_ID'	=> $question_id ,
 			'CLASS'			=> $this->get_service_name(),
-			'U_LIST'		=> $this->acp_list_url,
 		));
 
 		// Show the list?
@@ -574,6 +573,8 @@ class sortables extends \phpbb\captcha\plugins\qa
 		}
 		else // Add or edit question
 		{
+			$this->template->assign_var('U_LIST', $this->acp_list_url);
+
 			$this->acp_add_or_edit_question($question_id, $submit);
 		}
 	}
