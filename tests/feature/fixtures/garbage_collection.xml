@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dataset>
+	<table name="phpbb_sortables_confirm">
+		<column>session_id</column>
+		<column>confirm_id</column>
+		<row>
+			<value>session1</value>
+			<value>confirm1</value>
+		</row>
+		<row>
+			<value>session2</value>
+			<value>confirm2</value>
+		</row>
+		<row>
+			<value>session3</value>
+			<value>confirm3</value>
+		</row>
+	</table>
+	<table name="phpbb_sessions">
+		<column>session_id</column>
+		<row>
+			<value>session1</value>
+		</row>
+		<row>
+			<value>session4</value>
+		</row>
+	</table>
+</dataset>
