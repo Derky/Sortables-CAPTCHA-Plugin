@@ -240,36 +240,24 @@ class sortables extends \phpbb\captcha\plugins\qa
 	}
 
 	/**
-	*  API function, just the same from captcha_qa but with other table names
+	*  API function, if sessions are pruned also remove related sortables_confirm rows
 	*/
 	public function garbage_collect($type = 0)
 	{
-		$sql = 'SELECT c.confirm_id
-			FROM ' . $this->table_sortables_confirm . ' c
-			LEFT JOIN ' . SESSIONS_TABLE . ' s
-				ON (c.session_id = s.session_id)
-			WHERE s.session_id IS NULL' .
-				((empty($type)) ? '' : ' AND c.confirm_type = ' . (int) $type);
-		$result = $this->db->sql_query($sql);
-
-		if ($row = $this->db->sql_fetchrow($result))
-		{
-			$sql_in = array();
-
-			do
-			{
-				$sql_in[] = (string) $row['confirm_id'];
-			}
-			while ($row = $this->db->sql_fetchrow($result));
-
-			if (count($sql_in))
-			{
-				$sql = 'DELETE FROM ' . $this->table_sortables_confirm . '
-					WHERE ' . $this->db->sql_in_set('confirm_id', $sql_in);
-				$this->db->sql_query($sql);
-			}
-		}
-		$this->db->sql_freeresult($result);
+		// Using subquery for SQLite support (instead of using DELETE with LEFT JOIN directly) this however causes the following
+		// problem in MySQL "You can't specify target table for update in FROM clause", workaround by adding a derived table on the subquery result
+		$sql = 'DELETE FROM ' . $this->table_sortables_confirm . '
+			WHERE confirm_id IN (
+				SELECT derived.confirm_id 
+				FROM (
+					SELECT c.confirm_id
+					FROM ' . $this->table_sortables_confirm . ' c
+					LEFT JOIN ' . SESSIONS_TABLE . ' s
+						ON (c.session_id = s.session_id)
+					WHERE s.session_id IS NULL' .
+						((empty($type)) ? '' : ' AND c.confirm_type = ' . (int) $type) .
+					') derived)';
+		$this->db->sql_query($sql);
 	}
 
 	/**
