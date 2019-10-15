@@ -4,7 +4,7 @@
 	"description": "Sortables Captcha Extension for phpBB 3.2. This captcha plugin allows you to add questions and provide answers in two separate columns. An user will see all the answers in one column and has to drag some answers to the other column to successfully complete the captcha.",
 	"homepage": "https://github.com/Derky/Sortables-CAPTCHA-Plugin",
 	"version": "2.0.1",
-	"time": "2019-09-22",
+	"time": "2019-10-15",
 	"license": "GPL-2.0-only",
 	"authors": [{
 			"name": "Derky",
