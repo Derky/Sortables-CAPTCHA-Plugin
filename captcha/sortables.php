@@ -121,7 +121,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 		$this->load_question_ids($this->user->lang_name);
 
 		// fallback to the board default lang
-		if (!count($this->question_ids))
+		if (!$this->question_ids)
 		{
 			$this->load_question_ids($this->config['default_lang']);
 
@@ -284,7 +284,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	{
 		$error = '';
 
-		if (!count($this->question_ids))
+		if (!$this->question_ids)
 		{
 			return false;
 		}
@@ -322,7 +322,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	*/
 	public function select_question()
 	{
-		if (!count($this->question_ids))
+		if (!$this->question_ids)
 		{
 			return false;
 		}
@@ -346,7 +346,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	*/
 	public function reselect_question()
 	{
-		if (!count($this->question_ids))
+		if (!$this->question_ids)
 		{
 			return false;
 		}
