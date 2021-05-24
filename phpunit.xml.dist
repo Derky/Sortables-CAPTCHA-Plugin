@@ -15,13 +15,11 @@
 	<testsuites>
 		<testsuite name="Extension Test Suite">
 			<directory suffix="_test.php">./tests</directory>
+			<exclude>./tests/functional</exclude>
 		</testsuite>
 	</testsuites>
 
 	<filter>
-		<blacklist>
-			<directory>./tests/</directory>
-		</blacklist>
 		<whitelist processUncoveredFilesFromWhitelist="true">
 			<directory suffix=".php">./</directory>
 			<exclude>
