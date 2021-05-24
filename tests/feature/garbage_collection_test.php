@@ -37,7 +37,7 @@ class garbage_collection_test extends \phpbb_database_test_case
 
 		$this->table_prefix = $table_prefix;
 		$this->db = $this->new_dbal();
-		$this->db_tools = new \phpbb\db\tools($this->db);
+		$this->db_tools = new \phpbb\db\tools\tools($this->db);
 	}
 
 	/**
