@@ -845,6 +845,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	/**
 	 * Insert a question
 	 * @param mixed $data An array as created from acp_get_question_input or acp_get_question_data
+	 * @return int $question_id
 	 */
 	public function acp_insert_question($data)
 	{
@@ -863,6 +864,8 @@ class sortables extends \phpbb\captcha\plugins\qa
 		$this->acp_insert_answers($data, $question_id);
 
 		$this->cache->destroy('sql', $this->table_sortables_questions);
+
+		return $question_id;
 	}
 
 	/**
