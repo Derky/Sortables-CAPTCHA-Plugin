@@ -1,11 +1,11 @@
 <?php
 /**
 *
-* sortables captcha [English]
+* sortables captcha [Slovenian]
 *
 * @copyright (c) Derky <http://www.derky.nl>
 * @license GNU General Public License, version 2 (GPL-2.0)
-* Slovenian Translation - Marko K.(max, max-ima,...)
+* Slovenian Translation - Marko K.(max, max-ima)
 */
 
 /**
