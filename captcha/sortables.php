@@ -248,7 +248,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 		// problem in MySQL "You can't specify target table for update in FROM clause", workaround by adding a derived table on the subquery result
 		$sql = 'DELETE FROM ' . $this->table_sortables_confirm . '
 			WHERE confirm_id IN (
-				SELECT derived.confirm_id 
+				SELECT derived.confirm_id
 				FROM (
 					SELECT c.confirm_id
 					FROM ' . $this->table_sortables_confirm . ' c
@@ -845,6 +845,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	/**
 	 * Insert a question
 	 * @param mixed $data An array as created from acp_get_question_input or acp_get_question_data
+	 * @return int $question_id
 	 */
 	public function acp_insert_question($data)
 	{
@@ -863,6 +864,8 @@ class sortables extends \phpbb\captcha\plugins\qa
 		$this->acp_insert_answers($data, $question_id);
 
 		$this->cache->destroy('sql', $this->table_sortables_questions);
+
+		return $question_id;
 	}
 
 	/**
@@ -876,6 +879,12 @@ class sortables extends \phpbb\captcha\plugins\qa
 			0 => 'options_left',
 			1 => 'options_right'
 		);
+
+		// Allow random answer IDs for MSSQL (by default not allowed in an identity column)
+		if ($this->is_mssql())
+		{
+			$this->mssql_set_identity_insert($this->table_sortables_answers, true);
+		}
 
 		// Loop through the two boxes with options
 		foreach ($option_boxes as $box_id => $box_name)
@@ -892,6 +901,12 @@ class sortables extends \phpbb\captcha\plugins\qa
 				$sql = 'INSERT INTO ' . $this->table_sortables_answers . $this->db->sql_build_array('INSERT', $answer_ary);
 				$this->db->sql_query($sql);
 			}
+		}
+
+		// Restore MSSQL identity column setting to OFF
+		if ($this->is_mssql())
+		{
+			$this->mssql_set_identity_insert($this->table_sortables_answers, false);
 		}
 
 		$this->cache->destroy('sql', $this->table_sortables_answers);
@@ -1033,5 +1048,27 @@ class sortables extends \phpbb\captcha\plugins\qa
 			default:
 				return 'RAND()';
 		}
+	}
+
+	/**
+	 * Check if MSSQL database layer is used
+	 *
+	 * @return bool
+	 */
+	protected function is_mssql()
+	{
+		return (false !== strpos($this->db->get_sql_layer(), 'mssql'));
+	}
+
+	/**
+	 * Configure identity insert for MSSQL to be able to set IDs of specific tables
+	 *
+	 * @param string $table
+	 * @param bool $enable
+	 */
+	protected function mssql_set_identity_insert($table, $enable)
+	{
+		$sql = 'SET IDENTITY_INSERT ' . $this->db->sql_escape($table) . ' ' . ($enable ? 'ON' : 'OFF');
+		$this->db->sql_query($sql);
 	}
 }
