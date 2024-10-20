@@ -21,6 +21,7 @@
 			"phpbb/phpbb": ">=3.2.6,<3.4@dev"
 		},
 		"version-check": {
+			"ssl": true,
 			"host": "www.phpbb.com",
 			"directory": "/customise/db/extension/sortables_captcha",
 			"filename": "version_check"
