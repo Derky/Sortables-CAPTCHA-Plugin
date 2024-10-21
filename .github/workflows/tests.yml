@@ -25,7 +25,7 @@ jobs:
         strategy:
             matrix:
                 include:
-                    - php: '8.1'
+                    - php: '7.2'
                       db: "none"
                       NOTESTS: 1
 
