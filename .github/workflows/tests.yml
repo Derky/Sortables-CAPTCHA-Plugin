@@ -21,11 +21,11 @@ on:
 jobs:
     # START Basic Checks Job (EPV, code sniffer, images check, etc.)
     basic-checks:
-        runs-on: ubuntu-18.04
+        runs-on: ubuntu-22.04
         strategy:
             matrix:
                 include:
-                    - php: '7.1'
+                    - php: '7.2'
                       db: "none"
                       NOTESTS: 1
 
@@ -89,27 +89,27 @@ jobs:
 
     # START MySQL and MariaDB Job
     mysql-tests:
-        runs-on: ubuntu-18.04
+        runs-on: ubuntu-22.04
         strategy:
             matrix:
                 include:
-                    - php: '7.1'
+                    - php: '7.2'
                       db: "mariadb:10.1"
-                    - php: '7.1'
+                    - php: '7.2'
                       db: "mariadb:10.2"
-                    - php: '7.1'
+                    - php: '7.2'
                       db: "mariadb:10.3"
-                    - php: '7.1'
+                    - php: '7.2'
                       db: "mariadb:10.4"
-                    - php: '7.1'
+                    - php: '7.2'
                       db: "mariadb:10.5"
-                    - php: '7.1'
+                    - php: '7.2'
                       db: "mysql:5.6"
                       db_alias: "MyISAM Tests"
                       MYISAM: 1
-                    - php: '7.1'
+                    - php: '7.2'
                       db: "mysql:5.6"
-                    - php: '7.1'
+                    - php: '7.2'
                       db: "mysql:5.7"
                     - php: '7.2'
                       db: "mysql:5.7"
@@ -205,21 +205,21 @@ jobs:
 
     # START PostgreSQL Job
     postgres-tests:
-        runs-on: ubuntu-18.04
+        runs-on: ubuntu-22.04
         strategy:
             matrix:
                 include:
-                    - php: '7.1'
+                    - php: '7.2'
                       db: "postgres:9.5"
-                    - php: '7.1'
+                    - php: '7.2'
                       db: "postgres:9.6"
-                    - php: '7.1'
+                    - php: '7.2'
                       db: "postgres:10"
-                    - php: '7.1'
+                    - php: '7.2'
                       db: "postgres:11"
-                    - php: '7.1'
+                    - php: '7.2'
                       db: "postgres:12"
-                    - php: '7.1'
+                    - php: '7.2'
                       db: "postgres:13"
 
         name: PHP ${{ matrix.php }} - ${{ matrix.db }}
@@ -305,11 +305,11 @@ jobs:
 
     # START Other Tests Job (SQLite 3 and mssql)
     other-tests:
-        runs-on: ubuntu-18.04
+        runs-on: ubuntu-20.04 # TODO: Change back to 'ubuntu-22.04' when https://github.com/microsoft/mssql-docker/issues/899 resolved
         strategy:
             matrix:
                 include:
-                    - php: '7.1'
+                    - php: '7.2'
                       db: "sqlite3"
                     - php: '7.2'
                       db: "mcr.microsoft.com/mssql/server:2017-latest"
