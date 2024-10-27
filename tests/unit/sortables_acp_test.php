@@ -37,7 +37,7 @@ class sortables_acp_test extends \phpbb_test_case
 	public function get_sortables($input_post_array = array())
 	{
 		global $phpbb_root_path, $phpEx;
-		
+
 		$request = new \phpbb_mock_request(array(), $input_post_array);
 
 		$this->cache = $this->getMockBuilder('\phpbb\cache\driver\driver_interface')
@@ -51,7 +51,7 @@ class sortables_acp_test extends \phpbb_test_case
 			->getMock();
 
 		$this->language = new \phpbb\language\language(new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx));
-		
+
 		$this->user = $this->getMockBuilder('\phpbb\user')
 			->setConstructorArgs(array(
 				$this->language,
@@ -67,6 +67,7 @@ class sortables_acp_test extends \phpbb_test_case
 			$this->driver,
 			$this->cache,
 			new \phpbb\config\config(array()),
+			$this->language,
 			new \phpbb\log\dummy(),
 			$request,
 			$this->template,
