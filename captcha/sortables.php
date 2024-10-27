@@ -80,6 +80,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	 * @param \phpbb\db\driver\driver_interface		$db
 	 * @param \phpbb\cache\driver\driver_interface	$cache
 	 * @param \phpbb\config\config					$config
+	 * @param \phpbb\language\language				$language
 	 * @param \phpbb\log\log_interface				$log
 	 * @param \phpbb\request\request_interface		$request
 	 * @param \phpbb\template\template				$template
@@ -88,11 +89,12 @@ class sortables extends \phpbb\captcha\plugins\qa
 	 * @param string								$table_sortables_answers
 	 * @param string								$table_sortables_confirm
 	 */
-	public function __construct(\phpbb\db\driver\driver_interface $db, \phpbb\cache\driver\driver_interface $cache, \phpbb\config\config $config, \phpbb\log\log_interface $log, \phpbb\request\request_interface $request, \phpbb\template\template $template, \phpbb\user $user, $table_sortables_questions, $table_sortables_answers, $table_sortables_confirm)
+	public function __construct(\phpbb\db\driver\driver_interface $db, \phpbb\cache\driver\driver_interface $cache, \phpbb\config\config $config, \phpbb\language\language $language, \phpbb\log\log_interface $log, \phpbb\request\request_interface $request, \phpbb\template\template $template, \phpbb\user $user, $table_sortables_questions, $table_sortables_answers, $table_sortables_confirm)
 	{
 		$this->db = $db;
 		$this->cache = $cache;
 		$this->config = $config;
+		$this->language = $language;
 		$this->log = $log;
 		$this->request = $request;
 		$this->template = $template;
@@ -108,7 +110,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	public function init($type)
 	{
 		// load our language file
-		$this->user->add_lang_ext('derky/sortablescaptcha', 'captcha_sortables');
+		$this->language->add_lang('captcha_sortables', 'derky/sortablescaptcha');
 
 		// read input
 		$this->confirm_id = $this->request->variable('sortables_confirm_id', '');
@@ -163,7 +165,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 	public function is_available()
 	{
 		// load language file for pretty display in the ACP dropdown
-		$this->user->add_lang_ext('derky/sortablescaptcha', 'captcha_sortables');
+		$this->language->add_lang('captcha_sortables', 'derky/sortablescaptcha');
 
 		$sql = 'SELECT COUNT(question_id) AS question_count
 			FROM ' . $this->table_sortables_questions . "
@@ -291,7 +293,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 
 		if (!$this->confirm_id)
 		{
-			$error = $this->user->lang['CONFIRM_QUESTION_WRONG'];
+			$error = $this->language->lang('CONFIRM_QUESTION_WRONG');
 		}
 		else
 		{
@@ -301,7 +303,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 			}
 			else
 			{
-				$error = $this->user->lang['CONFIRM_QUESTION_WRONG'];
+				$error = $this->language->lang('CONFIRM_QUESTION_WRONG');
 			}
 		}
 
@@ -536,8 +538,8 @@ class sortables extends \phpbb\captcha\plugins\qa
 	*/
 	public function acp_page($id, $module)
 	{
-		$this->user->add_lang('acp/board');
-		$this->user->add_lang_ext('derky/sortablescaptcha', 'captcha_sortables');
+		$this->language->add_lang('acp/board');
+		$this->language->add_lang('captcha_sortables', 'derky/sortablescaptcha');
 
 		$module->tpl_name = '@derky_sortablescaptcha/captcha_sortables_acp';
 		$module->page_title = 'ACP_VC_SETTINGS';
@@ -588,7 +590,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 		if ($question_id && !$question = $this->acp_get_question_data($question_id))
 		{
 			// Display an error when question not found
-			trigger_error($this->user->lang['FORM_INVALID'] . adm_back_link($this->acp_list_url));
+			trigger_error($this->language->lang('FORM_INVALID') . adm_back_link($this->acp_list_url));
 		}
 
 		// Get possible question input data
@@ -615,12 +617,12 @@ class sortables extends \phpbb\captcha\plugins\qa
 				}
 
 				$this->log->add('admin', $this->user->data['user_id'], $this->user->ip, 'LOG_CONFIG_VISUAL');
-				trigger_error($this->user->lang['CONFIG_UPDATED'] . adm_back_link($this->acp_list_url));
+				trigger_error($this->language->lang('CONFIG_UPDATED') . adm_back_link($this->acp_list_url));
 			}
 		}
 		else if ($submit)
 		{
-			trigger_error($this->user->lang['FORM_INVALID'] . adm_back_link($this->acp_list_url), E_USER_WARNING);
+			trigger_error($this->language->lang('FORM_INVALID') . adm_back_link($this->acp_list_url), E_USER_WARNING);
 		}
 
 		// If no trigger_error has kicked in yet, display the question fields
@@ -680,12 +682,12 @@ class sortables extends \phpbb\captcha\plugins\qa
 			if (confirm_box(true))
 			{
 				$this->acp_delete_question($question_id);
-				trigger_error($this->user->lang['QUESTION_DELETED'] . adm_back_link($this->acp_list_url));
+				trigger_error($this->language->lang('QUESTION_DELETED') . adm_back_link($this->acp_list_url));
 			}
 			else
 			{
 				// Show deletion confirm box
-				confirm_box(false, $this->user->lang['CONFIRM_OPERATION'], build_hidden_fields(array(
+				confirm_box(false, $this->language->lang('CONFIRM_OPERATION'), build_hidden_fields(array(
 					'question_id'		=> $question_id,
 					'action'			=> 'delete',
 					'configure'			=> 1,
@@ -697,7 +699,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 		else
 		{
 			// Prevent the deletion of the latest question since this captcha is set as default
-			trigger_error($this->user->lang['QA_LAST_QUESTION'] . adm_back_link($this->acp_list_url), E_USER_WARNING);
+			trigger_error($this->language->lang('QA_LAST_QUESTION') . adm_back_link($this->acp_list_url), E_USER_WARNING);
 		}
 	}
 

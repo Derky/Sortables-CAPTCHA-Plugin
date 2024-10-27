@@ -10,6 +10,7 @@ services:
             - '@dbal.conn'
             - '@cache.driver'
             - '@config'
+            - '@language'
             - '@log'
             - '@request'
             - '@template'
