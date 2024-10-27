@@ -861,7 +861,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 		$sql = 'INSERT INTO ' . $this->table_sortables_questions . $this->db->sql_build_array('INSERT', $question_ary);
 		$this->db->sql_query($sql);
 
-		$question_id = $this->db->sql_nextid();
+		$question_id = (int) $this->db->sql_last_inserted_id();
 
 		$this->acp_insert_answers($data, $question_id);
 
