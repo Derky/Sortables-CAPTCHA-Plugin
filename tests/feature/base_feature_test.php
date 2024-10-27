@@ -50,6 +50,7 @@ abstract class base_feature_test extends \phpbb_database_test_case
 			$this->db,
 			$this->cache,
 			new \phpbb\config\config(array()),
+			$this->language,
 			new \phpbb\log\dummy(),
 			$request,
 			$this->template,
