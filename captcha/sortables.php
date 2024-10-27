@@ -42,6 +42,9 @@ class sortables extends \phpbb\captcha\plugins\qa
 	/** @var \phpbb\config\config */
 	protected $config;
 
+	/** @var \phpbb\language\language */
+	protected $language;
+
 	/** @var \phpbb\log\log_interface */
 	protected $log;
 
