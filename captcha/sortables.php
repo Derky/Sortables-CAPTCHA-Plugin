@@ -785,7 +785,7 @@ class sortables extends \phpbb\captcha\plugins\qa
 		$question = array(
 			'question_text'	=> $this->request->variable('question_text', '', true),
 			'sort'			=> $this->request->variable('sort', false),
-			'lang_iso'		=> $this->request->variable('lang_iso', ''),
+			'lang_iso'		=> $this->request->variable('lang_iso', $this->user->lang_name),
 			'name_left'		=> $this->request->variable('name_left', '', true),
 			'name_right'	=> $this->request->variable('name_right', '', true),
 			'options_left'	=> $this->acp_input_options_to_array($this->request->variable('options_left', '', true)),
