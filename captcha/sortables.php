@@ -474,6 +474,10 @@ class sortables extends \phpbb\captcha\plugins\qa
 		// Well how did the user sorted it
 		$options_left = $this->request->variable('sortables_options_left', array(0));
 		$options_right = $this->request->variable('sortables_options_right', array(0));
+		$honeypot = $this->request->variable('password', []);
+		if ($honeypot != []) {
+			return false;
+		}
 
 		// Make sure the didn't submitted more options then it should (like trying everything... left/right: options ^ 2 )
 		if ($this->total_options === count($options_left) + count($options_right))
