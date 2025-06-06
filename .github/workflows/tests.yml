@@ -319,7 +319,7 @@ jobs:
 
         services:
             mssql:
-                image: ${{ matrix.db != 'mcr.microsoft.com/mssql/server:2022-CU13-ubuntu-22.04' && 'mcr.microsoft.com/mssql/server:2022-CU13-ubuntu-22.04' || matrix.db }}
+                image: ${{ matrix.db != 'mcr.microsoft.com/mssql/server:2022-CU13-ubuntu-22.04' || matrix.db }}
                 env:
                     SA_PASSWORD: "Pssw0rd_12"
                     ACCEPT_EULA: "y"
@@ -359,7 +359,7 @@ jobs:
               env:
                   MATRIX_DB: ${{ matrix.db }}
               run: |
-                  if [ $MATRIX_DB == 'mcr.microsoft.com/mssql/server:2017-latest' ] || [ $MATRIX_DB == 'mcr.microsoft.com/mssql/server:2019-CU27-ubuntu-20.04' ]
+                  if [ $MATRIX_DB == 'mcr.microsoft.com/mssql/server:2022-CU13-ubuntu-22.04' ]
                   then
                       db='mssql'
                   else
