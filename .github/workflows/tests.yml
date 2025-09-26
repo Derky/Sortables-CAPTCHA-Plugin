@@ -25,7 +25,7 @@ jobs:
         strategy:
             matrix:
                 include:
-                    - php: '7.2'
+                    - php: '8.4'
                       db: "none"
                       NOTESTS: 1
 
@@ -93,17 +93,17 @@ jobs:
         strategy:
             matrix:
                 include:
-                    - php: '8.1'
+                    - php: '8.4'
                       db: "mariadb:10.1"
-                    - php: '8.1'
+                    - php: '8.4'
                       db: "mariadb:10.2"
-                    - php: '8.1'
+                    - php: '8.4'
                       db: "mariadb:10.3"
-                    - php: '8.1'
+                    - php: '8.4'
                       db: "mariadb:10.4"
-                    - php: '8.1'
+                    - php: '8.4'
                       db: "mariadb:10.5"
-                    - php: '8.1'
+                    - php: '8.4'
                       db: "mysql:5.6"
                       db_alias: "MyISAM Tests"
                       MYISAM: 1
@@ -203,16 +203,18 @@ jobs:
         strategy:
             matrix:
                 include:
-                    - php: '8.1'
+                    - php: '8.4'
                       db: "postgres:12"
-                    - php: '8.1'
+                    - php: '8.4'
                       db: "postgres:13"
-                    - php: '8.1'
+                    - php: '8.4'
                       db: "postgres:14"
-                    - php: '8.1'
+                    - php: '8.4'
                       db: "postgres:15"
-                    - php: '8.1'
+                    - php: '8.4'
                       db: "postgres:16"
+                    - php: '8.4'
+                      db: "postgres:17"
                     - php: '8.1'
                       db: "postgres:17"
                     - php: '8.2'
@@ -309,9 +311,9 @@ jobs:
         strategy:
             matrix:
                 include:
-                    - php: '8.1'
+                    - php: '8.4'
                       db: "sqlite3"
-                    - php: '8.1'
+                    - php: '8.4'
                       db: "mcr.microsoft.com/mssql/server:2022-CU13-ubuntu-22.04"
                       db_alias: 'MSSQL 2022'
 
