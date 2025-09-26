@@ -474,8 +474,8 @@ class sortables extends \phpbb\captcha\plugins\qa
 		// Well how did the user sorted it
 		$options_left = $this->request->variable('sortables_options_left', array(0));
 		$options_right = $this->request->variable('sortables_options_right', array(0));
-		$honeypot = $this->request->variable('password', []);
-		if ($honeypot != [])
+		$honeypot = $this->request->variable('password2', '');
+		if ($honeypot)
 		{
 			return false;
 		}
